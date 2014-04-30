@@ -8,14 +8,11 @@
         "type": "git",
         "url": "https://github.com/krispo/angular-nvd3.git"
     },
-    "main": "angular-nvd3.min.js",
+    "main": ["dist/angular-nvd3.js", "dist/angular-nvd3.min.js"],
     "keywords": [
         "angular",
         "nvd3",
         "d3",
-        "angular.js",
-        "nvd3.js",
-        "d3.js",
         "directive",
         "visualization",
         "charts",
@@ -25,7 +22,9 @@
         "url": "https://github.com/krispo/angular-nvd3/issues"
     },
     "license": "MIT",
-    "author": "Konstantin Skipor",
+    "author": {
+        "name": "Konstantin Skipor"
+    },
     "devDependencies": {
         "grunt": "^0.4.4",
         "grunt-cli": "^0.1.13",
