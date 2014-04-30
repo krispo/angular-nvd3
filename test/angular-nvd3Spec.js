@@ -1,8 +1,9 @@
-'use strict';
+/*global jasmine, beforeEach, afterEach, describe, it, inject, expect, module */
 
 describe('angular-nvd3 directive', function() {
-    var $compile;
-    var $scope;
+    'use strict';
+
+    var $compile, $scope;
 
     // Load the nvd3 module, which contains the directive
     beforeEach(module('nvd3'));
@@ -31,7 +32,7 @@ describe('angular-nvd3 directive', function() {
         $scope.$digest();
 
         return $element;
-    };
+    }
 
     it('should load test', function() {
         expect(1).toBe(1);
@@ -47,7 +48,7 @@ describe('angular-nvd3 directive', function() {
             values: [{x: 1, y: 1}, {x: 2, y: 2}, {x: 3, y: 3}],
             key: 'Line Chart',
             color: '#ff7f0e'
-        }
+        };
 
         it('parent scope options SHOULD MATCH directive scope options', function() {
             var element = compileTpl(chartOptions, data);
@@ -65,5 +66,5 @@ describe('angular-nvd3 directive', function() {
                 key: 'Line Chart'
             }));
         });
-    })
+    });
 });

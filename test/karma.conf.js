@@ -1,4 +1,8 @@
+/* global module */
+
 module.exports = function(config) {
+    'use strict';
+
     config.set({
 
         // The root path location that will be used to resolve all relative paths defined in files and exclude.

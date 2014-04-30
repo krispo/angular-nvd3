@@ -1,0 +1,16 @@
+{
+    "eqeqeq": true,
+    "esnext": true,
+    "immed": true,
+    "latedef": true,
+    "newcap": true,
+    "nonew": true,
+    "quotmark": "single",
+    "strict": true,
+    "trailing": true,
+    "undef": true,
+    "unused": "vars",
+    "globals": {
+        "angular": false
+    }
+}
