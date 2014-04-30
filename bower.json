@@ -34,6 +34,6 @@
         "test",
         "tests",
         "lib",
-        "examples",
+        "examples"
     ]
 }
