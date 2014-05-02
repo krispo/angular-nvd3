@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="mainApp">
 <head>
     <meta charset="utf-8">
     <title>Angular-nvD3</title>
@@ -27,86 +27,54 @@
 </head>
 <body>
 <!------------------------------------------------------------------------------------------------------->
-
-<div class="navbar navbar-default navbar-fixed-top">
-    <div class="container">
-        <div class="navbar-collapse collapse" id="navbar-main">
-            <ul class="nav navbar-nav">
-                <li>
-                    <a href="">Home</a>
-                </li>
-                <li>
-                    <a href="">Quick Start</a>
-                </li>
-                <li>
-                    <a href="">Live Edit</a>
-                </li>
-            </ul>
-        </div>
-    </div>
-</div>
-
-<div class="splash">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                <h1>Angular-nvD3</h1>
-                <a type="button" class="btn btn-info">Quick Start</a>
-                <a type="button" class="btn btn-success" href="https://github.com/krispo/angular-nvd3" target="_blank">View on Github</a>
-            </div>
-        </div>
-
-    </div>
-</div>
-
-<div class="container container-fluid" style="padding-top: 30px; width: 100%">
-    <div class="row">
-        <ul style="list-style-type: none; padding: 0px 10px 0px 10px;">
-            <li class="col-xs-6 col-md-3">
-                <a href="#" class="thumbnail">
-                    <img src="..." alt="">
-                </a>
-            </li>
-            <li class="col-xs-6 col-md-3">
-                <a href="#" class="thumbnail">
-                    <img src="..." alt="">
-                </a>
-            </li>
-            <li class="col-xs-6 col-md-3">
-                <a href="#" class="thumbnail">
-                    <img src="..." alt="">
-                </a>
-            </li>
-            <li class="col-xs-6 col-md-3">
-                <a href="#" class="thumbnail">
-                    <img src="..." alt="">
-                </a>
-            </li>
-        </ul>
-    </div>
-</div>
-
-<div class="splash">
-    <div class="container" style="margin-top: -30px; margin-bottom: -2px">
-        <div class="row">
-            <div class="col-lg-12">
-                <a href="https://angularjs.org/" class="icon" target="_blank">
-                    <img src="img/icons/angular.png" alt="">
-                </a>
-                <a href="http://d3js.org/" class="icon" target="_blank">
-                    <img src="img/icons/d3.png" alt="">
-                </a>
-                <a href="http://nvd3.org/" class="icon" target="_blank">
-                    <img src="img/icons/novus.png" alt="">
-                </a>
+<header>
+    <div class="navbar navbar-default navbar-fixed-top">
+        <div class="container" ng-controller="mainCtrl">
+            <div class="navbar-collapse collapse" id="navbar-main">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="#/">Home</a>
+                    </li>
+                    <li>
+                        <a href="#/quickstart">Quick Start</a>
+                    </li>
+                    <li>
+                        <a href="#/liveedit">Live Edit</a>
+                    </li>
+                </ul>
             </div>
         </div>
     </div>
-</div>
+</header>
+
+<div ng-view></div>
+
+<footer>
+    <div class="splash">
+        <div class="container" style="margin-top: -30px; margin-bottom: -2px">
+            <div class="row">
+                <div class="col-lg-12">
+                    <a href="https://angularjs.org/" class="icon" target="_blank">
+                        <img src="img/icons/angular.png" alt="">
+                    </a>
+                    <a href="http://d3js.org/" class="icon" target="_blank">
+                        <img src="img/icons/d3.png" alt="">
+                    </a>
+                    <a href="http://nvd3.org/" class="icon" target="_blank">
+                        <img src="img/icons/novus.png" alt="">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
 
 <!------------------------------------------------------------------------------------------------------->
 <script src="bower_components/jquery/dist/jquery.min.js"></script>
 <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <script src="bower_components/bootswatch/bootswatch.js"></script>
+<script src="bower_components/angular/angular.min.js"></script>
+<script src="bower_components/angular-route/angular-route.min.js"></script>
+<script src="js/app.js"></script>
 </body>
 </html>
