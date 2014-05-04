@@ -29,7 +29,7 @@ describe('angular-nvd3 directive', function() {
         var $element = $compile('<nvd3 options="options" data="data"></nvd3>')($scope);
 
         // fire all the watches, so the any scope expression in directive will be evaluated
-        $scope.$digest();
+        //$scope.$digest();
 
         return $element;
     }
@@ -40,9 +40,11 @@ describe('angular-nvd3 directive', function() {
 
     describe('directive with options and data defined', function(){
         var chartOptions = {
-            type: 'lineChart',
-            height: 400,
-            width: 500
+            chart: {
+                type: 'lineChart',
+                height: 400,
+                width: 500
+            }
         };
         var data = {
             values: [{x: 1, y: 1}, {x: 2, y: 2}, {x: 3, y: 3}],
@@ -52,10 +54,10 @@ describe('angular-nvd3 directive', function() {
 
         it('parent scope options SHOULD MATCH directive scope options', function() {
             var element = compileTpl(chartOptions, data);
-            expect(element.scope().options).toEqual(jasmine.objectContaining({
+            expect(element.scope().options.chart).toEqual(jasmine.objectContaining({
                 type: 'lineChart'
             }));
-            expect(element.scope().options).not.toEqual(jasmine.objectContaining({
+            expect(element.scope().options.chart).not.toEqual(jasmine.objectContaining({
                 width: 1000
             }));
         });

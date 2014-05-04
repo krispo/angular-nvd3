@@ -14,13 +14,12 @@
                 link: function(scope, element, attrs){
                     var chart, svg;
 
-                    function optionWatcher(options){
-                        element.parent().find('.title').remove();
-                        element.parent().find('.subtitle').remove();
-                        element.parent().find('.caption').remove();
-                        element.empty();
+                    // Update chart after options have changed
+                    function updateWithOptions(options){
+                        // Clearing
+                        clearElement();
 
-                        // Set chart options
+                        // Initialize chart with specific type
                         chart = getChart(options.chart.type)
 
                         angular.forEach(chart, function(value, key){
@@ -83,7 +82,7 @@
                             .attr('width', options.chart.width)
 
                         // Update with data
-                        dataWatcher(scope.data)
+                        updateWithData(scope.data)
 
                         // Configure wrappers
                         configureWrapper('title');
@@ -100,8 +99,8 @@
                         })
                     };
 
-
-                    function dataWatcher(data){
+                    // Update chart after data have changed
+                    function updateWithData(data){
                         if (data && svg) {
                             scope.options.chart['transitionDuration'] = +scope.options.chart['transitionDuration'] || 250;
                             svg.datum(data)
@@ -110,6 +109,15 @@
                         }
                     };
 
+                    // Fully clear directive element
+                    function clearElement(){
+                        element.parent().find('.title').remove();
+                        element.parent().find('.subtitle').remove();
+                        element.parent().find('.caption').remove();
+                        element.empty();
+                    }
+
+                    // Initialize and return chart with specific type
                     function getChart(type){
                         switch (type){
                             case 'bulletChart': return nv.models.bulletChart(); break;
@@ -131,6 +139,7 @@
                         }
                     };
 
+                    // Configure the chart model with the passed options
                     function configure(chart, options){
                         if (chart){
                             if (options === undefined) options = {};
@@ -151,6 +160,8 @@
                         }
                     };
 
+                    // Subscribe on the chart events (contained in 'dispatch')
+                    // and pass eventHandler functions in the 'options' parameter
                     function configureEvents(dispatch, options){
                         if (dispatch){
                             if (options === undefined) options = {};
@@ -162,6 +173,8 @@
                         }
                     };
 
+                    // Configure 'title', 'subtitle', 'caption'.
+                    // nvd3 has no sufficient models for it yet.
                     function configureWrapper(name){
                         scope.options[name] = scope.options[name] || {};
 
@@ -183,6 +196,7 @@
                         };
                     };
 
+                    // Add some styles to the whole directive element
                     function configureStyles(){
                         scope.options['styles'] = scope.options['styles'] || {};
 
@@ -194,9 +208,10 @@
                             value ? element.addClass(key) : element.removeClass(key)
                         });
 
-                        element..removeAttr('style').css(scope.options['styles'].css)
-                    }
+                        element.removeAttr('style').css(scope.options['styles'].css);
+                    };
 
+                    // Default values for 'title', 'subtitle', 'caption'
                     function defaultWrapper(_){
                         switch (_){
                             case 'title': return {
@@ -227,6 +242,7 @@
                         }
                     };
 
+                    // Default values for styles
                     function defaultStyles(){
                         return {
                             classes: {
@@ -236,10 +252,11 @@
                             },
                             css: {}
                         }
-                    }
+                    };
 
-                    scope.$watch('options', function(options){ optionWatcher(options); }, true);
-                    scope.$watch('data', function(data){ dataWatcher(data);}, true);
+                    // Watching on options and data changing
+                    scope.$watch('options', function(options){ updateWithOptions(options); }, true);
+                    scope.$watch('data', function(data){ updateWithData(data); }, true);
                 }
             }
         }]);
