@@ -172,6 +172,7 @@
                         var wrapElement = angular
                             .element('<div></div>')
                             .addClass(name).addClass(scope.options[name].class)
+                            .removeAttr('style')
                             .css(scope.options[name].css)
                             .text(scope.options[name].text)
 
@@ -189,14 +190,11 @@
                             if (scope.options['styles'][key] === undefined || scope.options['styles'][key] === null) scope.options['styles'][key] = value;
                         });
 
-                        var classes = '';
-                        angular.forEach(scope.options['styles'].classes, function(value, key){   console.log(key, value)
-                            if (value) classes += key + ' ';
+                        angular.forEach(scope.options['styles'].classes, function(value, key){
+                            value ? element.addClass(key) : element.removeClass(key)
                         });
 
-                        element
-                            .addClass(classes)
-                            .css(scope.options['styles'].css)
+                        element..removeAttr('style').css(scope.options['styles'].css)
                     }
 
                     function defaultWrapper(_){
@@ -232,9 +230,9 @@
                     function defaultStyles(){
                         return {
                             classes: {
-                                with3dShadow: true,
-                                withTransitions: true,
-                                gallery: false
+                                'with-3d-shadow': true,
+                                'with-transitions': true,
+                                'gallery': false
                             },
                             css: {}
                         }
