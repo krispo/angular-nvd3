@@ -1,16 +1,21 @@
 {
     "eqeqeq": true,
     "esnext": true,
+    "expr": true,
     "immed": true,
+    "laxbreak": true,
     "latedef": true,
     "newcap": true,
     "nonew": true,
     "quotmark": "single",
     "strict": true,
+    "sub": true,
     "trailing": true,
     "undef": true,
     "unused": "vars",
     "globals": {
-        "angular": false
+        "angular": false,
+        "nv": false,
+        "d3": false
     }
 }

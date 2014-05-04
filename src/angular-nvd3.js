@@ -20,7 +20,7 @@
                         clearElement();
 
                         // Initialize chart with specific type
-                        chart = getChart(options.chart.type)
+                        chart = getChart(options.chart.type);
 
                         angular.forEach(chart, function(value, key){
                             if ([
@@ -74,15 +74,15 @@
                             else (options.chart[key] === undefined || options.chart[key] === null)
                                     ? options.chart[key] = value()
                                     : chart[key](options.chart[key]);
-                        })
+                        });
 
                         // Select the current element to add <svg> element and to render the chart in
-                        svg = d3.select(element[0]).append("svg")
+                        svg = d3.select(element[0]).append('svg')
                             .attr('height', options.chart.height)
-                            .attr('width', options.chart.width)
+                            .attr('width', options.chart.width);
 
                         // Update with data
-                        updateWithData(scope.data)
+                        updateWithData(scope.data);
 
                         // Configure wrappers
                         configureWrapper('title');
@@ -94,10 +94,10 @@
 
                         nv.addGraph(function() {
                             // Update the chart when window resizes
-                            nv.utils.windowResize(function() { chart.update() });
-                            return chart
-                        })
-                    };
+                            nv.utils.windowResize(function() { chart.update(); });
+                            return chart;
+                        });
+                    }
 
                     // Update chart after data have changed
                     function updateWithData(data){
@@ -107,7 +107,7 @@
                                 .transition().duration(scope.options.chart['transitionDuration'])
                                 .call(chart);
                         }
-                    };
+                    }
 
                     // Fully clear directive element
                     function clearElement(){
@@ -120,24 +120,24 @@
                     // Initialize and return chart with specific type
                     function getChart(type){
                         switch (type){
-                            case 'bulletChart': return nv.models.bulletChart(); break;
-                            case 'cumulativeLineChart': return nv.models.cumulativeLineChart(); break;
-                            case 'discreteBarChart': return nv.models.discreteBarChart(); break;
-                            case 'stackedAreaChart': return nv.models.stackedAreaChart(); break;
-                            case 'multiBarChart': return nv.models.multiBarChart(); break;
-                            case 'historicalBarChart': return nv.models.historicalBarChart(); break;
-                            case 'multiBarHorizontalChart': return nv.models.multiBarHorizontalChart(); break;
-                            case 'pieChart': return nv.models.pieChart(); break;
-                            case 'scatterChart': return nv.models.scatterChart(); break;
-                            case 'scatterPlusLineChart': return nv.models.scatterPlusLineChart(); break;
-                            case 'lineChart': return nv.models.lineChart(); break;
-                            case 'linePlusBarChart': return nv.models.linePlusBarChart(); break;
-                            case 'lineWithFocusChart': return nv.models.lineWithFocusChart(); break;
-                            case 'linePlusBarWithFocusChart': return nv.models.linePlusBarWithFocusChart(); break;
-                            case 'sparklinePlus': return nv.models.sparklinePlus(); break;
-                            case 'indentedTreeChart': return nv.models.indentedTree(); break;
+                            case 'bulletChart': return nv.models.bulletChart();
+                            case 'cumulativeLineChart': return nv.models.cumulativeLineChart();
+                            case 'discreteBarChart': return nv.models.discreteBarChart();
+                            case 'stackedAreaChart': return nv.models.stackedAreaChart();
+                            case 'multiBarChart': return nv.models.multiBarChart();
+                            case 'historicalBarChart': return nv.models.historicalBarChart();
+                            case 'multiBarHorizontalChart': return nv.models.multiBarHorizontalChart();
+                            case 'pieChart': return nv.models.pieChart();
+                            case 'scatterChart': return nv.models.scatterChart();
+                            case 'scatterPlusLineChart': return nv.models.scatterPlusLineChart();
+                            case 'lineChart': return nv.models.lineChart();
+                            case 'linePlusBarChart': return nv.models.linePlusBarChart();
+                            case 'lineWithFocusChart': return nv.models.lineWithFocusChart();
+                            case 'linePlusBarWithFocusChart': return nv.models.linePlusBarWithFocusChart();
+                            case 'sparklinePlus': return nv.models.sparklinePlus();
+                            case 'indentedTreeChart': return nv.models.indentedTree();
                         }
-                    };
+                    }
 
                     // Configure the chart model with the passed options
                     function configure(chart, options){
@@ -156,9 +156,9 @@
                                     (options[key] === undefined || options[key] === null)
                                         ? options[key] = value()
                                         : chart[key](options[key]);
-                            })
+                            });
                         }
-                    };
+                    }
 
                     // Subscribe on the chart events (contained in 'dispatch')
                     // and pass eventHandler functions in the 'options' parameter
@@ -169,9 +169,9 @@
                                 (options[key] === undefined || options[key] === null)
                                     ? options[key] = value.on
                                     : dispatch.on(key + '._', options[key]);
-                            })
+                            });
                         }
-                    };
+                    }
 
                     // Configure 'title', 'subtitle', 'caption'.
                     // nvd3 has no sufficient models for it yet.
@@ -187,14 +187,14 @@
                             .addClass(name).addClass(scope.options[name].class)
                             .removeAttr('style')
                             .css(scope.options[name].css)
-                            .text(scope.options[name].text)
+                            .text(scope.options[name].text);
 
                         if (scope.options[name].enable) {
                             if (name === 'title') element.parent().prepend(wrapElement);
                             else if (name === 'subtitle') element.parent().find('.title').after(wrapElement);
                             else if (name === 'caption') element.parent().append(wrapElement);
-                        };
-                    };
+                        }
+                    }
 
                     // Add some styles to the whole directive element
                     function configureStyles(){
@@ -205,11 +205,11 @@
                         });
 
                         angular.forEach(scope.options['styles'].classes, function(value, key){
-                            value ? element.addClass(key) : element.removeClass(key)
+                            value ? element.addClass(key) : element.removeClass(key);
                         });
 
                         element.removeAttr('style').css(scope.options['styles'].css);
-                    };
+                    }
 
                     // Default values for 'title', 'subtitle', 'caption'
                     function defaultWrapper(_){
@@ -222,7 +222,7 @@
                                     width: scope.options.chart.width + 'px',
                                     textAlign: 'center'
                                 }
-                            }; break;
+                            };
                             case 'subtitle': return {
                                 enable: false,
                                 text: 'Write Your Subtitle',
@@ -230,7 +230,7 @@
                                     width: scope.options.chart.width + 'px',
                                     textAlign: 'center'
                                 }
-                            }; break;
+                            };
                             case 'caption': return {
                                 enable: false,
                                 text: 'Figure 1. Write Your Caption text.',
@@ -238,9 +238,9 @@
                                     width: scope.options.chart.width + 'px',
                                     textAlign: 'center'
                                 }
-                            }; break;
+                            };
                         }
-                    };
+                    }
 
                     // Default values for styles
                     function defaultStyles(){
@@ -251,13 +251,13 @@
                                 'gallery': false
                             },
                             css: {}
-                        }
-                    };
+                        };
+                    }
 
                     // Watching on options and data changing
                     scope.$watch('options', function(options){ updateWithOptions(options); }, true);
                     scope.$watch('data', function(data){ updateWithData(data); }, true);
                 }
-            }
+            };
         }]);
 })();
