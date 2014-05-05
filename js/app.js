@@ -6,7 +6,8 @@ var app = angular.module('mainApp', ['mainApp.controllers','ngRoute', 'json-tree
         $routeProvider.when('/quickstart', {templateUrl: 'pages/quickstart.html', controller: 'mainCtrl'});
         $routeProvider.when('/liveedit', {templateUrl: 'pages/liveedit.html', controller: 'mainCtrl'});
 
-        $routeProvider.when('/linechart', {templateUrl: 'pages/liveedit.html', controller: 'lineChartCtrl'});
+        $routeProvider.when('/lineChart', {templateUrl: 'pages/liveedit.html', controller: 'lineChartCtrl'});
+        $routeProvider.when('/cumulativeLineChart', {templateUrl: 'pages/liveedit.html', controller: 'cumulativeLineChartCtrl'});
 
         $routeProvider.otherwise({redirectTo: '/'});
     }])
