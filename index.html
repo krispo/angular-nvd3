@@ -10,6 +10,32 @@
     <link rel="stylesheet" href="lib/json-tree.css">
 
     <style>
+        html, body {
+            margin:0;
+            padding:0;
+            height:100%;
+            min-height:100%;
+            position:relative;
+        }
+        .wrapper {
+            min-height:100%;
+            position:relative;
+        }
+        .header {
+            padding:13px;
+        }
+        .content {
+            padding-top:20px;
+            padding-bottom:114px;   /* Height of the footer element */
+        }
+        .footer {
+            width:100%;
+            height:114px;
+            position:absolute;
+            bottom:0;
+            left:0;
+        }
+
         @media (min-width: 768px) {
             .navbar .navbar-nav {
                 display: inline-block;
@@ -18,6 +44,13 @@
             .navbar .navbar-collapse {
                 text-align: center;
             }
+            .navbar-nav > li > a {
+                padding-top:10px !important;
+                padding-bottom:10px !important;
+            }
+            .navbar {
+                min-height:32px !important
+            }
         }
         .splash {
             background: #2c3e50;
@@ -25,11 +58,13 @@
         .icon {
             zoom: 40%;
         }
+
     </style>
 </head>
 <body>
 <!------------------------------------------------------------------------------------------------------->
-<header>
+<div class="wrapper">
+<div class="header">
     <div class="navbar navbar-default navbar-fixed-top">
         <div class="container" ng-controller="mainCtrl">
             <div class="navbar-collapse collapse" id="navbar-main">
@@ -41,17 +76,17 @@
                         <a href="#/quickstart">Quick Start</a>
                     </li>
                     <li ng-class="{ active: isActive('/liveedit')}">
-                        <a href="#/liveedit">Live Edit</a>
+                        <a href="#/linechart">Live Edit</a>
                     </li>
                 </ul>
             </div>
         </div>
     </div>
-</header>
+</div>
 
-<div ng-view></div>
+<div class="content" ng-view></div>
 
-<footer>
+<div class="footer">
     <div class="splash">
         <div class="container" style="margin-top: -30px; margin-bottom: -2px">
             <div class="row">
@@ -69,8 +104,8 @@
             </div>
         </div>
     </div>
-</footer>
-
+</div>
+</div>
 <!------------------------------------------------------------------------------------------------------->
 <script src="bower_components/jquery/dist/jquery.min.js"></script>
 <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
@@ -81,6 +116,8 @@
 <script src="lib/nv.d3.js"></script>
 <script src="bower_components/angular-nvd3/dist/angular-nvd3.js"></script>
 <script src="lib/json-tree.js"></script>
+
 <script src="js/app.js"></script>
+<script src="js/lineChart.js"></script>
 </body>
 </html>

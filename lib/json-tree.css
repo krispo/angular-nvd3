@@ -1,10 +1,19 @@
+/*
+JSON-TREE styles
+*/
 json-tree {
     font-size: 13px;
     font-family: monospace;
 }
 json-tree input[type="text"]{
     width: 4em;
-    height: 11px;
+    height: 18px;
+}
+json-tree input[type="number"]{
+    width: 5em;
+    height: 17px;
+    vertical-align: middle;
+    font-size: x-small;
 }
 json-tree ul {
     list-style: none;
@@ -17,7 +26,7 @@ json-tree .add {
     color: green;
 }
 json-tree .reset {
-    color: blue;
+    color: steelblue;
 }
 json-tree .remove {
     color: red;

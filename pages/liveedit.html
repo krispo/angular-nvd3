@@ -1,1 +1,14 @@
-<div>Live Edit page</div>
+<style>
+    .edit-area {
+        padding:20px;
+    }
+</style>
+
+<div class="row edit-area">
+    <div class="col-md-4" sidebar style="position: static;">
+        <json-tree json="options" edit-level="high" collapsed-level="2"></json-tree>
+    </div>
+    <div class="col-md-8">
+        <nvd3 data="data" options="options"></nvd3>
+    </div>
+</div>
