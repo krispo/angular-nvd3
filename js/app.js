@@ -21,6 +21,11 @@ var app = angular.module('mainApp', ['mainApp.controllers','ngRoute', 'json-tree
         $routeProvider.when('/bulletChart', {templateUrl: 'pages/liveedit.html', controller: 'bulletChartCtrl'});
         $routeProvider.when('/sparklinePlus', {templateUrl: 'pages/liveedit.html', controller: 'sparklinePlusCtrl'});
         $routeProvider.when('/linePlusBarWithFocusChart', {templateUrl: 'pages/liveedit.html', controller: 'linePlusBarWithFocusChartCtrl'});
+        $routeProvider.when('/donutChart', {templateUrl: 'pages/liveedit.html', controller: 'donutChartCtrl'});
+        $routeProvider.when('/parallelCoordinates', {templateUrl: 'pages/liveedit.html', controller: 'parallelCoordinatesCtrl'});
+        $routeProvider.when('/multiChart', {templateUrl: 'pages/liveedit.html', controller: 'multiChartCtrl'});
+        $routeProvider.when('/lineWithFisheyeChart', {templateUrl: 'pages/liveedit.html', controller: 'lineWithFisheyeChartCtrl'});
+
 
         $routeProvider.otherwise({redirectTo: '/'});
     }])

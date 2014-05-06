@@ -7,20 +7,12 @@ angular.module('mainApp.controllers')
         $scope.options = {
             chart: {
                 type: 'scatterPlusLineChart',
-                 height: 450,
-                 width: 700,
-                /*margin : {
-                 top: 20,
-                 right: 20,
-                 bottom: 60,
-                 left: 40
-                 },*/
+                height: 450,
+                width: 700,
                 color: d3.scale.category10().range(),
-
-                // TODO: need to be fixed in directive
-                /*scatter: {
+                scatter: {
                     onlyCircles: false
-                },*/
+                },
                 showDistX: true,
                 showDistY: true,
                 tooltipContent: function(key) {

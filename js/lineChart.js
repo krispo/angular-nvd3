@@ -11,8 +11,8 @@ angular.module('mainApp.controllers', [])
                 margin : {
                     top: 20,
                     right: 20,
-                    bottom: 60,
-                    left: 40
+                    bottom: 35,
+                    left: 55
                 },
                 x: function(d){ return d.x; },
                 y: function(d){ return d.y; },
@@ -30,7 +30,8 @@ angular.module('mainApp.controllers', [])
                     axisLabel: 'Voltage (v)',
                     tickFormat: function(d){
                         return d3.format('.02f')(d);
-                    }
+                    },
+                    axisLabelDistance: 30
                 }
             }
         };

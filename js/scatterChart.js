@@ -10,12 +10,9 @@ angular.module('mainApp.controllers')
                 height: 450,
                 width: 700,
                 color: d3.scale.category10().range(),
-
-                // TODO: need to be fixed
-                /*scatter: {
+                scatter: {
                     onlyCircles: false
-                },*/
-                //shape: function(d){ return 'diamond';},
+                },
                 showDistX: true,
                 showDistY: true,
                 tooltipContent: function(key) {
