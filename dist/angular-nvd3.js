@@ -1,5 +1,5 @@
 /**************************************************************************
-* AngularJS-nvD3, v0.0.2; MIT; 05/06/2014 13:33
+* AngularJS-nvD3, v0.0.3; MIT; 05/06/2014 21:25
 * http://krispo.github.io/angular-nvd3
 **************************************************************************/
 (function(){
@@ -36,9 +36,13 @@
 
                             else if ([
                                 'lines',
+                                'lines1',
                                 'lines2',
                                 'bars', // TODO: Fix bug in nvd3, nv.models.historicalBar - chart.interactive (false -> _)
+                                'bars1',
                                 'bars2',
+                                'stack1',
+                                'stack2',
                                 'multibar',
                                 'discretebar',
                                 'pie',
@@ -51,6 +55,8 @@
                                 'xAxis',
                                 'x2Axis',
                                 'yAxis',
+                                'yAxis1',
+                                'yAxis2',
                                 'y1Axis',
                                 'y2Axis',
                                 'y3Axis',
@@ -66,7 +72,7 @@
                                 (key ==='clipEdge' && options.chart.type === 'multiBarHorizontalChart')
                                     || (key === 'clipVoronoi' && options.chart.type === 'historicalBarChart')
                                     || (key === 'color' && options.chart.type === 'indentedTreeChart')
-                                    || (key === 'defined' && (options.chart.type === 'historicalBarChart' || options.chart.type === 'cumulativeLineChart'))
+                                    || (key === 'defined' && (options.chart.type === 'historicalBarChart' || options.chart.type === 'cumulativeLineChart' || options.chart.type === 'lineWithFisheyeChart'))
                                     || (key === 'forceX' && (options.chart.type === 'multiBarChart' || options.chart.type === 'discreteBarChart' || options.chart.type === 'multiBarHorizontalChart'))
                                     || (key === 'interpolate' && options.chart.type === 'historicalBarChart')
                                     || (key === 'isArea' && options.chart.type === 'historicalBarChart')
@@ -75,8 +81,8 @@
                                     || (key === 'values' && options.chart.type === 'pieChart')
                                     || (key === 'xScale' && options.chart.type === 'scatterChart')
                                     || (key === 'yScale' && options.chart.type === 'scatterChart')
-                                    || (key === 'x' && options.chart.type === 'lineWithFocusChart')
-                                    || (key === 'y' && options.chart.type === 'lineWithFocusChart')
+                                    || (key === 'x' && (options.chart.type === 'lineWithFocusChart' || options.chart.type === 'multiChart'))
+                                    || (key === 'y' && options.chart.type === 'lineWithFocusChart' || options.chart.type === 'multiChart')
                                 );
 
                             else (options.chart[key] === undefined || options.chart[key] === null)
@@ -119,31 +125,48 @@
 
                     // Fully clear directive element
                     function clearElement(){
-                        element.parent().find('.title').remove();
-                        element.parent().find('.subtitle').remove();
-                        element.parent().find('.caption').remove();
+                        element.find('.title').remove();
+                        element.find('.subtitle').remove();
+                        element.find('.caption').remove();
                         element.empty();
                     }
 
                     // Initialize and return chart with specific type
                     function getChart(type){
                         switch (type){
+                            case 'bullet': return nv.models.bullet();
                             case 'bulletChart': return nv.models.bulletChart();
                             case 'cumulativeLineChart': return nv.models.cumulativeLineChart();
+                            case 'discreteBar': return nv.models.discreteBar();
                             case 'discreteBarChart': return nv.models.discreteBarChart();
-                            case 'stackedAreaChart': return nv.models.stackedAreaChart();
-                            case 'multiBarChart': return nv.models.multiBarChart();
+                            case 'historicalBar': return nv.models.historicalBar();
                             case 'historicalBarChart': return nv.models.historicalBarChart();
-                            case 'multiBarHorizontalChart': return nv.models.multiBarHorizontalChart();
-                            case 'pieChart': return nv.models.pieChart();
-                            case 'scatterChart': return nv.models.scatterChart();
-                            case 'scatterPlusLineChart': return nv.models.scatterPlusLineChart();
+                            case 'indentedTree': return nv.models.indentedTree();
+                            case 'line': return nv.models.line();
                             case 'lineChart': return nv.models.lineChart();
                             case 'linePlusBarChart': return nv.models.linePlusBarChart();
+                            case 'lineWithFisheye': return nv.models.lineWithFisheye();
+                            case 'lineWithFisheyeChart': return nv.models.lineWithFisheyeChart();
                             case 'lineWithFocusChart': return nv.models.lineWithFocusChart();
                             case 'linePlusBarWithFocusChart': return nv.models.linePlusBarWithFocusChart();
+                            case 'multiBar': return nv.models.multiBar();
+                            case 'multiBarChart': return nv.models.multiBarChart();
+                            case 'multiBarHorizontal': return nv.models.multiBarHorizontal();
+                            case 'multiBarHorizontalChart': return nv.models.multiBarHorizontalChart();
+                            case 'multiBarTimeSeries': return nv.models.multiBarTimeSeries();
+                            case 'multiBarTimeSeriesChart': return nv.models.multiBarTimeSeriesChart();
+                            case 'multiChart': return nv.models.multiChart();
+                            case 'ohlcBar': return nv.models.ohlcBar();
+                            case 'parallelCoordinates': return nv.models.parallelCoordinates();
+                            case 'pie': return nv.models.pie();
+                            case 'pieChart': return nv.models.pieChart();
+                            case 'scatter': return nv.models.scatter();
+                            case 'scatterChart': return nv.models.scatterChart();
+                            case 'scatterPlusLineChart': return nv.models.scatterPlusLineChart();
+                            case 'sparkline': return nv.models.sparkline();
                             case 'sparklinePlus': return nv.models.sparklinePlus();
-                            case 'indentedTreeChart': return nv.models.indentedTree();
+                            case 'stackedArea': return nv.models.stackedArea();
+                            case 'stackedAreaChart': return nv.models.stackedAreaChart();
                         }
                     }
 
@@ -203,9 +226,9 @@
                             .text(scope.options[name].text);
 
                         if (scope.options[name].enable) {
-                            if (name === 'title') element.parent().prepend(wrapElement);
-                            else if (name === 'subtitle') element.parent().find('.title').after(wrapElement);
-                            else if (name === 'caption') element.parent().append(wrapElement);
+                            if (name === 'title') element.prepend(wrapElement);
+                            else if (name === 'subtitle') element.find('.title').after(wrapElement);
+                            else if (name === 'caption') element.append(wrapElement);
                         }
                     }
 
