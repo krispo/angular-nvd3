@@ -23,23 +23,24 @@
                         chart = getChart(options.chart.type);
 
                         angular.forEach(chart, function(value, key){
-                            if ([
-                                'options',
-                                'multibar',
-                                'discretebar',
-                                'pie',
-                                'scatter',
-                                'bullet',
-                                'sparkline'
-                            ].indexOf(key) >= 0);
+                            if (key === 'options');
 
-                            else if (key === 'dispatch') configureEvents(chart[key], options.chart[key]);
+                            else if (key === 'dispatch') {
+                                if (options.chart[key] === undefined) options.chart[key] = {};
+                                configureEvents(chart[key], options.chart[key]);
+                            }
 
                             else if ([
                                 'lines',
                                 'lines2',
                                 'bars', // TODO: Fix bug in nvd3, nv.models.historicalBar - chart.interactive (false -> _)
                                 'bars2',
+                                'multibar',
+                                'discretebar',
+                                'pie',
+                                'scatter',
+                                'bullet',
+                                'sparkline',
                                 'legend',
                                 'distX',
                                 'distY',
@@ -52,9 +53,12 @@
                                 'y4Axis',
                                 'interactiveLayer',
                                 'controls'
-                            ].indexOf(key) >= 0) configure(chart[key], options.chart[key]);
+                            ].indexOf(key) >= 0){
+                                if (options.chart[key] === undefined) options.chart[key] = {};
+                                configure(chart[key], options.chart[key], options.chart.type);
+                            }
 
-                            else if ( // need to fix bug in nvd3
+                            else if (//TODO: need to fix bug in nvd3
                                 (key ==='clipEdge' && options.chart.type === 'multiBarHorizontalChart')
                                     || (key === 'clipVoronoi' && options.chart.type === 'historicalBarChart')
                                     || (key === 'color' && options.chart.type === 'indentedTreeChart')
@@ -140,11 +144,17 @@
                     }
 
                     // Configure the chart model with the passed options
-                    function configure(chart, options){
+                    function configure(chart, options, chartType){
                         if (chart){
-                            if (options === undefined) options = {};
                             angular.forEach(chart, function(value, key){
-                                if (key === 'dispatch') configureEvents(value, options[key]);
+                                if (key === 'dispatch') {
+                                    if (options[key] === undefined) options[key] = {};
+                                    configureEvents(value, options[key]);
+                                }
+                                else if (//TODO: need to fix bug in nvd3
+                                    (key === 'xScale' && chartType === 'scatterChart')
+                                        || (key === 'yScale' && chartType === 'scatterChart')
+                                        || (key === 'values' && chartType === 'pieChart'));
                                 else if ([
                                     'scatter',
                                     'defined',
@@ -160,11 +170,10 @@
                         }
                     }
 
-                    // Subscribe on the chart events (contained in 'dispatch')
+                    // Subscribe to the chart events (contained in 'dispatch')
                     // and pass eventHandler functions in the 'options' parameter
                     function configureEvents(dispatch, options){
                         if (dispatch){
-                            if (options === undefined) options = {};
                             angular.forEach(dispatch, function(value, key){
                                 (options[key] === undefined || options[key] === null)
                                     ? options[key] = value.on
