@@ -1,0 +1,102 @@
+html,
+body {
+    margin:0;
+    padding:0;
+    height:100%;
+    min-height:100%;
+    position:relative;
+}
+
+.wrapper {
+    min-height:100%;
+    position:relative;
+}
+
+.header {
+    padding:13px;
+}
+
+@media (min-width: 768px) {
+    .navbar .navbar-nav {
+        display: inline-block;
+        float: none;
+    }
+    .navbar .navbar-collapse {
+        text-align: center;
+    }
+    .navbar-nav > li > a {
+        padding-top:10px !important;
+        padding-bottom:10px !important;
+        -webkit-text-shadow: 0px 0px 5px #9c7211;
+        -moz-text-shadow: 0px 0px 5px #9c7211;
+        text-shadow: 0px 0px 5px #9c7211;
+    }
+    .navbar {
+        min-height:32px !important;
+    }
+}
+
+/* Content ---------------------------------------------------------- */
+
+.content {
+    padding-top:20px;
+    padding-bottom:114px;   /* Height of the footer element */
+}
+.content .splash {
+    background: #2c3e50;
+    -webkit-box-shadow: inset 0px -11px 10px -10px #131b2d;
+    -moz-box-shadow: inset 0px -11px 10px -10px #131b2d;
+    box-shadow: inset 0px -11px 10px -10px #131b2d;
+
+    -webkit-text-shadow: 0px 0px 5px #9c7211;
+    -moz-text-shadow: 0px 0px 5px #9c7211;
+    text-shadow: 0px 0px 5px #9c7211;
+}
+.content .splash .btn {
+    width: 170px;
+    background-color: #2c3e50;
+    border-color: white;
+}
+.content .splash .btn:hover {
+    color: #18bc9c;
+    border-color: #18bc9c;
+    text-decoration: none;
+}
+.content .thumbnails{
+    -webkit-box-shadow: inset 0px 0px 3px 0px #131b2d;
+    -moz-box-shadow: inset 0px 0px 3px 0px #131b2d;
+    box-shadow: inset 0px 0px 3px 0px #131b2d;
+
+    -webkit-text-shadow: 0px 0px 2px #9c7211;
+    -moz-text-shadow: 0px 0px 2px #9c7211;
+    text-shadow: 0px 0px 2px #9c7211;
+}
+.content .thumbnail {
+    -webkit-box-shadow: 0px 0px 10px 1px #87bda2;
+    -moz-box-shadow: 0px 0px 10px 1px #87bda2;
+    box-shadow: 0px 0px 10px 1px #87bda2;
+}
+
+/* Footer ---------------------------------------------------------- */
+.footer {
+    width:100%;
+    height:114px;
+    position:absolute;
+    bottom:0;
+    left:0;
+}
+.footer .splash {
+    background: #2c3e50;
+    -webkit-box-shadow:
+        inset 0px 11px 8px -10px #131b2d,
+        inset 0px -11px 8px -10px #131b2d;
+    -moz-box-shadow:
+        inset 0px 11px 8px -10px #131b2d,
+        inset 0px -11px 8px -10px #131b2d;
+    box-shadow:
+        inset 0px 11px 8px -10px #131b2d,
+        inset 0px -11px 8px -10px #131b2d;
+}
+.footer .icon {
+    zoom: 40%;
+}
