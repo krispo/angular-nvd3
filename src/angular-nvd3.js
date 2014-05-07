@@ -20,7 +20,7 @@
                         clearElement();
 
                         // Initialize chart with specific type
-                        chart = getChart(options.chart.type);
+                        chart = nv.models[options.chart.type]();
 
                         angular.forEach(chart, function(value, key){
                             if (key === 'options');
@@ -125,12 +125,6 @@
                         element.find('.subtitle').remove();
                         element.find('.caption').remove();
                         element.empty();
-                    }
-
-                    // Initialize and return chart with specific type
-                    function getChart(type){
-                        return nv.models[type]();
-                        }
                     }
 
                     // Configure the chart model with the passed options

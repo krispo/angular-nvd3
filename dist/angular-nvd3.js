@@ -1,5 +1,5 @@
 /**************************************************************************
-* AngularJS-nvD3, v0.0.3; MIT; 05/06/2014 21:25
+* AngularJS-nvD3, v0.0.3; MIT; 05/07/2014 13:22
 * http://krispo.github.io/angular-nvd3
 **************************************************************************/
 (function(){
@@ -24,7 +24,7 @@
                         clearElement();
 
                         // Initialize chart with specific type
-                        chart = getChart(options.chart.type);
+                        chart = nv.models[options.chart.type]();
 
                         angular.forEach(chart, function(value, key){
                             if (key === 'options');
@@ -129,45 +129,6 @@
                         element.find('.subtitle').remove();
                         element.find('.caption').remove();
                         element.empty();
-                    }
-
-                    // Initialize and return chart with specific type
-                    function getChart(type){
-                        switch (type){
-                            case 'bullet': return nv.models.bullet();
-                            case 'bulletChart': return nv.models.bulletChart();
-                            case 'cumulativeLineChart': return nv.models.cumulativeLineChart();
-                            case 'discreteBar': return nv.models.discreteBar();
-                            case 'discreteBarChart': return nv.models.discreteBarChart();
-                            case 'historicalBar': return nv.models.historicalBar();
-                            case 'historicalBarChart': return nv.models.historicalBarChart();
-                            case 'indentedTree': return nv.models.indentedTree();
-                            case 'line': return nv.models.line();
-                            case 'lineChart': return nv.models.lineChart();
-                            case 'linePlusBarChart': return nv.models.linePlusBarChart();
-                            case 'lineWithFisheye': return nv.models.lineWithFisheye();
-                            case 'lineWithFisheyeChart': return nv.models.lineWithFisheyeChart();
-                            case 'lineWithFocusChart': return nv.models.lineWithFocusChart();
-                            case 'linePlusBarWithFocusChart': return nv.models.linePlusBarWithFocusChart();
-                            case 'multiBar': return nv.models.multiBar();
-                            case 'multiBarChart': return nv.models.multiBarChart();
-                            case 'multiBarHorizontal': return nv.models.multiBarHorizontal();
-                            case 'multiBarHorizontalChart': return nv.models.multiBarHorizontalChart();
-                            case 'multiBarTimeSeries': return nv.models.multiBarTimeSeries();
-                            case 'multiBarTimeSeriesChart': return nv.models.multiBarTimeSeriesChart();
-                            case 'multiChart': return nv.models.multiChart();
-                            case 'ohlcBar': return nv.models.ohlcBar();
-                            case 'parallelCoordinates': return nv.models.parallelCoordinates();
-                            case 'pie': return nv.models.pie();
-                            case 'pieChart': return nv.models.pieChart();
-                            case 'scatter': return nv.models.scatter();
-                            case 'scatterChart': return nv.models.scatterChart();
-                            case 'scatterPlusLineChart': return nv.models.scatterPlusLineChart();
-                            case 'sparkline': return nv.models.sparkline();
-                            case 'sparklinePlus': return nv.models.sparklinePlus();
-                            case 'stackedArea': return nv.models.stackedArea();
-                            case 'stackedAreaChart': return nv.models.stackedAreaChart();
-                        }
                     }
 
                     // Configure the chart model with the passed options
