@@ -8,7 +8,6 @@ angular.module('mainApp.controllers')
             chart: {
                 type: 'scatterPlusLineChart',
                 height: 450,
-                width: 700,
                 color: d3.scale.category10().range(),
                 scatter: {
                     onlyCircles: false

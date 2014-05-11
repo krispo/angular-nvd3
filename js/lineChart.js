@@ -7,7 +7,6 @@ angular.module('mainApp.controllers', [])
             chart: {
                 type: 'lineChart',
                 height: 450,
-                /*width: 820,*/
                 margin : {
                     top: 20,
                     right: 20,

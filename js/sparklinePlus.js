@@ -8,8 +8,6 @@ angular.module('mainApp.controllers')
             chart: {
                 type: 'sparklinePlus',
                 height: 450,
-                width: 700,
-
                 x: function(d, i){return i;},
                 xTickFormat: function(d) {
                     return d3.time.format('%x')(new Date($scope.data[d].x))

@@ -7,7 +7,6 @@ angular.module('mainApp.controllers')
             chart: {
                 type: 'lineWithFisheyeChart',
                 height: 450,
-                width: 700,
                 margin : {
                     top: 20,
                     right: 20,

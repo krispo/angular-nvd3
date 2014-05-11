@@ -8,7 +8,6 @@ angular.module('mainApp.controllers')
             chart: {
                 type: 'linePlusBarChart',
                 height: 450,
-                width: 850,
                 margin : {
                     top: 30,
                     right: 60,

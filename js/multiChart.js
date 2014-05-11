@@ -9,7 +9,6 @@ angular.module('mainApp.controllers')
             chart: {
                 type: 'multiChart',
                 height: 450,
-                width: 700,
                 margin : {
                     top: 30,
                     right: 60,

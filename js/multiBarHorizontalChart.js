@@ -8,7 +8,6 @@ angular.module('mainApp.controllers')
             chart: {
                 type: 'multiBarHorizontalChart',
                 height: 450,
-                width: 700,
                 x: function(d){return d.label;},
                 y: function(d){return d.value;},
                 showControls: true,

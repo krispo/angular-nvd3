@@ -8,7 +8,6 @@ angular.module('mainApp.controllers')
             chart: {
                 type: 'cumulativeLineChart',
                 height: 450,
-                width: 800,
                 margin : {
                     top: 20,
                     right: 20,

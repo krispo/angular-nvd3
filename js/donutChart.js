@@ -8,7 +8,6 @@ angular.module('mainApp.controllers')
             chart: {
                 type: 'pieChart',
                 height: 450,
-                width: 700,
                 donut: true,
                 x: function(d){return d.key;},
                 y: function(d){return d.y;},

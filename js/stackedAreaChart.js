@@ -8,7 +8,6 @@ angular.module('mainApp.controllers')
             chart: {
                 type: 'stackedAreaChart',
                 height: 450,
-                width: 700,
                 margin : {
                     top: 20,
                     right: 20,
