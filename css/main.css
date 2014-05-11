@@ -17,6 +17,9 @@ body {
 }
 
 @media (min-width: 768px) {
+    .navbar {
+        min-height:32px !important;
+    }
     .navbar .navbar-nav {
         display: inline-block;
         float: none;
@@ -27,19 +30,38 @@ body {
     .navbar-nav > li > a {
         padding-top:10px !important;
         padding-bottom:10px !important;
+        /*line-height: 27px;*/
+        margin-bottom: -5px;
         -webkit-text-shadow: 0px 0px 5px #9c7211;
         -moz-text-shadow: 0px 0px 5px #9c7211;
         text-shadow: 0px 0px 5px #9c7211;
     }
-    .navbar {
-        min-height:32px !important;
+    .navbar-default .navbar-nav > li > a:hover,
+    .navbar-default .navbar-nav > li > a:focus {
+        color: #18bc9c;
+        background-color: transparent;
+        border-bottom-style: solid;
+        border-bottom-color: #18bc9c;/*#18bc9c;*/
+        border-bottom-width: 1px;
+    }
+    .navbar-default .navbar-nav > .active > a,
+    .navbar-default .navbar-nav > .active > a:hover,
+    .navbar-default .navbar-nav > .active > a:focus {
+        color: #ffffff;
+        background-color: transparent;
+        border-bottom-style: solid;
+        border-bottom-color: white;
+        border-bottom-width: 1px;
+        -webkit-box-shadow: inset 0px -11px 20px -10px #131b2d;
+        -moz-box-shadow: inset 0px -11px 20px -10px #131b2d;
+        box-shadow: inset 0px -11px 20px -10px #131b2d;
     }
 }
 
 /* Content ---------------------------------------------------------- */
 
 .content {
-    padding-top:20px;
+    padding-top:15px;
     padding-bottom:114px;   /* Height of the footer element */
 }
 .content .splash {
@@ -76,6 +98,49 @@ body {
     -moz-box-shadow: 0px 0px 10px 1px #87bda2;
     box-shadow: 0px 0px 10px 1px #87bda2;
 }
+
+/*
+Live Edit  ----------------------------------------
+*/
+#wrap {
+    /*border-style: solid;
+    border-width: 1px;*/
+    margin: 10px;
+    min-height: 500px;
+}
+.span {
+    display: inline-block;
+    vertical-align: top;
+
+    /*border-style: solid;
+    border-width: 1px;
+    border-color: red;*/
+}
+.spanJT {
+    min-width: 30%;
+}
+.spanChart {
+    width: 70%;
+}
+.spanChart.chart1-fixed {
+    position: fixed;
+    top: 50px;
+}
+#chart {
+    padding: 20px;
+    border-style: solid;
+    border-width: 2px;
+    border-color: #2c3e50;
+}
+#chart.chart-fixed {
+    position: fixed;
+    top: 50px;
+}
+#jsonTree {
+    padding-left: 10px;
+    /*position: static;*/
+}
+
 
 /* Footer ---------------------------------------------------------- */
 .footer {
