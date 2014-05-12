@@ -7,6 +7,12 @@ angular.module('mainApp.controllers')
             chart: {
                 type: 'parallelCoordinates',
                 height: 450,
+                margin: {
+                    top: 30,
+                    right: 40,
+                    bottom: 50,
+                    left: 0
+                },
                 dimensions: [
                     "economy (mpg)",
                     "cylinders",

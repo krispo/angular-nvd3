@@ -102,10 +102,14 @@ body {
 /*
 Live Edit  ----------------------------------------
 */
+
+#selectChart {
+    margin: 10px 0px -10px 10px;
+}
 #wrap {
     /*border-style: solid;
     border-width: 1px;*/
-    margin: 10px;
+    margin: 5px 10px 10px 10px;
     min-height: 500px;
 }
 .span {
@@ -140,7 +144,6 @@ Live Edit  ----------------------------------------
     padding-left: 10px;
     /*position: static;*/
 }
-
 
 /* Footer ---------------------------------------------------------- */
 .footer {

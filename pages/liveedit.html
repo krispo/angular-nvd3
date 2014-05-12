@@ -1,7 +1,8 @@
-<style>
-
-</style>
-
+<select id="selectChart"
+        ng-model="params.selectedChart"
+        ng-options="value.title for (key, value) in params.charts"
+        ng-change="utils.selectChart(params.selectedChart)">
+</select><br>
 <div id="wrap">
     <div class="row-fluid">
         <div class="span spanChart">
@@ -13,3 +14,4 @@
         </div>
     </div>
 </div>
+

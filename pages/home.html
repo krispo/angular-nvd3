@@ -14,125 +14,12 @@
 <div class="container container-fluid thumbnails" style="padding-top: 30px; width: 100%">
     <div class="row">
         <ul style="list-style-type: none; padding: 0px 10px 0px 10px;">
-            <li class="col-xs-6 col-md-3">
-                <a href="#/lineChart" class="thumbnail">
-                    <img src="img/lineChart.png" alt="">
-                    <div class="caption">Line Chart</div>
+            <li class="col-xs-6 col-md-3" ng-repeat="key in utils.keys(params.charts) track by key">
+                <a href="#{{ params.charts[key].path }}" class="thumbnail">
+                    <img src="img/{{ key }}.png" alt="">
+                    <div class="caption">{{ params.charts[key].title }}</div>
                 </a>
             </li>
-            <li class="col-xs-6 col-md-3">
-                <a href="#/cumulativeLineChart" class="thumbnail">
-                    <img src="img/cumulativeLineChart.png" alt="">
-                    <div class="caption">Cumulative Line Chart</div>
-                </a>
-            </li>
-            <li class="col-xs-6 col-md-3">
-                <a href="#/stackedAreaChart" class="thumbnail">
-                    <img src="img/stackedAreaChart.png" alt="">
-                    <div class="caption">Stacked Area Chart</div>
-                </a>
-            </li>
-            <li class="col-xs-6 col-md-3">
-                <a href="#/multiBarChart" class="thumbnail">
-                    <img src="img/multiBarChart.png" alt="">
-                    <div class="caption">MultiBar Chart</div>
-                </a>
-            </li>
-
-            <li class="col-xs-6 col-md-3">
-                <a href="#/discreteBarChart" class="thumbnail">
-                    <img src="img/discreteBarChart.png" alt="">
-                    <div class="caption">DiscreteBar Chart</div>
-                </a>
-            </li>
-            <li class="col-xs-6 col-md-3">
-                <a href="#/historicalBarChart" class="thumbnail">
-                    <img src="img/historicalBarChart.png" alt="">
-                    <div class="caption">HistoricalBar Chart</div>
-                </a>
-            </li>
-            <li class="col-xs-6 col-md-3">
-                <a href="#/multiBarHorizontalChart" class="thumbnail">
-                    <img src="img/multiBarHorizontalChart.png" alt="">
-                    <div class="caption">MultiBar Horizontal Chart</div>
-                </a>
-            </li>
-            <li class="col-xs-6 col-md-3">
-                <a href="#/pieChart" class="thumbnail">
-                    <img src="img/pieChart.png" alt="">
-                    <div class="caption">Pie Chart</div>
-                </a>
-            </li>
-
-            <li class="col-xs-6 col-md-3">
-                <a href="#/scatterChart" class="thumbnail">
-                    <img src="img/scatterChart.png" alt="">
-                    <div class="caption">Scatter Chart</div>
-                </a>
-            </li>
-            <li class="col-xs-6 col-md-3">
-                <a href="#/lineWithFocusChart" class="thumbnail">
-                    <img src="img/lineWithFocusChart.png" alt="">
-                    <div class="caption">Line with Focus Chart</div>
-                </a>
-            </li>
-            <li class="col-xs-6 col-md-3">
-                <a href="#/linePlusBarChart" class="thumbnail">
-                    <img src="img/linePlusBarChart.png" alt="">
-                    <div class="caption">Line + Bar Chart</div>
-                </a>
-            </li>
-            <li class="col-xs-6 col-md-3">
-                <a href="#/scatterPlusLineChart" class="thumbnail">
-                    <img src="img/scatterPlusLineChart.png" alt="">
-                    <div class="caption">Scatter + Line Chart</div>
-                </a>
-            </li>
-
-            <li class="col-xs-6 col-md-3">
-                <a href="#/linePlusBarWithFocusChart" class="thumbnail">
-                    <img src="img/linePlusBarWithFocusChart.png" alt="">
-                    <div class="caption">Line + Bar with Focus Chart</div>
-                </a>
-            </li>
-            <li class="col-xs-6 col-md-3">
-                <a href="#/donutChart" class="thumbnail">
-                    <img src="img/donutChart.png" alt="">
-                    <div class="caption">Donut Chart</div>
-                </a>
-            </li>
-            <li class="col-xs-6 col-md-3">
-                <a href="#/bulletChart" class="thumbnail">
-                    <img src="img/bulletChart.png" alt="">
-                    <div class="caption">Bullet Chart</div>
-                </a>
-            </li>
-            <li class="col-xs-6 col-md-3">
-                <a href="#/sparklinePlus" class="thumbnail">
-                    <img src="img/sparklinePlus.png" alt="">
-                    <div class="caption">SparkLine Chart</div>
-                </a>
-            </li>
-
-            <li class="col-xs-6 col-md-3">
-                <a href="#/parallelCoordinates" class="thumbnail">
-                    <img src="img/parallelCoordinates.png" alt="">
-                    <div class="caption">Parallel Coordinates</div>
-                </a>
-            </li>
-            <li class="col-xs-6 col-md-3">
-                <a href="#/multiChart" class="thumbnail">
-                    <img src="img/multiChart.png" alt="">
-                    <div class="caption">Multi Chart</div>
-                </a>
-            </li>
-            <li class="col-xs-6 col-md-3">
-                <a href="#/lineWithFisheyeChart" class="thumbnail">
-                    <img src="img/lineWithFisheyeChart.png" alt="">
-                    <div class="caption">Line with Fisheye Chart</div>
-                </a>
-            </li>
-
         </ul>
     </div>
 </div>
