@@ -13,7 +13,7 @@ var app = angular.module('mainApp', ['mainApp.controllers','ngRoute', 'json-tree
         $routeProvider.otherwise({redirectTo: '/'});
     }])
 
-    .run(function($rootScope, $route, $location, CHARTS){
+    .run(function($rootScope, $route, $location, CHARTS, CONSTANTS){
 
         $rootScope.$on('$viewContentLoaded', function(){
             document.body.scrollTop = document.documentElement.scrollTop = 0;
@@ -23,7 +23,8 @@ var app = angular.module('mainApp', ['mainApp.controllers','ngRoute', 'json-tree
 
         $rootScope.params = {
             route: $route,
-            charts: CHARTS
+            charts: CHARTS,
+            constants: CONSTANTS
         };
 
         $rootScope.utils = {
@@ -33,6 +34,10 @@ var app = angular.module('mainApp', ['mainApp.controllers','ngRoute', 'json-tree
 
             selectChart: function(chart){
                 $location.path(chart.path)
+            },
+
+            prettyPrint: function(json, prettify){
+                return (prettify) ? JSON.stringify(json, undefined, 2) : json;
             }
         }
     })
@@ -64,4 +69,8 @@ var app = angular.module('mainApp', ['mainApp.controllers','ngRoute', 'json-tree
         parallelCoordinates: { path: '/parallelCoordinates', title: 'Parallel Coordinates' },
         multiChart: { path: '/multiChart', title: 'Multi Chart' },
         lineWithFisheyeChart: { path: '/lineWithFisheyeChart', title: 'Line with Fisheye Chart' }
+    })
+
+    .constant('CONSTANTS', {
+        version: '0.0.3'
     })

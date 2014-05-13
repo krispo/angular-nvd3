@@ -3,14 +3,58 @@
         ng-options="value.title for (key, value) in params.charts"
         ng-change="utils.selectChart(params.selectedChart)">
 </select><br>
-<div id="wrap">
+<div class="wrap">
     <div class="row-fluid">
         <div class="span spanChart">
             <div id="chart">
                 <nvd3 data="data" options="options"></nvd3>
             </div>
-        </div><div class="span spanJT" id="jsonTree">
+        </div><div class="span spanJT">
             <json-tree json="options" edit-level="high" collapsed-level="2"></json-tree>
+        </div>
+    </div>
+    <div style="float: right; font-size: x-small">
+        Powered by
+        <a href="https://rawgit.com/krispo/json-tree/master/example.html" target="_blank">JSON-tree</a>
+    </div>
+</div>
+
+<div id="output">
+    <div class="wrap">
+        <div class="row-fluid">
+            <div class="span spanJO">
+                <span>Output JSON template:</span>
+                <span style="float: right;">
+                    <input type="checkbox" ng-model="prettify"> prettify
+                </span>
+                <div style="padding-top: 1px;">
+                    <pre><code>{{ utils.prettyPrint(options, prettify) }}</code></pre>
+                </div>
+            </div><div class="span spanNote">
+            <div>
+                <p>Customize your chart options as you need.</p>
+
+                <p>Many options of nvd3 models are specified by the functions.
+                    Functions are not supported in JSON-tree model for interactive customizing,
+                    so this options are disabled.
+                    But feel free to use functions in your javascript json code as usual.
+                </p>
+
+                <p>The output JSON template represents the full feature hierarchy of charting model,
+                    that you can </p>
+
+                <p>You don't need to use all of this options for creating the chart model in you javascript code,
+                   It is quite enough to set up only the features you have changed and defaults the others.
+                </p>
+
+                <p>Read <a href="#/quickstart">docs</a> for more details.</p>
+
+                <br>
+
+                <p style="font-size: small;"><b><i>Note:</i></b> As you can see, some features are not working correctly.
+                    This is due to some bugs in nvd3.js core that need to be fixed.</p>
+            </div>
+        </div>
         </div>
     </div>
 </div>
