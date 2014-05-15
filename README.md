@@ -109,5 +109,7 @@ $scope.data = [{
 
 See the [result](http://krispo.github.io/angular-nvd3/#/discreteBarChart).
 
+Read more [docs](http://krispo.github.io/angular-nvd3/#/quickstart).
+
 ## License
 Licensed under the terms of the [MIT License](https://github.com/krispo/angular-nvd3/blob/master/LICENSE)
