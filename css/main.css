@@ -45,23 +45,17 @@ body {
     }
     .navbar-default .navbar-nav > li > a:hover,
     .navbar-default .navbar-nav > li > a:focus {
-        color: #18bc9c;
+        color: #a6b997;
         background-color: transparent;
-        border-bottom-style: solid;
-        border-bottom-color: #18bc9c;/*#18bc9c;*/
-        border-bottom-width: 1px;
     }
     .navbar-default .navbar-nav > .active > a,
     .navbar-default .navbar-nav > .active > a:hover,
     .navbar-default .navbar-nav > .active > a:focus {
-        color: #ffffff;
+        color: #a6b997;
         background-color: transparent;
-        border-bottom-style: solid;
-        border-bottom-color: white;
-        border-bottom-width: 1px;
-        -webkit-box-shadow: inset 0px -11px 20px -10px #131b2d;
-        -moz-box-shadow: inset 0px -11px 20px -10px #131b2d;
-        box-shadow: inset 0px -11px 20px -10px #131b2d;
+        -webkit-box-shadow: inset 0px 0px 3px -1px #a6b997;
+        -moz-box-shadow: inset 0px 0px 3px -1px #a6b997;
+        box-shadow: inset 0px 0px 3px -1px #a6b997;
     }
 }
 .navbar-nav > li > a {
@@ -96,8 +90,8 @@ body {
     border-color: white;
 }
 .content .splash .btn:hover {
-    color: #18bc9c;
-    border-color: #18bc9c;
+    color: #a6b997;
+    border-color: #a6b997;
     text-decoration: none;
     -webkit-transition: all .5s;
     -moz-transition: all .5s;
@@ -114,9 +108,9 @@ body {
     text-shadow: 0px 0px 2px #9c7211;
 }
 .content .thumbnail {
-    -webkit-box-shadow: 0px 0px 10px 1px #87bda2;
-    -moz-box-shadow: 0px 0px 10px 1px #87bda2;
-    box-shadow: 0px 0px 10px 1px #87bda2;
+    -webkit-box-shadow: 0px 0px 10px 1px #a6b997;
+    -moz-box-shadow: 0px 0px 10px 1px #a6b997;
+    box-shadow: 0px 0px 10px 1px #a6b997;
 }
 
 /*
@@ -133,6 +127,7 @@ Live Edit  ----------------------------------------
     padding-bottom: 20px;
 }
 .wrap a {
+    color: #168a70;
     -webkit-text-shadow: 0px 0px 3px #9c7211;
     -moz-text-shadow: 0px 0px 3px #9c7211;
     text-shadow: 0px 0px 3px #9c7211;
@@ -143,7 +138,7 @@ Live Edit  ----------------------------------------
 }
 
 .wrap a:hover {
-    color: #e18100;
+    color: #c06c00;
     text-decoration: none;
 }
 .span {
@@ -225,6 +220,74 @@ Live Edit  ----------------------------------------
     }
 }
 
+/* Quick Start ------------------------------------------------------*/
+
+#masthead {
+    min-height:250px;
+}
+#masthead h1 {
+    font-size: 30px;
+    line-height: 1;
+    padding-top:20px;
+}
+#masthead .well {
+    margin-top:8%;
+    background-color: rgba(191, 210, 175, 0.61);
+}
+@media screen and (min-width: 768px) {
+    #masthead h1 {
+        font-size: 50px;
+    }
+}
+
+.affix-top,.affix{
+    position: static;
+}
+@media (min-width: 979px) {
+    #sidebar.affix-top {
+        position: static;
+        margin-top:30px;
+        width:228px;
+    }
+    #sidebar.affix {
+        position: fixed;
+        top:70px;
+        width:228px;
+    }
+}
+#sidebar > li > a {
+    font-size: large;
+    color:#2c3e50;
+}
+#sidebar > li > a:hover,
+#sidebar > li > a:focus {
+    text-decoration: none;
+    background-color: #d3e6c3;
+}
+#sidebar > li.active {
+    border:0 #bfd2af solid;
+    border-right-width:4px;
+    background-color: rgba(236, 255, 220, 0.62);
+}
+.note {
+    margin: 10px 0px 10px 0px;
+    padding-left: 10px;
+    border-left-style: solid;
+    border-left-width: 4px;
+    border-left-color: #a6b997;
+}
+.hljs {
+    background: #2c3e50;
+}
+pre {
+    margin: 15px 0px 15px 0px;
+    padding: 0px;
+    /* background-color: #fff9d4;*/
+    -webkit-box-shadow: 0px 0px 10px -1px #698eb1;
+    -moz-box-shadow: 0px 0px 10px -1px #698eb1;
+    box-shadow: 0px 0px 10px -1px #698eb1;
+}
+
 /* Footer ---------------------------------------------------------- */
 .footer {
     width:100%;
@@ -246,16 +309,17 @@ Live Edit  ----------------------------------------
         inset 0px -11px 8px -10px #131b2d;
 
     font-family: 'Raleway', sans-serif;
-    color: #d6e9c6;
-    -webkit-text-shadow: 0px 0px 5px #9c7211;
-    -moz-text-shadow: 0px 0px 5px #9c7211;
-    text-shadow: 0px 0px 5px #9c7211;
+    color: #7b8e6f;/*#d6e9c6;*/
+    -webkit-text-shadow: 0px 0px 5px #131b2d;
+    -moz-text-shadow: 0px 0px 5px #131b2d;
+    text-shadow: 0px 0px 5px #131b2d;
     padding-bottom: 0px;
 }
 .footer a {
+    color: white;
      -webkit-text-shadow: 0px 0px 5px #9c7211;
     -moz-text-shadow: 0px 0px 5px #9c7211;
-    text-shadow: 0px 0px 5px #9c7211;
+    text-shadow: 0px 0px 2px #9c7211;
     -webkit-transition: all .25s;
     -moz-transition: all .25s;
     -o-transition: all .25s;
@@ -263,7 +327,7 @@ Live Edit  ----------------------------------------
 }
 
 .footer a:hover {
-    color: #e18100;
+    color: #a6b997;
     text-decoration: none;
 }
 

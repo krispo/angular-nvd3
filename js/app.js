@@ -1,9 +1,13 @@
 'use strict';
 
 var app = angular.module('mainApp', ['mainApp.controllers','ngRoute', 'json-tree', 'nvd3'])
+
+/**
+ * Config -------------------------------------------------------------------------
+ */
     .config(['$routeProvider', 'CHARTS', function($routeProvider, CHARTS) {
         $routeProvider.when('/', {templateUrl: 'pages/home.html', controller: 'mainCtrl'});
-        $routeProvider.when('/quickstart', {templateUrl: 'pages/quickstart.html', controller: 'mainCtrl'});
+        $routeProvider.when('/quickstart', {templateUrl: 'pages/quickstart.html', controller: 'quickstartCtrl'});
         $routeProvider.when('/liveedit', {templateUrl: 'pages/liveedit.html', controller: 'mainCtrl'});
 
         angular.forEach(CHARTS, function(value, key){
@@ -13,10 +17,21 @@ var app = angular.module('mainApp', ['mainApp.controllers','ngRoute', 'json-tree
         $routeProvider.otherwise({redirectTo: '/'});
     }])
 
+/**
+ * Run -------------------------------------------------------------------------
+ */
     .run(function($rootScope, $route, $location, CHARTS, CONSTANTS){
 
         $rootScope.$on('$viewContentLoaded', function(){
             document.body.scrollTop = document.documentElement.scrollTop = 0;
+
+            // configure highlightjs
+            setTimeout(function(){
+                hljs.initHighlightingOnLoad();
+                angular.element('pre code').each(function(i, e) {
+                    hljs.highlightBlock(e);
+                });
+            }, 100);
 
             $rootScope.params['selectedChart'] = CHARTS[$route.current.$$route.originalPath.replace(/\//g, "")];
         });
@@ -39,9 +54,12 @@ var app = angular.module('mainApp', ['mainApp.controllers','ngRoute', 'json-tree
             prettyPrint: function(json, prettify){
                 return (prettify) ? JSON.stringify(json, undefined, 2) : json;
             }
-        }
+        };
     })
 
+/**
+ * Main Ctrl -------------------------------------------------------------------------
+ */
     .controller('mainCtrl', function($scope, $location){
         $scope.isActive = function(viewLocation){
             if (viewLocation === '/liveedit') return (($location.path() !== '/quickstart') && ($location.path() !== '/'));
@@ -49,6 +67,51 @@ var app = angular.module('mainApp', ['mainApp.controllers','ngRoute', 'json-tree
         };
     })
 
+/**
+ * Quick Start Ctrl -------------------------------------------------------------------------
+ */
+    .controller('quickstartCtrl', function($scope, DOCS){
+        $scope.docs = DOCS;
+
+        $(document).ready(function(){
+
+            $('#sidebar').affix({
+                offset: {
+                    top: 240
+                }
+            });
+
+            var $body   = $(document.body);
+            var navHeight = $('.navbar').outerHeight(true) + 10;
+
+            setTimeout(function(){
+                $body.scrollspy({
+                    target: '#leftCol',
+                    offset: navHeight
+                });
+
+                /* smooth scrolling sections */
+                $('a[href*=#]:not([href=#])').click(function() {
+                    if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
+                        var target = $(this.hash);
+                        console.log(target)
+                        console.log(this.hash.slice(1))
+                        target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
+                        if (target.length) {
+                            $('html,body').animate({
+                                scrollTop: target.offset().top - 50
+                            }, 1000);
+                            return false;
+                        }
+                    }
+                });
+            }, 100);
+        });
+    })
+
+/**
+ * Constants -------------------------------------------------------------------------
+ */
     .constant('CHARTS', {
         lineChart: { path: '/lineChart', title: 'Line Chart' },
         cumulativeLineChart: { path: '/cumulativeLineChart', title: 'Cumulative Line Chart' },
@@ -74,3 +137,19 @@ var app = angular.module('mainApp', ['mainApp.controllers','ngRoute', 'json-tree
     .constant('CONSTANTS', {
         version: '0.0.3'
     })
+
+    .constant('DOCS',
+        [{
+            id: 'install',
+            title: 'Install',
+            url: '../docs/install.html'
+        },{
+            id: 'basic',
+            title: 'Basic usage',
+            url: '../docs/basic.html'
+        },{
+            id: 'example',
+            title: 'Example',
+            url: '../docs/example.html'
+        }]
+    )

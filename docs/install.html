@@ -1,0 +1,30 @@
+Install it via bower:
+
+<pre><code>$ bower install angular-nvd3</code></pre>
+
+An <a href="https://angularjs.org/">angular.js</a>, <a href="http://d3js.org/">D3.js</a> and <a href="http://nvd3.org/">nvd3.js</a>
+would be installed as a dependency automatically. If it won't for some reason, install it manually:
+
+<pre><code>$ bower install angular
+$ bower install d3
+$ bower install nvd3</code></pre>
+
+<div class="note">
+    It is recommended to use a newer nvd3 assembly rather than the last one installed via bower.
+    A more recent and fixed assembly <code>nv.d3.js</code> and <code>nv.d3.css</code> you can find on <a href="https://github.com/krispo/angular-nvd3/tree/master/lib">github</a>.
+    Also you can make your own assembly according to <a href="https://github.com/novus/nvd3">nvd3 docs</a>.
+</div>
+
+Add dependencies to the <code>&lt;head&gt;</code> section of your main html:
+<pre><code class="HTML"
+>&lt;meta charset="utf-8"&gt;  &lt;!-- it's important for d3.js --&gt;
+&lt;script src="bower_components/angular/angular.js"&gt;&lt;/script&gt;
+&lt;script src="bower_components/d3/d3.js"&gt;&lt;/script&gt;
+&lt;script src="bower_components/nvd3/nv.d3.js"&gt;&lt;/script&gt; &lt;!-- or use another assembly --&gt;
+&lt;script src="bower_components/angular-nvd3/dist/angular-nvd3.js"&gt;&lt;/script&gt;
+&lt;link rel="stylesheet" href="bower_components/nvd3/nv.d3.css"&gt;</code></pre>
+
+If you don't use bower, you can manually download and unpack directive
+(<a href="https://github.com/krispo/angular-nvd3/archive/v0.0.3.zip">zip</a>,
+<a href="https://github.com/krispo/angular-nvd3/archive/v0.0.3.tar.gz">tar.gz</a>).
+
