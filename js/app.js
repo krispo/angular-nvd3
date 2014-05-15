@@ -31,7 +31,7 @@ var app = angular.module('mainApp', ['mainApp.controllers','ngRoute', 'json-tree
                 angular.element('pre code').each(function(i, e) {
                     hljs.highlightBlock(e);
                 });
-            }, 100);
+            }, 200);
 
             $rootScope.params['selectedChart'] = CHARTS[$route.current.$$route.originalPath.replace(/\//g, "")];
         });
