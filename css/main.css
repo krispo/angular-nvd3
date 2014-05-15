@@ -269,13 +269,37 @@ Live Edit  ----------------------------------------
     border-right-width:4px;
     background-color: rgba(236, 255, 220, 0.62);
 }
-.note {
+#sidebar .caption {
+    color: #bfd2af;
+    font-size: small;
+    font-style: italic;
+}
+#sidebar > li > div > hr {
+    margin: 0px;
+}
+
+#docs_content a {
+    color: #168a70;
+    -webkit-text-shadow: 0px 0px 1px #9c7211;
+    -moz-text-shadow: 0px 0px 1px #9c7211;
+    text-shadow: 0px 0px 1px #9c7211;
+    -webkit-transition: all .25s;
+    -moz-transition: all .25s;
+    -o-transition: all .25s;
+    transition: all .25s;
+}
+#docs_content a:hover {
+    color: #c06c00;
+    text-decoration: none;
+}
+#docs_content .note {
     margin: 10px 0px 10px 0px;
     padding-left: 10px;
     border-left-style: solid;
     border-left-width: 4px;
     border-left-color: #a6b997;
 }
+
 .hljs {
     background: #2c3e50;
 }

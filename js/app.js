@@ -71,7 +71,7 @@ var app = angular.module('mainApp', ['mainApp.controllers','ngRoute', 'json-tree
  * Quick Start Ctrl -------------------------------------------------------------------------
  */
     .controller('quickstartCtrl', function($scope, DOCS){
-        $scope.docs = DOCS;
+        $scope.docs = DOCS();
 
         $(document).ready(function(){
 
@@ -138,18 +138,32 @@ var app = angular.module('mainApp', ['mainApp.controllers','ngRoute', 'json-tree
         version: '0.0.3'
     })
 
-    .constant('DOCS',
-        [{
-            id: 'install',
+    .constant('DOCS', function(CHARTS){
+        return [{
+            id: 'doc_install',
             title: 'Install',
             url: './docs/install.html'
         },{
-            id: 'basic',
+            id: 'doc_basic',
             title: 'Basic usage',
             url: './docs/basic.html'
         },{
-            id: 'example',
-            title: 'Example',
-            url: './docs/example.html'
+            id: -1,
+            caption: 'Basic examples'
+        },{
+            id: 'doc_examples',
+            title: 'Examples',
+            url: './docs/examples.html'
+        },{
+            id: -1,
+            caption: 'Configurations'
+        },{
+            id: 'doc_wrapper',
+            title: 'Wrapper',
+            url: './docs/wrapper.html'
+        },{
+            id: 'doc_events',
+            title: 'Events',
+            url: './docs/events.html'
         }]
-    )
+    })
