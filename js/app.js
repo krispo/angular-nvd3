@@ -142,14 +142,14 @@ var app = angular.module('mainApp', ['mainApp.controllers','ngRoute', 'json-tree
         [{
             id: 'install',
             title: 'Install',
-            url: '../docs/install.html'
+            url: './docs/install.html'
         },{
             id: 'basic',
             title: 'Basic usage',
-            url: '../docs/basic.html'
+            url: './docs/basic.html'
         },{
             id: 'example',
             title: 'Example',
-            url: '../docs/example.html'
+            url: './docs/example.html'
         }]
     )
