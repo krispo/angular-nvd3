@@ -300,10 +300,10 @@ Live Edit  ----------------------------------------
     border-left-color: #a6b997;
 }
 
-.hljs {
+#docs_content .hljs {
     background: #2c3e50;
 }
-pre {
+#docs_content pre {
     margin: 15px 0px 15px 0px;
     padding: 0px;
     /* background-color: #fff9d4;*/
