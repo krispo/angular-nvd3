@@ -207,15 +207,16 @@
 
                             /* onBlur event handler */
                             onBlur: function(key){
-                                //emit onFunctionChange event if the function definition was changed.
-                                if ($scope.utils.textarea.valueBeforeEditing !== $scope.jsonFn[key]) $scope.$emit('onFunctionChanged');
+                                if ($scope.utils.textarea.valueBeforeEditing !== $scope.jsonFn[key]) {
+                                    $scope.$emit('onFunctionChanged');  //emit onFunctionChange event if the function definition was changed.
 
-                                var func = $scope.utils.tryGetFunction($scope.jsonFn[key]);
-                                if (func) $scope.json[key] = func;
-                                else { //if value is not a valid function
-                                    $scope.json[key] = $scope.jsonFn[key];
-                                    delete $scope.jsonFn[key];
-                                    $scope.utils.validateNode(key); //full validation for node
+                                    var func = $scope.utils.tryGetFunction($scope.jsonFn[key]);
+                                    if (func) $scope.json[key] = func;
+                                    else { //if value is not a valid function
+                                        $scope.json[key] = $scope.jsonFn[key];
+                                        delete $scope.jsonFn[key];
+                                        $scope.utils.validateNode(key); //full validation for node
+                                    }
                                 }
                             }
                         },
