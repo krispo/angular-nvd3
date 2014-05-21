@@ -1,6 +1,6 @@
 {
   "name": "json-tree",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "An AngularJS directive for displaying and editing JSON tree",
   "main": [
     "json-tree.js",
@@ -45,14 +45,14 @@
     "lib",
     "examples"
   ],
-  "_release": "0.0.1",
+  "_release": "0.0.2",
   "_resolution": {
     "type": "version",
-    "tag": "v0.0.1",
-    "commit": "096c1e5349a5bbf34a4be3d43e9c3d7994032ea4"
+    "tag": "v0.0.2",
+    "commit": "d973a1adacfdbe84697cc246537f342822898c83"
   },
   "_source": "git://github.com/krispo/json-tree.git",
-  "_target": "~0.0.1",
+  "_target": "~0.0.2",
   "_originalSource": "json-tree",
   "_direct": true
 }

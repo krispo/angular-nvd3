@@ -7,7 +7,7 @@
     <div class="row-fluid">
         <div class="span spanChart">
             <div id="chart">
-                <nvd3 data="data" options="options"></nvd3>
+                <nvd3 data="data" options="options" events="events"></nvd3>
             </div>
         </div><div class="span spanJT">
             <json-tree json="options" edit-level="high" collapsed-level="2"></json-tree>
@@ -35,15 +35,17 @@
                 <p>Customize your chart options as you need.</p>
 
                 <p>Many options of nvd3 models are specified by the functions.
-                    Functions are not supported in JSON-tree model for interactive customizing,
-                    so this options are disabled.
-                    But feel free to use functions in your javascript json code as usual.
+                    But functions can not be displayed in the output json string.
+                </p>
+
+                <p><b>Functions are now supported in JSON-tree model for interactive customization.</b>
+                    Feel free to use functions in your javascript json code as usual.
                 </p>
 
                 <p>The output JSON template represents the full feature hierarchy of chart model.</p>
 
                 <p>You don't need to use all of this options for creating the chart model in you javascript code.
-                   It is quite enough to set up only the features you have changed and defaults the others.
+                   It is quite enough to set up only the features you have changed and the others will be default.
                 </p>
 
                 <p>Read <a href="#/quickstart">docs</a> for more details.</p>

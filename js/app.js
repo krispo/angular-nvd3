@@ -55,6 +55,20 @@ var app = angular.module('mainApp', ['mainApp.controllers','ngRoute', 'json-tree
                 return (prettify) ? JSON.stringify(json, undefined, 2) : json;
             }
         };
+
+        /* globals events for all nvd3 directives */
+        $rootScope.events = {
+            'jt.onFunctionChanged': function($scope){
+                $scope.api.updateWithOptions($scope.options);
+            }
+        };
+
+        /* subscribe on json-tree enevt */
+        $rootScope.$on('onFunctionChanged', function(e){
+            setTimeout(function(){
+                $rootScope.$broadcast('jt.onFunctionChanged'); // broadcast event that will be caught by nvd3 directive
+            }, 50)
+        });
     })
 
 /**

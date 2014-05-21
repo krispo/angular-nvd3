@@ -12,11 +12,26 @@ Available operations with nodes:
 
 ## How to use
 
-Add scripts to your main html:
+### Install
+
+Install it via bower:
+
+    $ bower install json-tree
+
+An AngularJS would be installed as a dependency automatically. If it won't, install it manually:
+
+    $ bower install angular
+
+Add dependencies to the `<head>` section of your main html:
 ```html
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.13/angular.min.js"></script>
-<script src="https://rawgit.com/krispo/json-tree/master/json-tree.js"></script>
+<script src="bower_components/angular/angular.js"></script>
+<script src="bower_components/json-tree/json-tree.js"></script>
+<link rel="stylesheet" href="bower_components/json-tree/json-tree.css">
 ```
+
+If you don't use bower, you can manually download and unpack json-tree ([zip](https://github.com/krispo/json-tree/archive/v0.0.1.zip), [tar.gz](https://github.com/krispo/json-tree/archive/v0.0.1.tar.gz)).
+
+### Basic usage
 
 Inject `json-tree` directive into angular module and push some data to the controller:
 ```javascript

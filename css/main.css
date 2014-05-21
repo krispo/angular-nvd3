@@ -150,13 +150,13 @@ Live Edit  ----------------------------------------
     border-color: red;*/
 }
 .spanJT {
-    width: 350px;
+    width: 370px;
     padding-left: 10px;
 }
 .spanChart {
-    width: -moz-calc(100% - 350px);
-    width: -webkit-calc(100% - 350px);
-    width: calc(100% - 350px);
+    width: -moz-calc(100% - 370px);
+    width: -webkit-calc(100% - 370px);
+    width: calc(100% - 370px);
     padding-right: 10px;
 }
 .spanChart.spanChart-fixed {
