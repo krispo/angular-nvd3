@@ -7,7 +7,7 @@
     <div id="mode">
         <input type="radio" ng-model="params.mode" value="basic" ng-change="utils.reload()"> Basic
         &nbsp;
-        <input type="radio" ng-model="params.mode" value="extend" ng-change="utils.reload()"> Extend
+        <input type="radio" ng-model="params.mode" value="extended" ng-change="utils.reload()"> Extended
     </div>
 </div>
 <br>
@@ -15,7 +15,7 @@
     <div class="row-fluid">
         <div class="span spanChart">
             <div id="chart">
-                <nvd3 data="data" options="options" events="events" config="{ extend: params.mode === 'extend' }"></nvd3>
+                <nvd3 data="data" options="options" events="events" config="{ extend: params.mode === 'extended' }"></nvd3>
             </div>
         </div><div class="span spanJT">
             <json-tree json="options" edit-level="high" collapsed-level="2"></json-tree>
