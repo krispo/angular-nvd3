@@ -15,10 +15,15 @@
                     data: '=',      //chart data, [required]
                     options: '=',   //chart options, according to nvd3 core api, [required]
                     api: '=?',      //directive global api, [optional]
-                    events: '=?'    //global events that directive would subscribe to, [optional]
+                    events: '=?',   //global events that directive would subscribe to, [optional]
+                    config: '=?'     //global directive configuration, [optional]
                 },
                 link: function(scope, element, attrs){
                     var chart, svg;
+
+                    //basic directive configuration
+                    if (scope.config) scope.config['extend'] = scope.config['extend'] || false;
+                    else scope.config = { extend: false };
 
                     //directive global api
                     scope.api = {
@@ -34,7 +39,9 @@
                                 if (key === 'options');
 
                                 else if (key === 'dispatch') {
-                                    if (options.chart[key] === undefined) options.chart[key] = {};
+                                    if (options.chart[key] === undefined || options.chart[key] === null) {
+                                        if (scope.config.extend) options.chart[key] = {};
+                                    }
                                     configureEvents(chart[key], options.chart[key]);
                                 }
 
@@ -68,7 +75,9 @@
                                     'interactiveLayer',
                                     'controls'
                                 ].indexOf(key) >= 0){
-                                    if (options.chart[key] === undefined) options.chart[key] = {};
+                                    if (options.chart[key] === undefined || options.chart[key] === null) {
+                                        if (scope.config.extend) options.chart[key] = {};
+                                    }
                                     configure(chart[key], options.chart[key], options.chart.type);
                                 }
 
@@ -89,9 +98,11 @@
                                         || (key === 'y' && options.chart.type === 'lineWithFocusChart' || options.chart.type === 'multiChart')
                                     );
 
-                                else (options.chart[key] === undefined || options.chart[key] === null)
-                                        ? options.chart[key] = value()
-                                        : chart[key](options.chart[key]);
+                                else if (options.chart[key] === undefined || options.chart[key] === null){
+                                    if (scope.config.extend) options.chart[key] = value();
+                                }
+
+                                else chart[key](options.chart[key]);
                             });
 
                             // Select the current element to add <svg> element and to render the chart in
@@ -138,10 +149,12 @@
 
                     // Configure the chart model with the passed options
                     function configure(chart, options, chartType){
-                        if (chart){
+                        if (chart && options){
                             angular.forEach(chart, function(value, key){
                                 if (key === 'dispatch') {
-                                    if (options[key] === undefined) options[key] = {};
+                                    if (options[key] === undefined || options[key] === null) {
+                                        if (scope.config.extend) options[key] = {};
+                                    }
                                     configureEvents(value, options[key]);
                                 }
                                 else if (//TODO: need to fix bug in nvd3
@@ -155,10 +168,13 @@
                                     'axis',
                                     'rangeBand',
                                     'rangeBands'
-                                ].indexOf(key) < 0)
-                                    (options[key] === undefined || options[key] === null)
-                                        ? options[key] = value()
-                                        : chart[key](options[key]);
+                                ].indexOf(key) < 0){
+                                    if (options[key] === undefined || options[key] === null){
+                                        if (scope.config.extend) options[key] = value();
+                                    }
+
+                                    else chart[key](options[key]);
+                                }
                             });
                         }
                     }
@@ -166,11 +182,13 @@
                     // Subscribe to the chart events (contained in 'dispatch')
                     // and pass eventHandler functions in the 'options' parameter
                     function configureEvents(dispatch, options){
-                        if (dispatch){
+                        if (dispatch && options){
                             angular.forEach(dispatch, function(value, key){
-                                (options[key] === undefined || options[key] === null)
-                                    ? options[key] = value.on
-                                    : dispatch.on(key + '._', options[key]);
+                                if (options[key] === undefined || options[key] === null){
+                                    if (scope.config.extend) options[key] = value.on;
+                                }
+
+                                else dispatch.on(key + '._', options[key]);
                             });
                         }
                     }
@@ -178,10 +196,14 @@
                     // Configure 'title', 'subtitle', 'caption'.
                     // nvd3 has no sufficient models for it yet.
                     function configureWrapper(name){
-                        scope.options[name] = scope.options[name] || {};
+                        if (scope.options[name] === undefined || scope.options[name] === null){
+                            if (scope.config.extend) scope.options[name] = {}; else return;
+                        }
 
                         angular.forEach(defaultWrapper(name), function(value, key){
-                            if (scope.options[name][key] === undefined || scope.options[name][key] === null) scope.options[name][key] = value;
+                            if (scope.options[name][key] === undefined || scope.options[name][key] === null) {
+                                if (scope.config.extend) scope.options[name][key] = value;
+                            }
                         });
 
                         var wrapElement = angular
@@ -200,10 +222,14 @@
 
                     // Add some styles to the whole directive element
                     function configureStyles(){
-                        scope.options['styles'] = scope.options['styles'] || {};
+                        if (scope.options['styles'] === undefined || scope.options['styles'] === null){
+                            if (scope.config.extend) scope.options['styles'] = {}; else return;
+                        }
 
                         angular.forEach(defaultStyles(), function(value, key){
-                            if (scope.options['styles'][key] === undefined || scope.options['styles'][key] === null) scope.options['styles'][key] = value;
+                            if (scope.options['styles'][key] === undefined || scope.options['styles'][key] === null) {
+                                if (scope.config.extend) scope.options['styles'][key] = value;
+                            }
                         });
 
                         angular.forEach(scope.options['styles'].classes, function(value, key){

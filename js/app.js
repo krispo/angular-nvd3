@@ -38,6 +38,7 @@ var app = angular.module('mainApp', ['mainApp.controllers','ngRoute', 'json-tree
 
         $rootScope.params = {
             route: $route,
+            mode: 'basic', //basic, extend
             charts: CHARTS,
             constants: CONSTANTS
         };
@@ -53,10 +54,12 @@ var app = angular.module('mainApp', ['mainApp.controllers','ngRoute', 'json-tree
 
             prettyPrint: function(json, prettify){
                 return (prettify) ? JSON.stringify(json, undefined, 2) : json;
-            }
+            },
+
+            reload: function(){ $route.reload(); }
         };
 
-        /* globals events for all nvd3 directives */
+        /* global events for all nvd3 directives */
         $rootScope.events = {
             'jt.onFunctionChanged': function($scope){
                 $scope.api.updateWithOptions($scope.options);

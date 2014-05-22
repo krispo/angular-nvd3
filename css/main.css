@@ -120,6 +120,11 @@ Live Edit  ----------------------------------------
 #selectChart {
     margin: 10px 0px -10px 10px;
 }
+#mode {
+    margin: 10px 10px 0px 10px;
+    vertical-align: bottom;
+    float: right;
+}
 .wrap {
     /*border-style: solid;
     border-width: 1px;*/

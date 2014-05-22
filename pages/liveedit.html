@@ -1,13 +1,21 @@
-<select id="selectChart"
-        ng-model="params.selectedChart"
-        ng-options="value.title for (key, value) in params.charts"
-        ng-change="utils.selectChart(params.selectedChart)">
-</select><br>
+<div class="span spanChart">
+    <select id="selectChart"
+            ng-model="params.selectedChart"
+            ng-options="value.title for (key, value) in params.charts"
+            ng-change="utils.selectChart(params.selectedChart)">
+    </select>
+    <div id="mode">
+        <input type="radio" ng-model="params.mode" value="basic" ng-change="utils.reload()"> Basic
+        &nbsp;
+        <input type="radio" ng-model="params.mode" value="extend" ng-change="utils.reload()"> Extend
+    </div>
+</div>
+<br>
 <div class="wrap">
     <div class="row-fluid">
         <div class="span spanChart">
             <div id="chart">
-                <nvd3 data="data" options="options" events="events"></nvd3>
+                <nvd3 data="data" options="options" events="events" config="{ extend: params.mode === 'extend' }"></nvd3>
             </div>
         </div><div class="span spanJT">
             <json-tree json="options" edit-level="high" collapsed-level="2"></json-tree>
@@ -25,7 +33,7 @@
             <div class="span spanJO">
                 <span>Output JSON template:</span>
                 <span style="float: right;">
-                    <input type="checkbox" ng-model="prettify"> prettify
+                    <input type="checkbox" ng-model="prettify" ng-init="prettify = params.mode === 'basic'"> prettify
                 </span>
                 <div style="padding-top: 1px;">
                     <pre><code class="no-highlight">{{ utils.prettyPrint(options, prettify) }}</code></pre>
