@@ -1,6 +1,6 @@
 {
     "name": "json-tree",
-    "version": "0.0.2",
+    "version": "0.0.3",
     "description": "An AngularJS directive for displaying and editing JSON tree",
     "main": ["json-tree.js", "json-tree.css"],
     "license": "MIT",

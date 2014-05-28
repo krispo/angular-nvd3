@@ -378,8 +378,8 @@
                                 /* Add an empty element to fill the hole */
                                 emptyElement = angular.element("<div class='empty'></div>");
                                 emptyElement.css({
-                                    height: (rect.height - 2) + 'px',
-                                    width: (rect.width - 2) + 'px'
+                                    height: (rect.height) + 'px',
+                                    width: (rect.width) + 'px'
                                 });
                                 element.after(emptyElement);
 

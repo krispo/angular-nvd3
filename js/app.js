@@ -98,21 +98,16 @@ var app = angular.module('mainApp', ['mainApp.controllers','ngRoute', 'json-tree
                 }
             });
 
-            var $body   = $(document.body);
-            var navHeight = $('.navbar').outerHeight(true) + 10;
-
             setTimeout(function(){
-                $body.scrollspy({
+                $(document.body).scrollspy({
                     target: '#leftCol',
-                    offset: navHeight
+                    offset: $('.navbar').outerHeight(true) + 10
                 });
 
                 /* smooth scrolling sections */
                 $('a[href*=#]:not([href=#])').click(function() {
                     if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
                         var target = $(this.hash);
-                        console.log(target)
-                        console.log(this.hash.slice(1))
                         target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
                         if (target.length) {
                             $('html,body').animate({
