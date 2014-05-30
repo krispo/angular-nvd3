@@ -39,6 +39,8 @@ var app = angular.module('mainApp', ['mainApp.controllers','ngRoute', 'json-tree
         $rootScope.params = {
             route: $route,
             mode: 'basic', //basic, extended
+            visible: true,
+            disabled: false,
             charts: CHARTS,
             constants: CONSTANTS
         };

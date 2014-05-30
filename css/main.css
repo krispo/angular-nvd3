@@ -125,6 +125,14 @@ Live Edit  ----------------------------------------
     vertical-align: bottom;
     float: right;
 }
+#mode label {
+    font-weight: normal;
+    margin: 0px;
+    padding: 0px;
+}
+#mode label:hover {
+    cursor:pointer;
+}
 .wrap {
     /*border-style: solid;
     border-width: 1px;*/
@@ -177,6 +185,11 @@ Live Edit  ----------------------------------------
 #chart.chart-fixed {
     position: fixed;
     top: 50px;
+}
+#chart.disabled {
+    border-width: 4px;
+    border-color: #a6b997;
+    border-style: ridge;
 }
 #output {
     background-color: #bfd2af;
