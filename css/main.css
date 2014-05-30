@@ -98,6 +98,17 @@ body {
     -o-transition: all .5s;
     transition: all .5s;
 }
+.content .splash a {
+    color: white;
+    -webkit-transition: all .25s;
+    -moz-transition: all .25s;
+    -o-transition: all .25s;
+    transition: all .25s;
+}
+.content .splash a:hover {
+    color: #a6b997;
+    text-decoration: none;
+}
 .content .thumbnails{
     -webkit-box-shadow: inset 0px 0px 3px 0px #131b2d;
     -moz-box-shadow: inset 0px 0px 3px 0px #131b2d;

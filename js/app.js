@@ -149,7 +149,7 @@ var app = angular.module('mainApp', ['mainApp.controllers','ngRoute', 'json-tree
     })
 
     .constant('CONSTANTS', {
-        version: '0.0.3'
+        version: '0.0.5'
     })
 
     .constant('DOCS', function(CHARTS){
