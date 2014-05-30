@@ -1,5 +1,5 @@
 /**************************************************************************
-* AngularJS-nvD3, v0.0.5; MIT License; 05/22/2014 13:12
+* AngularJS-nvD3, v0.0.5; MIT License; 05/30/2014 17:16
 * http://krispo.github.io/angular-nvd3
 **************************************************************************/
 (function(){
@@ -19,11 +19,11 @@
                     config: '=?'    //global directive configuration, [optional]
                 },
                 link: function(scope, element, attrs){
-                    var chart, svg;
+                    var chart, svg,
+                        defaultConfig = { extended: false, visible: true, disabled: false };
 
                     //basic directive configuration
-                    if (scope.config) scope.config['extend'] = scope.config['extend'] || false;
-                    else scope.config = { extend: false };
+                    scope._config = angular.extend(defaultConfig, scope.config);
 
                     //directive global api
                     scope.api = {
@@ -31,6 +31,9 @@
                         updateWithOptions: function(options){
                             // Clearing
                             scope.api.clearElement();
+
+                            // Exit if chart is hidden
+                            if (!scope._config.visible) return;
 
                             // Initialize chart with specific type
                             chart = nv.models[options.chart.type]();
@@ -40,7 +43,7 @@
 
                                 else if (key === 'dispatch') {
                                     if (options.chart[key] === undefined || options.chart[key] === null) {
-                                        if (scope.config.extend) options.chart[key] = {};
+                                        if (scope._config.extended) options.chart[key] = {};
                                     }
                                     configureEvents(chart[key], options.chart[key]);
                                 }
@@ -76,7 +79,7 @@
                                     'controls'
                                 ].indexOf(key) >= 0){
                                     if (options.chart[key] === undefined || options.chart[key] === null) {
-                                        if (scope.config.extend) options.chart[key] = {};
+                                        if (scope._config.extended) options.chart[key] = {};
                                     }
                                     configure(chart[key], options.chart[key], options.chart.type);
                                 }
@@ -99,7 +102,7 @@
                                     );
 
                                 else if (options.chart[key] === undefined || options.chart[key] === null){
-                                    if (scope.config.extend) options.chart[key] = value();
+                                    if (scope._config.extended) options.chart[key] = value();
                                 }
 
                                 else chart[key](options.chart[key]);
@@ -144,6 +147,8 @@
                             element.find('.subtitle').remove();
                             element.find('.caption').remove();
                             element.empty();
+                            svg = null;
+                            chart = null;
                         }
                     };
 
@@ -153,7 +158,7 @@
                             angular.forEach(chart, function(value, key){
                                 if (key === 'dispatch') {
                                     if (options[key] === undefined || options[key] === null) {
-                                        if (scope.config.extend) options[key] = {};
+                                        if (scope._config.extended) options[key] = {};
                                     }
                                     configureEvents(value, options[key]);
                                 }
@@ -170,7 +175,7 @@
                                     'rangeBands'
                                 ].indexOf(key) < 0){
                                     if (options[key] === undefined || options[key] === null){
-                                        if (scope.config.extend) options[key] = value();
+                                        if (scope._config.extended) options[key] = value();
                                     }
 
                                     else chart[key](options[key]);
@@ -185,7 +190,7 @@
                         if (dispatch && options){
                             angular.forEach(dispatch, function(value, key){
                                 if (options[key] === undefined || options[key] === null){
-                                    if (scope.config.extend) options[key] = value.on;
+                                    if (scope._config.extended) options[key] = value.on;
                                 }
 
                                 else dispatch.on(key + '._', options[key]);
@@ -197,12 +202,12 @@
                     // nvd3 has no sufficient models for it yet.
                     function configureWrapper(name){
                         if (scope.options[name] === undefined || scope.options[name] === null){
-                            if (scope.config.extend) scope.options[name] = {}; else return;
+                            if (scope._config.extended) scope.options[name] = {}; else return;
                         }
 
                         angular.forEach(defaultWrapper(name), function(value, key){
                             if (scope.options[name][key] === undefined || scope.options[name][key] === null) {
-                                if (scope.config.extend) scope.options[name][key] = value;
+                                if (scope._config.extended) scope.options[name][key] = value;
                             }
                         });
 
@@ -223,12 +228,12 @@
                     // Add some styles to the whole directive element
                     function configureStyles(){
                         if (scope.options['styles'] === undefined || scope.options['styles'] === null){
-                            if (scope.config.extend) scope.options['styles'] = {}; else return;
+                            if (scope._config.extended) scope.options['styles'] = {}; else return;
                         }
 
                         angular.forEach(defaultStyles(), function(value, key){
                             if (scope.options['styles'][key] === undefined || scope.options['styles'][key] === null) {
-                                if (scope.config.extend) scope.options['styles'][key] = value;
+                                if (scope._config.extended) scope.options['styles'][key] = value;
                             }
                         });
 
@@ -282,9 +287,13 @@
                         };
                     }
 
-                    // Watching on options and data changing
-                    scope.$watch('options', function(options){ scope.api.updateWithOptions(options); }, true);
-                    scope.$watch('data', function(data){ scope.api.updateWithData(data); }, true);
+                    // Watching on options, data, config changing
+                    scope.$watch('options', function(options){ if (!scope._config.disabled) scope.api.updateWithOptions(options); }, true);
+                    scope.$watch('data', function(data){ if (!scope._config.disabled) scope.api.updateWithData(data); }, true);
+                    scope.$watch('config', function(config){
+                        scope._config = angular.extend(defaultConfig, config);
+                        scope.api.updateWithOptions(scope.options);
+                    }, true);
 
                     //subscribe on global events
                     angular.forEach(scope.events, function(eventHandler, event){
