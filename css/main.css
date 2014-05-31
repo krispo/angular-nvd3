@@ -272,7 +272,7 @@ Live Edit  ----------------------------------------
 .affix-top,.affix{
     position: static;
 }
-@media (min-width: 979px) {
+@media (min-width: 1000px) {
     #sidebar.affix-top {
         position: static;
         margin-top:30px;
@@ -410,7 +410,7 @@ Live Edit  ----------------------------------------
     margin-bottom: 0px;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1000px) {
     #copyright {
         text-align: center;
         padding-top: 5px;
