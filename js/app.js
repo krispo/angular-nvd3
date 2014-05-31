@@ -9,6 +9,7 @@ var app = angular.module('mainApp', ['mainApp.controllers','ngRoute', 'json-tree
         $routeProvider.when('/', {templateUrl: 'pages/home.html', controller: 'mainCtrl'});
         $routeProvider.when('/quickstart', {templateUrl: 'pages/quickstart.html', controller: 'quickstartCtrl'});
         $routeProvider.when('/liveedit', {templateUrl: 'pages/liveedit.html', controller: 'mainCtrl'});
+        $routeProvider.when('/feedback', {templateUrl: 'pages/feedback.html', controller: 'mainCtrl'});
 
         angular.forEach(CHARTS, function(value, key){
             $routeProvider.when(value.path, {templateUrl: 'pages/liveedit.html', controller: key + 'Ctrl'});
@@ -81,7 +82,7 @@ var app = angular.module('mainApp', ['mainApp.controllers','ngRoute', 'json-tree
  */
     .controller('mainCtrl', function($scope, $location){
         $scope.isActive = function(viewLocation){
-            if (viewLocation === '/liveedit') return (($location.path() !== '/quickstart') && ($location.path() !== '/'));
+            if (viewLocation === '/liveedit') return (($location.path() !== '/quickstart') && ($location.path() !== '/') && ($location.path() !== '/feedback'));
             else return viewLocation === $location.path();
         };
     })
@@ -162,15 +163,19 @@ var app = angular.module('mainApp', ['mainApp.controllers','ngRoute', 'json-tree
             title: 'Basic usage',
             url: './docs/basic.html'
         },{
-            id: -1,
-            caption: 'Basic examples'
-        },{
             id: 'doc_examples',
             title: 'Examples',
             url: './docs/examples.html'
         },{
             id: -1,
-            caption: 'Configurations'
+            caption: 'Configure Directive Attributes'
+        },{
+            id: 'doc_attributes',
+            title: 'Attributes',
+            url: './docs/attributes.html'
+        },{
+            id: -1,
+            caption: 'Customize Chart Options'
         },{
             id: 'doc_wrapper',
             title: 'Wrapper',
@@ -179,5 +184,5 @@ var app = angular.module('mainApp', ['mainApp.controllers','ngRoute', 'json-tree
             id: 'doc_events',
             title: 'Events',
             url: './docs/events.html'
-        }]
+        },]
     })

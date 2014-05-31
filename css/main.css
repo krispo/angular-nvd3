@@ -336,9 +336,14 @@ Live Edit  ----------------------------------------
     margin: 15px 0px 15px 0px;
     padding: 0px;
     /* background-color: #fff9d4;*/
-    -webkit-box-shadow: 0px 0px 10px -1px #698eb1;
-    -moz-box-shadow: 0px 0px 10px -1px #698eb1;
-    box-shadow: 0px 0px 10px -1px #698eb1;
+    /*-webkit-box-shadow: 0px 0px 10px -2px #698eb1;
+    -moz-box-shadow: 0px 0px 10px -2px #698eb1;
+    box-shadow: 0px 0px 10px -2px #698eb1;*/
+}
+
+/* Feedback -------------------------------------------------------- */
+#comments {
+    padding: 10px 5% 10px 5%;
 }
 
 /* Footer ---------------------------------------------------------- */
