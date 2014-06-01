@@ -1,5 +1,5 @@
 /**************************************************************************
-* AngularJS-nvD3, v0.0.5; MIT License; 05/30/2014 17:16
+* AngularJS-nvD3, v0.0.5; MIT License; 06/01/2014 13:08
 * http://krispo.github.io/angular-nvd3
 **************************************************************************/
 (function(){
@@ -297,8 +297,8 @@
 
                     //subscribe on global events
                     angular.forEach(scope.events, function(eventHandler, event){
-                        scope.$on(event, function(){
-                            return eventHandler(scope);
+                        scope.$on(event, function(e){
+                            return eventHandler(e, scope);
                         });
                     });
                 }
