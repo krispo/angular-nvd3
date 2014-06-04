@@ -28,6 +28,9 @@
                             // Clearing
                             scope.api.clearElement();
 
+                            // Exit if options are not yet bound
+                            if (angular.isDefined(options) === false) return;
+
                             // Exit if chart is hidden
                             if (!scope._config.visible) return;
 

@@ -1,5 +1,5 @@
 /**************************************************************************
-* AngularJS-nvD3, v0.0.5; MIT License; 06/01/2014 13:08
+* AngularJS-nvD3, v0.0.5; MIT License; 06/04/2014 13:33
 * http://krispo.github.io/angular-nvd3
 **************************************************************************/
 (function(){
@@ -31,6 +31,9 @@
                         updateWithOptions: function(options){
                             // Clearing
                             scope.api.clearElement();
+
+                            // Exit if options are not yet bound
+                            if (angular.isDefined(options) === false) return;
 
                             // Exit if chart is hidden
                             if (!scope._config.visible) return;
