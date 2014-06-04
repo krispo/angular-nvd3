@@ -297,8 +297,8 @@
 
                     //subscribe on global events
                     angular.forEach(scope.events, function(eventHandler, event){
-                        scope.$on(event, function(){
-                            return eventHandler(scope);
+                        scope.$on(event, function(e){
+                            return eventHandler(e, scope);
                         });
                     });
                 }

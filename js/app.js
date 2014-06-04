@@ -64,7 +64,7 @@ var app = angular.module('mainApp', ['mainApp.controllers','ngRoute', 'json-tree
 
         /* global events for all nvd3 directives */
         $rootScope.events = {
-            'jt.onFunctionChanged': function($scope){
+            'jt.onFunctionChanged': function(e, $scope){
                 $scope.api.updateWithOptions($scope.options);
             }
         };
@@ -153,7 +153,7 @@ var app = angular.module('mainApp', ['mainApp.controllers','ngRoute', 'json-tree
         version: '0.0.5'
     })
 
-    .constant('DOCS', function(CHARTS){
+    .constant('DOCS', function(){
         return [{
             id: 'doc_install',
             title: 'Install',

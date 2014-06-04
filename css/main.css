@@ -341,6 +341,31 @@ Live Edit  ----------------------------------------
     box-shadow: 0px 0px 10px -2px #698eb1;*/
 }
 
+#docs_content .tableAPI {
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+#docs_content .tableAPI  th {
+    border-style: solid;
+    border-width: 1px;
+    padding: 5px;
+}
+#docs_content .tableAPI  td {
+    border-style: solid;
+    border-width: 1px;
+    padding: 5px;
+}
+#docs_content .tableAPI th {
+    text-align: center;
+}
+#docs_content .tableAPI .api {
+    width: 30%;
+}
+#docs_content .tableAPI .desc {
+    width: 70%;
+}
+
 /* Feedback -------------------------------------------------------- */
 #comments {
     padding: 10px 5% 10px 5%;
@@ -407,7 +432,8 @@ Live Edit  ----------------------------------------
 #links {
     font-size: 11px;
     vertical-align: bottom;
-    margin-bottom: 0px;
+    margin-top: -9px;
+    margin-bottom: 9px;
 }
 
 @media (max-width: 1000px) {
