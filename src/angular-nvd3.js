@@ -15,15 +15,20 @@
                     config: '=?'    //global directive configuration, [optional]
                 },
                 link: function(scope, element, attrs){
-                    var chart, svg,
-                        defaultConfig = { extended: false, visible: true, disabled: false };
+                    var chart,
+                        defaultConfig = { extended: false, visible: true, disabled: false, autorefresh: true };
 
                     //basic directive configuration
                     scope._config = angular.extend(defaultConfig, scope.config);
 
                     //directive global api
                     scope.api = {
-                        // Update chart after options have changed
+                        // Fully refresh directive
+                        refresh: function(){
+                            scope.api.updateWithOptions(scope.options);
+                        },
+
+                        // Update chart with new options
                         updateWithOptions: function(options){
                             // Clearing
                             scope.api.clearElement();
@@ -107,11 +112,6 @@
                                 else chart[key](options.chart[key]);
                             });
 
-                            // Select the current element to add <svg> element and to render the chart in
-                            svg = d3.select(element[0]).append('svg')
-                                .attr('height', options.chart.height)
-                                .attr('width', options.chart.width);
-
                             // Update with data
                             scope.api.updateWithData(scope.data);
 
@@ -130,11 +130,18 @@
                             });
                         },
 
-                        // Update chart after data have changed
+                        // Update chart with new data
                         updateWithData: function (data){
-                            if (data && svg) {
+                            if (data) {
                                 scope.options.chart['transitionDuration'] = +scope.options.chart['transitionDuration'] || 250;
-                                svg.datum(data)
+                                // remove whole svg element with old data
+                                d3.select('svg').remove();
+
+                                // Select the current element to add <svg> element and to render the chart in
+                                d3.select(element[0]).append('svg')
+                                    .attr('height', scope.options.chart.height)
+                                    .attr('width', scope.options.chart.width)
+                                    .datum(data)
                                     .transition().duration(scope.options.chart['transitionDuration'])
                                     .call(chart);
                             }
@@ -146,7 +153,6 @@
                             element.find('.subtitle').remove();
                             element.find('.caption').remove();
                             element.empty();
-                            svg = null;
                             chart = null;
                         }
                     };
@@ -176,7 +182,6 @@
                                     if (options[key] === undefined || options[key] === null){
                                         if (scope._config.extended) options[key] = value();
                                     }
-
                                     else chart[key](options[key]);
                                 }
                             });
@@ -191,7 +196,6 @@
                                 if (options[key] === undefined || options[key] === null){
                                     if (scope._config.extended) options[key] = value.on;
                                 }
-
                                 else dispatch.on(key + '._', options[key]);
                             });
                         }
@@ -287,11 +291,11 @@
                     }
 
                     // Watching on options, data, config changing
-                    scope.$watch('options', function(options){ if (!scope._config.disabled) scope.api.updateWithOptions(options); }, true);
-                    scope.$watch('data', function(data){ if (!scope._config.disabled) scope.api.updateWithData(data); }, true);
+                    scope.$watch('options', function(options){ if (!scope._config.disabled && scope._config.autorefresh) scope.api.refresh(); }, true);
+                    scope.$watch('data', function(data){ if (!scope._config.disabled && scope._config.autorefresh) scope.api.refresh(); }, true);
                     scope.$watch('config', function(config){
                         scope._config = angular.extend(defaultConfig, config);
-                        scope.api.updateWithOptions(scope.options);
+                        scope.api.refresh();
                     }, true);
 
                     //subscribe on global events
