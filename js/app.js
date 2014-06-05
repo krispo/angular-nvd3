@@ -42,6 +42,7 @@ var app = angular.module('mainApp', ['mainApp.controllers','ngRoute', 'json-tree
             mode: 'basic', //basic, extended
             visible: true,
             disabled: false,
+            autorefresh: true,
             charts: CHARTS,
             constants: CONSTANTS
         };
@@ -65,7 +66,7 @@ var app = angular.module('mainApp', ['mainApp.controllers','ngRoute', 'json-tree
         /* global events for all nvd3 directives */
         $rootScope.events = {
             'jt.onFunctionChanged': function(e, $scope){
-                $scope.api.updateWithOptions($scope.options);
+                $scope.api.refresh();
             }
         };
 
@@ -150,7 +151,7 @@ var app = angular.module('mainApp', ['mainApp.controllers','ngRoute', 'json-tree
     })
 
     .constant('CONSTANTS', {
-        version: '0.0.5'
+        version: '0.0.6'
     })
 
     .constant('DOCS', function(){
