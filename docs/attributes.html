@@ -11,7 +11,8 @@ Setting up the global directive config in your controller like:
 <pre><code class="javascript">$scope.config = {
     visible: true, // default: true
     extended: false, // default: false
-    disabled: false // default: false
+    disabled: false, // default: false
+    autorefresh: true //default: true
 };</code></pre>
 
 <table class="tableAPI">
@@ -31,6 +32,10 @@ Setting up the global directive config in your controller like:
     <tr>
         <td class="api">disabled</td>
         <td class="desc"><b>false</b>: boolean.<br> Disable the chart to prevent unexpected changing.</td>
+    </tr>
+    <tr>
+        <td class="api">autorefresh</td>
+        <td class="desc"><b>true</b>: boolean.<br> Automatically refresh directive after <code>options</code> or <code>data</code> have changed.</td>
     </tr>
 </table>
 
@@ -63,6 +68,10 @@ Using this attribute you can access a global directive api (this is not a chart 
         <th class="desc">Description</th>
     </tr>
     <tr>
+        <td class="api">refresh()</td>
+        <td class="desc">Completely refresh directive.</td>
+    </tr>
+    <tr>
         <td class="api">updateWithOptions(options)</td>
         <td class="desc">Update chart with new <code>options</code> json.</td>
     </tr>
@@ -76,4 +85,4 @@ Using this attribute you can access a global directive api (this is not a chart 
     </tr>
 </table>
 You can, for example, refresh your directive from controller like:
-<pre><code class="javascript">$scope.api.updateWithOptions($scope.options);</code></pre>
+<pre><code class="javascript">$scope.api.refresh();</code></pre>
