@@ -1,5 +1,5 @@
 /**************************************************************************
-* AngularJS-nvD3, v0.0.6; MIT License; 06/06/2014 04:29
+* AngularJS-nvD3, v0.0.6; MIT License; 06/06/2014 14:08
 * http://krispo.github.io/angular-nvd3
 **************************************************************************/
 (function(){
@@ -139,7 +139,7 @@
                             if (data) {
                                 scope.options.chart['transitionDuration'] = +scope.options.chart['transitionDuration'] || 250;
                                 // remove whole svg element with old data
-                                d3.select('svg').remove();
+                                d3.select(element[0]).select('svg').remove();
 
                                 // Select the current element to add <svg> element and to render the chart in
                                 d3.select(element[0]).append('svg')

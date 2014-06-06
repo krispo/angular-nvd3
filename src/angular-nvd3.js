@@ -135,7 +135,7 @@
                             if (data) {
                                 scope.options.chart['transitionDuration'] = +scope.options.chart['transitionDuration'] || 250;
                                 // remove whole svg element with old data
-                                d3.select('svg').remove();
+                                d3.select(element[0]).select('svg').remove();
 
                                 // Select the current element to add <svg> element and to render the chart in
                                 d3.select(element[0]).append('svg')
