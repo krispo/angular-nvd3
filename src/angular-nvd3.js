@@ -127,7 +127,7 @@
                                 // Update the chart when window resizes
                                 nv.utils.windowResize(function() { chart.update(); });
                                 return chart;
-                            });
+                            }, options.chart['callback']);
                         },
 
                         // Update chart with new data
