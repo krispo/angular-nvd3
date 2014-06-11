@@ -1,7 +1,7 @@
 /**************************************************************************
-* AngularJS-nvD3, v0.0.7; MIT License; 06/06/2014 15:27
-* http://krispo.github.io/angular-nvd3
-**************************************************************************/
+ * AngularJS-nvD3, v0.0.8; MIT License; 06/11/2014 23:23
+ * http://krispo.github.io/angular-nvd3
+ **************************************************************************/
 (function(){
 
     'use strict';
@@ -131,7 +131,7 @@
                                 // Update the chart when window resizes
                                 nv.utils.windowResize(function() { chart.update(); });
                                 return chart;
-                            });
+                            }, options.chart['callback']);
                         },
 
                         // Update chart with new data

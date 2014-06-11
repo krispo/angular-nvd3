@@ -31,6 +31,9 @@ angular.module('mainApp.controllers', [])
                         return d3.format('.02f')(d);
                     },
                     axisLabelDistance: 30
+                },
+                callback: function(chart){
+                    console.log("!!! lineChart callback !!!");
                 }
             }
         };
