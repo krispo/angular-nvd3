@@ -1,5 +1,5 @@
 /**************************************************************************
-* AngularJS-nvD3, v0.0.9; MIT License; 06/17/2014 22:57
+* AngularJS-nvD3, v0.0.9; MIT License; 06/18/2014 01:20
 * http://krispo.github.io/angular-nvd3
 **************************************************************************/
 (function(){
@@ -212,12 +212,12 @@
 
                         if (scope._config.extended) scope.options[name] = _;
 
-                        var wrapElement = angular
-                            .element('<div></div>')
+                        var wrapElement = angular.element('<div></div>').html(_['html'] || '')
                             .addClass(name).addClass(_.class)
                             .removeAttr('style')
-                            .css(_.css)
-                            .text(_.text);
+                            .css(_.css);
+
+                        if (!_['html']) wrapElement.text(_.text);
 
                         if (_.enable) {
                             if (name === 'title') element.prepend(wrapElement);

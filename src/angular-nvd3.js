@@ -208,12 +208,12 @@
 
                         if (scope._config.extended) scope.options[name] = _;
 
-                        var wrapElement = angular
-                            .element('<div></div>')
+                        var wrapElement = angular.element('<div></div>').html(_['html'] || '')
                             .addClass(name).addClass(_.class)
                             .removeAttr('style')
-                            .css(_.css)
-                            .text(_.text);
+                            .css(_.css);
+
+                        if (!_['html']) wrapElement.text(_.text);
 
                         if (_.enable) {
                             if (name === 'title') element.prepend(wrapElement);
