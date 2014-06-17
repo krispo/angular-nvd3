@@ -204,24 +204,18 @@
                     // Configure 'title', 'subtitle', 'caption'.
                     // nvd3 has no sufficient models for it yet.
                     function configureWrapper(name){
-                        if (scope.options[name] === undefined || scope.options[name] === null){
-                            if (scope._config.extended) scope.options[name] = {}; else return;
-                        }
+                        var _ = angular.extend(defaultWrapper(name), scope.options[name] || {});
 
-                        angular.forEach(defaultWrapper(name), function(value, key){
-                            if (scope.options[name][key] === undefined || scope.options[name][key] === null) {
-                                if (scope._config.extended) scope.options[name][key] = value;
-                            }
-                        });
+                        if (scope._config.extended) scope.options[name] = _;
 
                         var wrapElement = angular
                             .element('<div></div>')
-                            .addClass(name).addClass(scope.options[name].class)
+                            .addClass(name).addClass(_.class)
                             .removeAttr('style')
-                            .css(scope.options[name].css)
-                            .text(scope.options[name].text);
+                            .css(_.css)
+                            .text(_.text);
 
-                        if (scope.options[name].enable) {
+                        if (_.enable) {
                             if (name === 'title') element.prepend(wrapElement);
                             else if (name === 'subtitle') element.find('.title').after(wrapElement);
                             else if (name === 'caption') element.append(wrapElement);
@@ -230,21 +224,15 @@
 
                     // Add some styles to the whole directive element
                     function configureStyles(){
-                        if (scope.options['styles'] === undefined || scope.options['styles'] === null){
-                            if (scope._config.extended) scope.options['styles'] = {}; else return;
-                        }
+                        var _ = angular.extend(defaultStyles(), scope.options['styles'] || {});
 
-                        angular.forEach(defaultStyles(), function(value, key){
-                            if (scope.options['styles'][key] === undefined || scope.options['styles'][key] === null) {
-                                if (scope._config.extended) scope.options['styles'][key] = value;
-                            }
-                        });
+                        if (scope._config.extended) scope.options['styles'] = _;
 
-                        angular.forEach(scope.options['styles'].classes, function(value, key){
+                        angular.forEach(_.classes, function(value, key){
                             value ? element.addClass(key) : element.removeClass(key);
                         });
 
-                        element.removeAttr('style').css(scope.options['styles'].css);
+                        element.removeAttr('style').css(_.css);
                     }
 
                     // Default values for 'title', 'subtitle', 'caption'
