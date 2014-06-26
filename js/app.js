@@ -129,7 +129,7 @@ var app = angular.module('mainApp', ['mainApp.controllers','ngRoute', 'json-tree
  * Constants -------------------------------------------------------------------------
  */
     .constant('CHARTS', {
-        lineChart: { path: '/lineChart', title: 'Line Chart' },
+        lineChart: { path: '/lineChart', title: 'Line Chart', plunker: 'http://plnkr.co/edit/lBKFld?p=preview' },
         cumulativeLineChart: { path: '/cumulativeLineChart', title: 'Cumulative Line Chart' },
         stackedAreaChart: { path: '/stackedAreaChart', title: 'Stacked Area Chart' },
         multiBarChart: { path: '/multiBarChart', title: 'MultiBar Chart' },

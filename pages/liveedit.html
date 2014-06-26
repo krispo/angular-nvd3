@@ -20,6 +20,7 @@
             <div id="chart" class="with-3d-shadow with-transitions" ng-class="{disabled: params.disabled}">
                 <nvd3 data="data" options="options" events="events" api="api" config="{extended: params.mode === 'extended', visible: params.visible, disabled: params.disabled, autorefresh: params.autorefresh }"></nvd3>
             </div>
+            <a href='{{params.selectedChart.plunker}}' target="_blank" style="float: right;">Edit in Plunker</a>
         </div><div class="span spanJT">
             <json-tree json="options" edit-level="high" collapsed-level="2"></json-tree>
         </div>
