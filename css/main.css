@@ -414,9 +414,10 @@ Live Edit  ----------------------------------------
     text-decoration: none;
 }
 
-.footer .icon {
-    zoom: 40%;
+.footer .icon img {
+    max-width: 56px;
 }
+
 
 #copyright {
     text-align: right;
