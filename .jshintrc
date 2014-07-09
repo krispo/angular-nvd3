@@ -16,6 +16,7 @@
     "globals": {
         "angular": false,
         "nv": false,
-        "d3": false
+        "d3": false,
+        "navigator": false
     }
 }
