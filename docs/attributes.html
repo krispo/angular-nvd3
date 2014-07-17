@@ -12,7 +12,8 @@ Setting up the global directive config in your controller like:
     visible: true, // default: true
     extended: false, // default: false
     disabled: false, // default: false
-    autorefresh: true //default: true
+    autorefresh: true, // default: true
+    refreshDataOnly // default: false
 };</code></pre>
 
 <table class="tableAPI">
@@ -36,6 +37,10 @@ Setting up the global directive config in your controller like:
     <tr>
         <td class="api">autorefresh</td>
         <td class="desc"><b>true</b>: boolean.<br> Automatically refresh directive after <code>options</code> or <code>data</code> have changed.</td>
+    </tr>
+    <tr>
+        <td class="api">refreshDataOnly</td>
+        <td class="desc"><b>false</b>: boolean.<br> Refresh only data without refreshing the full directive. It is especially useful for real-time updated charts.</td>
     </tr>
 </table>
 
