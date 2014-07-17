@@ -1,5 +1,5 @@
 /**************************************************************************
-* AngularJS-nvD3, v0.0.9; MIT License; 07/09/2014 14:42
+* AngularJS-nvD3, v0.0.9; MIT License; 07/17/2014 19:23
 * http://krispo.github.io/angular-nvd3
 **************************************************************************/
 (function(){
@@ -19,8 +19,7 @@
                     config: '=?'    //global directive configuration, [optional]
                 },
                 link: function(scope, element, attrs){
-                    var chart,
-                        defaultConfig = { extended: false, visible: true, disabled: false, autorefresh: true };
+                    var defaultConfig = { extended: false, visible: true, disabled: false, autorefresh: true, refreshDataOnly: false };
 
                     //basic directive configuration
                     scope._config = angular.extend(defaultConfig, scope.config);
@@ -31,7 +30,6 @@
                         refresh: function(){
                             scope.api.updateWithOptions(scope.options);
                         },
-
                         // Update chart with new options
                         updateWithOptions: function(options){
                             // Clearing
@@ -44,16 +42,16 @@
                             if (!scope._config.visible) return;
 
                             // Initialize chart with specific type
-                            chart = nv.models[options.chart.type]();
+                            scope.chart = nv.models[options.chart.type]();
 
-                            angular.forEach(chart, function(value, key){
+                            angular.forEach(scope.chart, function(value, key){
                                 if (key === 'options');
 
                                 else if (key === 'dispatch') {
                                     if (options.chart[key] === undefined || options.chart[key] === null) {
                                         if (scope._config.extended) options.chart[key] = {};
                                     }
-                                    configureEvents(chart[key], options.chart[key]);
+                                    configureEvents(scope.chart[key], options.chart[key]);
                                 }
 
                                 else if ([
@@ -89,7 +87,7 @@
                                     if (options.chart[key] === undefined || options.chart[key] === null) {
                                         if (scope._config.extended) options.chart[key] = {};
                                     }
-                                    configure(chart[key], options.chart[key], options.chart.type);
+                                    configure(scope.chart[key], options.chart[key], options.chart.type);
                                 }
 
                                 else if (//TODO: need to fix bug in nvd3
@@ -113,7 +111,7 @@
                                     if (scope._config.extended) options.chart[key] = value();
                                 }
 
-                                else chart[key](options.chart[key]);
+                                else scope.chart[key](options.chart[key]);
                             });
 
                             // Update with data
@@ -129,8 +127,8 @@
 
                             nv.addGraph(function() {
                                 // Update the chart when window resizes
-                                nv.utils.windowResize(function() { chart.update(); });
-                                return chart;
+                                nv.utils.windowResize(function() { scope.chart.update(); });
+                                return scope.chart;
                             }, options.chart['callback']);
                         },
 
@@ -147,13 +145,13 @@
                                     .attr('width', scope.options.chart.width)
                                     .datum(data)
                                     .transition().duration(scope.options.chart['transitionDuration'])
-                                    .call(chart);
+                                    .call(scope.chart);
 
                                 // Set up svg height and width for IE
                                 if (navigator.appName === 'Microsoft Internet Explorer') {
                                     d3.select(element[0]).select('svg')[0][0].style.height = scope.options.chart.height + 'px';
                                     d3.select(element[0]).select('svg')[0][0].style.width = scope.options.chart.width + 'px';
-                                    if (scope.options.chart.type === 'multiChart') chart.update(); // multiChart is not automatically updated
+                                    if (scope.options.chart.type === 'multiChart') scope.chart.update(); // multiChart is not automatically updated
                                 }
                             }
                         },
@@ -164,7 +162,7 @@
                             element.find('.subtitle').remove();
                             element.find('.caption').remove();
                             element.empty();
-                            chart = null;
+                            scope.chart = null;
                         }
                     };
 
@@ -290,8 +288,14 @@
                     }
 
                     // Watching on options, data, config changing
-                    scope.$watch('options', function(options){ if (!scope._config.disabled && scope._config.autorefresh) scope.api.refresh(); }, true);
-                    scope.$watch('data', function(data){ if (!scope._config.disabled && scope._config.autorefresh) scope.api.refresh(); }, true);
+                    scope.$watch('options', function(options){
+                        if (!scope._config.disabled && scope._config.autorefresh) scope.api.refresh();
+                    }, true);
+                    scope.$watch('data', function(data){
+                        if (!scope._config.disabled && scope._config.autorefresh) {
+                            scope._config.refreshDataOnly ? scope.chart.update() : scope.api.refresh(); // if wanted to refresh data only, use chart.update method, otherwise use full refresh.
+                        }
+                    }, true);
                     scope.$watch('config', function(config){
                         scope._config = angular.extend(defaultConfig, config);
                         scope.api.refresh();
