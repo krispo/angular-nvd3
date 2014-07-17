@@ -2,9 +2,17 @@ Basic configurations for options and sample data you can find by following the s
 
 <ul style="margin: 10px 0px 10px -10px; list-style-type: none;">
     <li ng-repeat="key in utils.keys(params.charts) track by key">
-        <a href="#{{ params.charts[key].path }}"><img src="./img{{ params.charts[key].path }}.png" alt="" style="zoom: 7%"></a>
+        <a href="#{{ params.charts[key].path }}" target="_blank"><img src="./img{{ params.charts[key].path }}.png" alt="" style="zoom: 7%"></a>
         &nbsp;&nbsp;
         <a href="https://github.com/krispo/angular-nvd3/blob/gh-pages/js{{ params.charts[key].path }}.js" target="_blank">{{ params.charts[key].title }}</a>
+        <a href="{{ params.charts[key].plunker }}" style="float: right;" target="_blank">plunker</a>
+    </li>
+</ul>
+
+<b>Other examples in plunker.</b>
+<ul>
+    <li ng-repeat="elem in params.constants.otherCharts">
+        <a href="{{ elem.url }}" target="_blank">{{ elem.name }}</a>
     </li>
 </ul>
 

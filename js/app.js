@@ -151,7 +151,18 @@ var app = angular.module('mainApp', ['mainApp.controllers','ngRoute', 'json-tree
     })
 
     .constant('CONSTANTS', {
-        version: '0.0.8'
+        version: '0.0.8',
+        otherCharts: [
+            { name: "Real-time chart updating", url: "http://plnkr.co/edit/yKFROu?p=preview" },
+            { name: "Dynamic chart synchronization with Firebase", url: "http://plnkr.co/edit/VYzmqk?p=preview" },
+            { name: "Selecting series in Cumulative Line Chart ", url: "http://plnkr.co/edit/ZLcS6M?p=preview" },
+            { name: "Charts in grid layout with FreewallJS", url: "http://plnkr.co/edit/6CUXlr?p=preview" },
+            { name: "Custom xAxis labels in Line+Bar+Focus chart", url: "http://plnkr.co/edit/QiBdW7?p=preview" },
+            { name: "Time delay while updating chart data", url: "http://plnkr.co/edit/xi8c2h?p=preview" },
+            { name: "Compile charts dynamically", url: "http://plnkr.co/edit/0XtT0f?p=preview" },
+            { name: "Creating multiple charts inside ng-repeat", url: "http://plnkr.co/edit/qFa4UL?p=preview"},
+            { name: "Stacked Multi Bar chart with random barColor", url: "http://plnkr.co/edit/TwKry8?p=preview"}
+        ]
     })
 
     .constant('DOCS', function(){
