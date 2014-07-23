@@ -1,5 +1,5 @@
 /**************************************************************************
-* AngularJS-nvD3, v0.0.9; MIT License; 07/17/2014 19:23
+* AngularJS-nvD3, v0.0.9; MIT License; 07/24/2014 02:25
 * http://krispo.github.io/angular-nvd3
 **************************************************************************/
 (function(){
@@ -147,12 +147,10 @@
                                     .transition().duration(scope.options.chart['transitionDuration'])
                                     .call(scope.chart);
 
-                                // Set up svg height and width for IE
-                                if (navigator.appName === 'Microsoft Internet Explorer') {
-                                    d3.select(element[0]).select('svg')[0][0].style.height = scope.options.chart.height + 'px';
-                                    d3.select(element[0]).select('svg')[0][0].style.width = scope.options.chart.width + 'px';
-                                    if (scope.options.chart.type === 'multiChart') scope.chart.update(); // multiChart is not automatically updated
-                                }
+                                // Set up svg height and width. It is important for all browsers...
+                                d3.select(element[0]).select('svg')[0][0].style.height = scope.options.chart.height + 'px';
+                                d3.select(element[0]).select('svg')[0][0].style.width = scope.options.chart.width + 'px';
+                                if (scope.options.chart.type === 'multiChart') scope.chart.update(); // multiChart is not automatically updated
                             }
                         },
 
