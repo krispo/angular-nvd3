@@ -17,7 +17,7 @@
 <div class="wrap">
     <div class="row-fluid">
         <div class="span spanChart">
-            <div id="chart" class="with-3d-shadow with-transitions" ng-class="{disabled: params.disabled}">
+            <div id="chart" class="with-3d-shadow with-transitions" ng-class="{disabled: params.disabled}" style="overflow-x:auto;">
                 <nvd3 data="data" options="options" events="events" api="api" config="{extended: params.mode === 'extended', visible: params.visible, disabled: params.disabled, autorefresh: params.autorefresh }"></nvd3>
             </div>
             <a href='{{params.selectedChart.plunker}}' target="_blank" style="float: right;">Edit in Plunker</a>

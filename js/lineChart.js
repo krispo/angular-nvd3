@@ -45,7 +45,7 @@ angular.module('mainApp.controllers', [])
                 text: 'Subtitle for simple line chart. Lorem ipsum dolor sit amet, at eam blandit sadipscing, vim adhuc sanctus disputando ex, cu usu affert alienum urbanitas.',
                 css: {
                     'text-align': 'center',
-                    'margin': '0px 100px 10px 100px'
+                    'margin': '10px 13px 0px 7px'
                 }
             },
             caption: {

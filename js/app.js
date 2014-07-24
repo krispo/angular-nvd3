@@ -151,7 +151,7 @@ var app = angular.module('mainApp', ['mainApp.controllers','ngRoute', 'json-tree
     })
 
     .constant('CONSTANTS', {
-        version: '0.0.8',
+        version: '0.0.9',
         otherCharts: [
             { name: "Real-time chart updating", url: "http://plnkr.co/edit/yKFROu?p=preview" },
             { name: "Dynamic chart synchronization with Firebase", url: "http://plnkr.co/edit/VYzmqk?p=preview" },
