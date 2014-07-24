@@ -207,7 +207,7 @@
                     // Configure 'title', 'subtitle', 'caption'.
                     // nvd3 has no sufficient models for it yet.
                     function configureWrapper(name){
-                        var _ = angular.extend(defaultWrapper(name), scope.options[name] || {});
+                        var _ = extendDeep(defaultWrapper(name), scope.options[name] || {});
 
                         if (scope._config.extended) scope.options[name] = _;
 
@@ -227,7 +227,7 @@
 
                     // Add some styles to the whole directive element
                     function configureStyles(){
-                        var _ = angular.extend(defaultStyles(), scope.options['styles'] || {});
+                        var _ = extendDeep(defaultStyles(), scope.options['styles'] || {});
 
                         if (scope._config.extended) scope.options['styles'] = _;
 
@@ -279,6 +279,22 @@
                             },
                             css: {}
                         };
+                    }
+
+                    // Deep Extend json object
+                    function extendDeep(dst) {
+                        angular.forEach(arguments, function(obj) {
+                            if (obj !== dst) {
+                                angular.forEach(obj, function(value, key) {
+                                    if (dst[key] && dst[key].constructor && dst[key].constructor === Object) {
+                                        extendDeep(dst[key], value);
+                                    } else {
+                                        dst[key] = value;
+                                    }
+                                });
+                            }
+                        });
+                        return dst;
                     }
 
                     // Watching on options, data, config changing
