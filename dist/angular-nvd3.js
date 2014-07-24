@@ -1,5 +1,5 @@
 /**************************************************************************
-* AngularJS-nvD3, v0.0.9; MIT License; 07/24/2014 11:07
+* AngularJS-nvD3, v0.0.9; MIT License; 07/24/2014 12:59
 * http://krispo.github.io/angular-nvd3
 **************************************************************************/
 (function(){
@@ -118,12 +118,13 @@
                             scope.api.updateWithData(scope.data);
 
                             // Configure wrappers
-                            configureWrapper('title');
-                            configureWrapper('subtitle');
-                            configureWrapper('caption');
+                            if (options['title'] || scope._config.extended) configureWrapper('title');
+                            if (options['subtitle'] || scope._config.extended) configureWrapper('subtitle');
+                            if (options['caption'] || scope._config.extended) configureWrapper('caption');
+
 
                             // Configure styles
-                            configureStyles();
+                            if (options['styles'] || scope._config.extended) configureStyles();
 
                             nv.addGraph(function() {
                                 // Update the chart when window resizes

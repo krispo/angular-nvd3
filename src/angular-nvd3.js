@@ -114,12 +114,13 @@
                             scope.api.updateWithData(scope.data);
 
                             // Configure wrappers
-                            configureWrapper('title');
-                            configureWrapper('subtitle');
-                            configureWrapper('caption');
+                            if (options['title'] || scope._config.extended) configureWrapper('title');
+                            if (options['subtitle'] || scope._config.extended) configureWrapper('subtitle');
+                            if (options['caption'] || scope._config.extended) configureWrapper('caption');
+
 
                             // Configure styles
-                            configureStyles();
+                            if (options['styles'] || scope._config.extended) configureStyles();
 
                             nv.addGraph(function() {
                                 // Update the chart when window resizes
