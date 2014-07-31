@@ -154,6 +154,7 @@ var app = angular.module('mainApp', ['mainApp.controllers','ngRoute', 'json-tree
         version: '0.0.9',
         otherCharts: [
             { name: "Real-time chart updating", url: "http://plnkr.co/edit/yKFROu?p=preview" },
+            { name: "Events handling in Discrete Bar Chart", url: "http://plnkr.co/edit/ZvfBDk?p=preview"},
             { name: "Dynamic chart synchronization with Firebase", url: "http://plnkr.co/edit/VYzmqk?p=preview" },
             { name: "Selecting series in Cumulative Line Chart ", url: "http://plnkr.co/edit/ZLcS6M?p=preview" },
             { name: "Charts in grid layout with FreewallJS", url: "http://plnkr.co/edit/6CUXlr?p=preview" },
