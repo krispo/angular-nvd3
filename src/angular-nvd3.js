@@ -26,6 +26,10 @@
                         refresh: function(){
                             scope.api.updateWithOptions(scope.options);
                         },
+                        // Update chart layout (for example if container is resized)
+                        update: function() {
+                            scope.chart.update();
+                        },
                         // Update chart with new options
                         updateWithOptions: function(options){
                             // Clearing
