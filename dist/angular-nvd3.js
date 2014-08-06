@@ -1,5 +1,5 @@
 /**************************************************************************
-* AngularJS-nvD3, v0.0.9; MIT License; 07/24/2014 12:59
+* AngularJS-nvD3, v0.1.0; MIT License; 08/06/2014 17:19
 * http://krispo.github.io/angular-nvd3
 **************************************************************************/
 (function(){
@@ -29,6 +29,10 @@
                         // Fully refresh directive
                         refresh: function(){
                             scope.api.updateWithOptions(scope.options);
+                        },
+                        // Update chart layout (for example if container is resized)
+                        update: function() {
+                            scope.chart.update();
                         },
                         // Update chart with new options
                         updateWithOptions: function(options){

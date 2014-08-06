@@ -111,5 +111,13 @@ See the [result](http://krispo.github.io/angular-nvd3/#/discreteBarChart).
 
 Read more [docs](http://krispo.github.io/angular-nvd3/#/quickstart).
 
+## Release Notes
+
+### 0.1.0 (current)
+* added update method to global api, [pull request](https://github.com/krispo/angular-nvd3/pull/27)
+
+### [0.0.9 (stable)](https://github.com/krispo/angular-nvd3/releases/tag/v0.0.9)
+...
+
 ## License
 Licensed under the terms of the [MIT License](https://github.com/krispo/angular-nvd3/blob/master/LICENSE)
