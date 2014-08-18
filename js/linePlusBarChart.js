@@ -10,7 +10,7 @@ angular.module('mainApp.controllers')
                 height: 450,
                 margin : {
                     top: 30,
-                    right: 60,
+                    right: 75,
                     bottom: 50,
                     left: 75
                 },
