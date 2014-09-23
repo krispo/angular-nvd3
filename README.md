@@ -111,10 +111,21 @@ See the [result](http://krispo.github.io/angular-nvd3/#/discreteBarChart).
 
 Read more [docs](http://krispo.github.io/angular-nvd3/#/quickstart).
 
+### Contribute
+
+Test it using command:
+
+    $npm test
+
+Then build using [grunt](http://gruntjs.com/) (*node.js must be installed*):
+
+    $grunt
+
 ## Release Notes
 
 ### 0.1.0 (current)
 * added update method to global api, [pull request](https://github.com/krispo/angular-nvd3/pull/27)
+* fixed bug for `multiChart`
 
 ### [0.0.9 (stable)](https://github.com/krispo/angular-nvd3/releases/tag/v0.0.9)
 ...

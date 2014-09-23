@@ -1,5 +1,5 @@
 /**************************************************************************
-* AngularJS-nvD3, v0.1.0; MIT License; 08/06/2014 17:19
+* AngularJS-nvD3, v0.1.0; MIT License; 09/23/2014 13:47
 * http://krispo.github.io/angular-nvd3
 **************************************************************************/
 (function(){
@@ -108,7 +108,7 @@
                                         || (key === 'xScale' && options.chart.type === 'scatterChart')
                                         || (key === 'yScale' && options.chart.type === 'scatterChart')
                                         || (key === 'x' && (options.chart.type === 'lineWithFocusChart' || options.chart.type === 'multiChart'))
-                                        || (key === 'y' && options.chart.type === 'lineWithFocusChart' || options.chart.type === 'multiChart')
+                                        || (key === 'y' && (options.chart.type === 'lineWithFocusChart' || options.chart.type === 'multiChart'))
                                     );
 
                                 else if (options.chart[key] === undefined || options.chart[key] === null){
