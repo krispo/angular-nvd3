@@ -1,5 +1,5 @@
 /**************************************************************************
-* AngularJS-nvD3, v0.0.9; MIT License; 07/24/2014 12:59
+* AngularJS-nvD3, v0.1.0; MIT License; 09/23/2014 13:47
 * http://krispo.github.io/angular-nvd3
 **************************************************************************/
 (function(){
@@ -29,6 +29,10 @@
                         // Fully refresh directive
                         refresh: function(){
                             scope.api.updateWithOptions(scope.options);
+                        },
+                        // Update chart layout (for example if container is resized)
+                        update: function() {
+                            scope.chart.update();
                         },
                         // Update chart with new options
                         updateWithOptions: function(options){
@@ -104,7 +108,7 @@
                                         || (key === 'xScale' && options.chart.type === 'scatterChart')
                                         || (key === 'yScale' && options.chart.type === 'scatterChart')
                                         || (key === 'x' && (options.chart.type === 'lineWithFocusChart' || options.chart.type === 'multiChart'))
-                                        || (key === 'y' && options.chart.type === 'lineWithFocusChart' || options.chart.type === 'multiChart')
+                                        || (key === 'y' && (options.chart.type === 'lineWithFocusChart' || options.chart.type === 'multiChart'))
                                     );
 
                                 else if (options.chart[key] === undefined || options.chart[key] === null){
