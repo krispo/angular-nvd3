@@ -1,5 +1,5 @@
 /**************************************************************************
-* AngularJS-nvD3, v0.1.0; MIT License; 09/23/2014 13:47
+* AngularJS-nvD3, v0.1.0; MIT License; 10/06/2014 17:12
 * http://krispo.github.io/angular-nvd3
 **************************************************************************/
 (function(){
@@ -30,10 +30,12 @@
                         refresh: function(){
                             scope.api.updateWithOptions(scope.options);
                         },
+
                         // Update chart layout (for example if container is resized)
                         update: function() {
                             scope.chart.update();
                         },
+
                         // Update chart with new options
                         updateWithOptions: function(options){
                             // Clearing
@@ -166,7 +168,10 @@
                             element.find('.caption').remove();
                             element.empty();
                             scope.chart = null;
-                        }
+                        },
+
+                        // Get full directive scope
+                        getScope: function(){ return scope; }
                     };
 
                     // Configure the chart model with the passed options
@@ -306,18 +311,27 @@
                         return dst;
                     }
 
-                    // Watching on options, data, config changing
-                    scope.$watch('options', function(options){
+                    /* Event Handling */
+                    // Watching on options changing
+                    scope.$watch('options', function(newOptions){
                         if (!scope._config.disabled && scope._config.autorefresh) scope.api.refresh();
                     }, true);
-                    scope.$watch('data', function(data){
-                        if (!scope._config.disabled && scope._config.autorefresh) {
-                            scope._config.refreshDataOnly ? scope.chart.update() : scope.api.refresh(); // if wanted to refresh data only, use chart.update method, otherwise use full refresh.
+
+                    // Watching on data changing
+                    scope.$watch('data', function(newData, oldData){
+                        if (newData !== oldData){
+                            if (!scope._config.disabled && scope._config.autorefresh) {
+                                scope._config.refreshDataOnly ? scope.chart.update() : scope.api.refresh(); // if wanted to refresh data only, use chart.update method, otherwise use full refresh.
+                            }
                         }
                     }, true);
-                    scope.$watch('config', function(config){
-                        scope._config = angular.extend(defaultConfig, config);
-                        scope.api.refresh();
+
+                    // Watching on config changing
+                    scope.$watch('config', function(newConfig, oldConfig){
+                        if (newConfig !== oldConfig){
+                            scope._config = angular.extend(defaultConfig, newConfig);
+                            scope.api.refresh();
+                        }
                     }, true);
 
                     //subscribe on global events
