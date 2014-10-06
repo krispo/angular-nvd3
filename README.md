@@ -126,6 +126,8 @@ Then build using [grunt](http://gruntjs.com/) (*node.js must be installed*):
 ### 0.1.0 (current)
 * added update method to global api, [pull request](https://github.com/krispo/angular-nvd3/pull/27)
 * fixed bug for `multiChart`
+* added getScope method to global api. (give an access to internal directive scope, for example, we can get chart object like: `$scope.api.getScope().chart`)
+* fixed multiple chart rendering under initializing (fixed multiple callback calls)
 
 ### [0.0.9 (stable)](https://github.com/krispo/angular-nvd3/releases/tag/v0.0.9)
 ...
