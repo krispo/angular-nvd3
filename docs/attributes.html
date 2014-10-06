@@ -77,6 +77,10 @@ Using this attribute you can access a global directive api (this is not a chart 
         <td class="desc">Completely refresh directive.</td>
     </tr>
     <tr>
+        <td class="api">update()</td>
+        <td class="desc">Update chart layout (for example if container is resized). [v.0.1.0+]</td>
+    </tr>
+    <tr>
         <td class="api">updateWithOptions(options)</td>
         <td class="desc">Update chart with new <code>options</code> json.</td>
     </tr>
@@ -87,6 +91,10 @@ Using this attribute you can access a global directive api (this is not a chart 
     <tr>
         <td class="api">clearElement()</td>
         <td class="desc">Clear completely directive element.</td>
+    </tr>
+    <tr>
+        <td class="api">getScope()</td>
+        <td class="desc">Get access to the internal directive scope. For example, we can get chart object via <code>$scope.api.getScope().chart</code>. [v.0.1.0+]</td>
     </tr>
 </table>
 You can, for example, refresh your directive from controller like:
