@@ -28,7 +28,7 @@
     },
     "dependencies": {
         "angular": "~1.2",
-        "d3": "~3.4",
+        "d3": "3.3.13",
         "nvd3": "~v1.1.15-beta"
     },
     "ignore": [
