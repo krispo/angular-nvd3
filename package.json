@@ -8,7 +8,7 @@
         "type": "git",
         "url": "https://github.com/krispo/angular-nvd3.git"
     },
-    "main": ["dist/angular-nvd3.js", "dist/angular-nvd3.min.js"],
+    "main": "dist/angular-nvd3.js",
     "keywords": [
         "angular",
         "nvd3",
