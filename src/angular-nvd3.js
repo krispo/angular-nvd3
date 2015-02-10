@@ -130,7 +130,7 @@
 
                             nv.addGraph(function() {
                                 // Update the chart when window resizes
-                                nv.utils.windowResize(function() { scope.chart.update(); });
+                                scope.chart.resizeHandler = nv.utils.windowResize(function() { scope.chart.update(); });
                                 return scope.chart;
                             }, options.chart['callback']);
                         },
@@ -163,7 +163,13 @@
                             element.find('.subtitle').remove();
                             element.find('.caption').remove();
                             element.empty();
+                            if (scope.chart && scope.chart.resizeHandler) {
+                                scope.chart.resizeHandler.clear();
+                            }
+
                             scope.chart = null;
+                            nv.render.queue = [];
+                            nv.graphs = [];
                         },
 
                         // Get full directive scope
