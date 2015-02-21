@@ -1,8 +1,12 @@
 Basic configurations for options and sample data you can find by following the source code of the basic examples:
 
-<ul style="margin: 10px 0px 10px -10px; list-style-type: none;">
+<style>
+    .example-list li:hover { background-color: rgba(144, 238, 144, 0.2); }
+</style>
+
+<ul class="example-list" style="margin: 10px 0px 10px -10px; list-style-type: none;">
     <li ng-repeat="key in utils.keys(params.charts) track by key">
-        <a href="#{{ params.charts[key].path }}" target="_blank"><img src="./img{{ params.charts[key].path }}.png" alt="" style="zoom: 7%"></a>
+        <a href="#{{ params.charts[key].path }}" target="_blank"><img src="./img{{ params.charts[key].path }}.png" alt="" style="/*zoom: 7%;*/ max-height: 32px;"></a>
         &nbsp;&nbsp;
         <a href="https://github.com/krispo/angular-nvd3/blob/gh-pages/js{{ params.charts[key].path }}.js" target="_blank">{{ params.charts[key].title }}</a>
         <a href="{{ params.charts[key].plunker }}" style="float: right;" target="_blank">plunker</a>
