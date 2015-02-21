@@ -138,7 +138,7 @@
 
                             nv.addGraph(function() {
                                 // Update the chart when window resizes
-                                scope.chart.resizeHandler = utils.windowResize(function() { scope.chart.update(); });
+                                scope.chart.resizeHandler = nv.utils.windowResize(function() { scope.chart.update(); });
                                 return scope.chart;
                             }, options.chart['callback']);
                         },
@@ -232,7 +232,7 @@
                     // Configure 'title', 'subtitle', 'caption'.
                     // nvd3 has no sufficient models for it yet.
                     function configureWrapper(name){
-                        var _ = extendDeep(defaultWrapper(name), scope.options[name] || {});
+                        var _ = nv.utils.deepExtend(defaultWrapper(name), scope.options[name] || {});
 
                         if (scope._config.extended) scope.options[name] = _;
 
@@ -252,7 +252,7 @@
 
                     // Add some styles to the whole directive element
                     function configureStyles(){
-                        var _ = extendDeep(defaultStyles(), scope.options['styles'] || {});
+                        var _ = nv.utils.deepExtend(defaultStyles(), scope.options['styles'] || {});
 
                         if (scope._config.extended) scope.options['styles'] = _;
 
@@ -304,22 +304,6 @@
                             },
                             css: {}
                         };
-                    }
-
-                    // Deep Extend json object
-                    function extendDeep(dst) {
-                        angular.forEach(arguments, function(obj) {
-                            if (obj !== dst) {
-                                angular.forEach(obj, function(value, key) {
-                                    if (dst[key] && dst[key].constructor && dst[key].constructor === Object) {
-                                        extendDeep(dst[key], value);
-                                    } else {
-                                        dst[key] = value;
-                                    }
-                                });
-                            }
-                        });
-                        return dst;
                     }
 
                     /* Event Handling */
@@ -374,18 +358,6 @@
                         clearTimeout(timeout);
                         timeout = setTimeout(later, wait);
                         if (callNow) func.apply(context, args);
-                    };
-                },
-                windowResize: function(handler) {
-                    if (window.addEventListener) {
-                        window.addEventListener('resize', handler);
-                    }
-                    // return object with clear function to remove the single added callback.
-                    return {
-                        callback: handler,
-                        clear: function() {
-                            window.removeEventListener('resize', handler);
-                        }
                     };
                 }
             };
