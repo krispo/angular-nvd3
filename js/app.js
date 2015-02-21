@@ -151,7 +151,7 @@ var app = angular.module('mainApp', ['mainApp.controllers','ngRoute', 'json-tree
     })
 
     .constant('CONSTANTS', {
-        version: '0.0.9',
+        version: '0.1.0',
         otherCharts: [
             { name: "Real-time chart updating", url: "http://plnkr.co/edit/yKFROu?p=preview" },
             { name: "Events handling in Discrete Bar Chart", url: "http://plnkr.co/edit/ZvfBDk?p=preview"},

@@ -1,6 +1,6 @@
 {
     "name": "json-tree",
-    "version": "0.0.3",
+    "version": "0.1.0",
     "description": "An AngularJS directive for displaying and editing JSON tree",
     "main": ["json-tree.js", "json-tree.css"],
     "license": "MIT",
@@ -30,7 +30,7 @@
         "url": "https://github.com/krispo/json-tree.git"
     },
     "dependencies": {
-        "angular": "~1.2"
+        "angular": "^1.x"
     },
     "ignore": [
         "**/.*",
