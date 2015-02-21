@@ -1,5 +1,5 @@
 /**************************************************************************
-* AngularJS-nvD3, v0.1.0; MIT License; 10/06/2014 17:12
+* AngularJS-nvD3, v0.1.0; MIT License; 01/26/2015 11:50
 * http://krispo.github.io/angular-nvd3
 **************************************************************************/
 (function(){
@@ -19,7 +19,7 @@
                     config: '=?'    //global directive configuration, [optional]
                 },
                 link: function(scope, element, attrs){
-                    var defaultConfig = { extended: false, visible: true, disabled: false, autorefresh: true, refreshDataOnly: false };
+                    var defaultConfig = { extended: false, visible: true, disabled: false, autorefresh: true, refreshDataOnly: false, deepWatchData: true };
 
                     //basic directive configuration
                     scope._config = angular.extend(defaultConfig, scope.config);
@@ -324,7 +324,7 @@
                                 scope._config.refreshDataOnly ? scope.chart.update() : scope.api.refresh(); // if wanted to refresh data only, use chart.update method, otherwise use full refresh.
                             }
                         }
-                    }, true);
+                    }, scope._config.deepWatchData);
 
                     // Watching on config changing
                     scope.$watch('config', function(newConfig, oldConfig){
