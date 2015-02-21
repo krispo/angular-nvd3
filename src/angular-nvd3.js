@@ -4,7 +4,7 @@
 
     angular.module('nvd3', [])
 
-        .directive('nvd3', [function(){
+        .directive('nvd3', ['utils', function(utils){
             return {
                 restrict: 'AE',
                 scope: {
@@ -15,7 +15,15 @@
                     config: '=?'    //global directive configuration, [optional]
                 },
                 link: function(scope, element, attrs){
-                    var defaultConfig = { extended: false, visible: true, disabled: false, autorefresh: true, refreshDataOnly: false, deepWatchData: true };
+                    var defaultConfig = {
+                        extended: false,
+                        visible: true,
+                        disabled: false,
+                        autorefresh: true,
+                        refreshDataOnly: false,
+                        deepWatchData: true,
+                        debounce: 10 // default 10ms, time silence to prevent refresh while multiple options changes at a time
+                    };
 
                     //basic directive configuration
                     scope._config = angular.extend(defaultConfig, scope.config);
@@ -130,7 +138,7 @@
 
                             nv.addGraph(function() {
                                 // Update the chart when window resizes
-                                scope.chart.resizeHandler = nv.utils.windowResize(function() { scope.chart.update(); });
+                                scope.chart.resizeHandler = utils.windowResize(function() { scope.chart.update(); });
                                 return scope.chart;
                             }, options.chart['callback']);
                         },
@@ -170,6 +178,7 @@
                             scope.chart = null;
                             nv.render.queue = [];
                             nv.graphs = [];
+                            nv.tooltip.cleanup();
                         },
 
                         // Get full directive scope
@@ -315,13 +324,13 @@
 
                     /* Event Handling */
                     // Watching on options changing
-                    scope.$watch('options', function(newOptions){
+                    scope.$watch('options', utils.debounce(function(newOptions){
                         if (!scope._config.disabled && scope._config.autorefresh) scope.api.refresh();
-                    }, true);
+                    }, scope._config.debounce, true), true);
 
                     // Watching on data changing
                     scope.$watch('data', function(newData, oldData){
-                        if (newData !== oldData){
+                        if (newData !== oldData && scope.chart){
                             if (!scope._config.disabled && scope._config.autorefresh) {
                                 scope._config.refreshDataOnly ? scope.chart.update() : scope.api.refresh(); // if wanted to refresh data only, use chart.update method, otherwise use full refresh.
                             }
@@ -330,7 +339,7 @@
 
                     // Watching on config changing
                     scope.$watch('config', function(newConfig, oldConfig){
-                        if (newConfig !== oldConfig){
+                        if (newConfig !== oldConfig && scope.chart){
                             scope._config = angular.extend(defaultConfig, newConfig);
                             scope.api.refresh();
                         }
@@ -342,7 +351,43 @@
                             return eventHandler(e, scope);
                         });
                     });
+
+                    // remove completely when directive is destroyed
+                    element.on('$destroy', function () {
+                        scope.api.clearElement();
+                    });
                 }
             };
-        }]);
+        }])
+
+        .factory('utils', function(){
+            return {
+                debounce: function debounce(func, wait, immediate) {
+                    var timeout;
+                    return function() {
+                        var context = this, args = arguments;
+                        var later = function() {
+                            timeout = null;
+                            if (!immediate) func.apply(context, args);
+                        };
+                        var callNow = immediate && !timeout;
+                        clearTimeout(timeout);
+                        timeout = setTimeout(later, wait);
+                        if (callNow) func.apply(context, args);
+                    };
+                },
+                windowResize: function(handler) {
+                    if (window.addEventListener) {
+                        window.addEventListener('resize', handler);
+                    }
+                    // return object with clear function to remove the single added callback.
+                    return {
+                        callback: handler,
+                        clear: function() {
+                            window.removeEventListener('resize', handler);
+                        }
+                    };
+                }
+            };
+        });
 })();
