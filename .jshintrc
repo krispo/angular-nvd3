@@ -17,6 +17,9 @@
         "angular": false,
         "nv": false,
         "d3": false,
-        "navigator": false
+        "navigator": false,
+        "window": false,
+        "clearTimeout": false,
+        "setTimeout": false
     }
 }
