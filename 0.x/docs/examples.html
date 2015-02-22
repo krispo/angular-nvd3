@@ -1,0 +1,70 @@
+Basic configurations for options and sample data you can find by following the source code of the basic examples:
+
+<style>
+    .example-list li:hover { background-color: rgba(144, 238, 144, 0.2); }
+</style>
+
+<ul class="example-list" style="margin: 10px 0px 10px -10px; list-style-type: none;">
+    <li ng-repeat="key in utils.keys(params.charts) track by key">
+        <a href="#{{ params.charts[key].path }}" target="_blank"><img src="./img{{ params.charts[key].path }}.png" alt="" style="/*zoom: 7%;*/ max-height: 32px;"></a>
+        &nbsp;&nbsp;
+        <a href="https://github.com/krispo/angular-nvd3/blob/gh-pages/js{{ params.charts[key].path }}.js" target="_blank">{{ params.charts[key].title }}</a>
+        <a href="{{ params.charts[key].plunker }}" style="float: right;" target="_blank">plunker</a>
+    </li>
+</ul>
+
+<b>Other examples in plunker.</b>
+<ul>
+    <li ng-repeat="elem in params.constants.otherCharts">
+        <a href="{{ elem.url }}" target="_blank">{{ elem.name }}</a>
+    </li>
+</ul>
+
+<b>An example of creating a simple <i>Discrete Bar Chart</i>.</b>
+<br/>
+Configure options:
+<pre><code class="javascript">$scope.options = {
+    chart: {
+        type: 'discreteBarChart',
+        height: 450,
+        margin : {
+            top: 20,
+            right: 20,
+            bottom: 60,
+            left: 55
+        },
+        x: function(d){ return d.label; },
+        y: function(d){ return d.value; },
+        showValues: true,
+        valueFormat: function(d){
+            return d3.format(',.4f')(d);
+        },
+        transitionDuration: 500,
+        xAxis: {
+            axisLabel: 'X Axis'
+        },
+        yAxis: {
+            axisLabel: 'Y Axis',
+            axisLabelDistance: 30
+        }
+    }
+};
+</code></pre>
+
+And push some data:
+<pre><code class="javascript">$scope.data = [{
+    key: "Cumulative Return",
+    values: [
+        { "label" : "A" , "value" : -29.765957771107 },
+        { "label" : "B" , "value" : 0 },
+        { "label" : "C" , "value" : 32.807804682612 },
+        { "label" : "D" , "value" : 196.45946739256 },
+        { "label" : "E" , "value" : 0.19434030906893 },
+        { "label" : "F" , "value" : -98.079782601442 },
+        { "label" : "G" , "value" : -13.925743130903 },
+        { "label" : "H" , "value" : -5.1387322875705 }
+        ]
+    }]
+</code></pre>
+
+See the <a href="http://krispo.github.io/angular-nvd3/#/discreteBarChart">result</a>.

@@ -1,0 +1,28 @@
+<div class="splash">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <h1>Angular-nvD3<sup style="font-size: small; vertical-align: baseline; top: -3.0em; position: relative;"><a href="https://github.com/krispo/angular-nvd3/releases/tag/v{{ params.constants.version }}" target="_blank">v{{ params.constants.version }}</a></sup></h1>
+                <h4 style="margin: 20px; text-shadow: 0px 0px 10px #9c7211;">
+                    An AngularJS directive for NVD3 re-usable charting library (based on D3).<br>
+                    Easily customize your charts via JSON API.</h4>
+                <a type="button" class="btn btn-info" href="#/quickstart">Quick Start</a>
+                <a type="button" class="btn btn-success" href="https://github.com/krispo/angular-nvd3" target="_blank">View on Github</a>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="container container-fluid thumbnails" style="padding-top: 30px; width: 100%">
+    <div class="row">
+        <ul style="list-style-type: none; padding: 0px 10px 0px 10px;">
+            <li class="col-xs-6 col-md-3" ng-repeat="key in utils.keys(params.charts) track by key">
+                <a href="#{{ params.charts[key].path }}" class="thumbnail">
+                    <img src="img/{{ key }}.png" alt="">
+                    <div class="caption">{{ params.charts[key].title }}</div>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>

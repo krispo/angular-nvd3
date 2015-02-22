@@ -1,0 +1,74 @@
+<div class="span spanChart">
+    <select id="selectChart"
+            ng-model="params.selectedChart"
+            ng-options="value.title for (key, value) in params.charts"
+            ng-change="utils.selectChart(params.selectedChart)">
+    </select>
+    <div id="mode">
+        <label><input type="checkbox" ng-model="params.visible"> Visible</label>&nbsp;
+        <label><input type="checkbox" ng-model="params.disabled"> Disabled</label>&nbsp;
+        <label><input type="checkbox" ng-model="params.autorefresh"> Autorefresh</label>&nbsp;
+        <button ng-click="api.refresh()" style="line-height: 15px; padding: 0px 3px 0px 3px;">refresh</button>&emsp;&emsp;
+        <label><input type="radio" ng-model="params.mode" value="basic" ng-change="utils.reload()"> Basic</label>&nbsp;
+        <label><input type="radio" ng-model="params.mode" value="extended" ng-change="utils.reload()"> Extended</label>
+    </div>
+</div>
+<br>
+<div class="wrap">
+    <div class="row-fluid">
+        <div class="span spanChart">
+            <div id="chart" class="with-3d-shadow with-transitions" ng-class="{disabled: params.disabled}" style="overflow-x:auto;">
+                <nvd3 data="data" options="options" events="events" api="api" config="{extended: params.mode === 'extended', visible: params.visible, disabled: params.disabled, autorefresh: params.autorefresh }"></nvd3>
+            </div>
+            <a href='{{params.selectedChart.plunker}}' target="_blank" style="float: right;">Edit in Plunker</a>
+        </div><div class="span spanJT">
+            <json-tree json="options" edit-level="high" collapsed-level="2"></json-tree>
+        </div>
+    </div>
+    <div style="float: right; font-size: x-small">
+        Powered by
+        <a href="http://krispo.github.io/json-tree/" target="_blank">JSON-tree</a>
+    </div>
+</div>
+
+<div id="output">
+    <div class="wrap">
+        <div class="row-fluid">
+            <div class="span spanJO">
+                <span>Output JSON template:</span>
+                <span style="float: right;">
+                    <input type="checkbox" ng-model="prettify" ng-init="prettify = params.mode === 'basic'"> prettify
+                </span>
+                <div style="padding-top: 1px;">
+                    <pre><code class="no-highlight">{{ utils.prettyPrint(options, prettify) }}</code></pre>
+                </div>
+            </div><div class="span spanNote">
+            <div>
+                <p>Customize your chart options as you need.</p>
+
+                <p>Many options of nvd3 models are specified by the functions.
+                    But functions can not be displayed in the output json string.
+                </p>
+
+                <p><b>Functions are now supported in JSON-tree model for interactive customization.</b>
+                    Feel free to use functions in your javascript json code as usual.
+                </p>
+
+                <p>The output JSON template represents the full feature hierarchy of chart model.</p>
+
+                <p>You don't need to use all of this options for creating the chart model in you javascript code.
+                   It is quite enough to set up only the features you have changed and the others will be default.
+                </p>
+
+                <p>Read <a href="#/quickstart">docs</a> for more details.</p>
+
+                <br>
+
+                <p style="font-size: small;"><b><i>Note:</i></b> As you can see, some features are not working correctly.
+                    This is due to some bugs in nvd3.js core that need to be fixed.</p>
+            </div>
+        </div>
+        </div>
+    </div>
+</div>
+

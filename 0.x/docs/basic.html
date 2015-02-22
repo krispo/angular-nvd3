@@ -1,0 +1,22 @@
+Inject <code>nvd3</code> directive into angular module, set up some chart options and push some data to the controller:
+<pre><code class="javascript">angular.module('myApp', ['nvd3'])
+    .controller('myCtrl', function($scope){
+
+        /* Chart options */
+        $scope.options = { /* JSON data */ };
+
+        /* Chart data */
+        $scope.data = { /* JSON data */ }
+
+    })
+</code></pre>
+
+and in html again you can use it like:
+
+<pre><code class="html">&lt;div ng-app="myApp"&gt;
+    &lt;div ng-controller="myCtrl"&gt;
+        &lt;nvd3 options="options" data="data"&gt;&lt;/nvd3&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+The chart would be displayed on the page.

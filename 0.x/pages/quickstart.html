@@ -1,0 +1,48 @@
+<div id="masthead">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-5">
+                <h1>Angular-nvD3
+                    <p class="lead">Quick start</p>
+                </h1>
+            </div>
+            <div class="col-md-7">
+                <div class="well well-lg">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            Simplify your work with nvD3 visualization via JSON approach.
+                            The key feature is that the original hierarchical structure of nvd3 models
+                            is completely preserved in the directive JSON structure.
+                            So it allows you to make a deep customization of charts.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><!-- /cont -->
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-3" id="leftCol">
+            <ul class="nav nav-stacked" id="sidebar">
+                <li ng-repeat="meta in docs">
+                    <a href="#{{ meta.id }}" ng-if="meta.id !== -1">{{ meta.title }}</a>
+                    <div ng-if="meta.id === -1" style="text-align: right;">
+                        <div class="caption">{{ meta.caption }}</div>
+                        <hr/>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="col-md-9" id="docs_content">
+            <div ng-repeat="meta in docs">
+                <div id="{{ meta.id }}" ng-if="meta.id !== -1">
+                    <h2>{{ meta.title }}</h2>
+                    <div ng-include="meta.url"></div>
+                    <hr>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
