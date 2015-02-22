@@ -1,5 +1,5 @@
 /**************************************************************************
-* AngularJS-nvD3, v1.0.0; MIT License; 02/21/2015 18:35
+* AngularJS-nvD3, v1.0.0; MIT License; 02/22/2015 21:18
 * http://krispo.github.io/angular-nvd3
 **************************************************************************/
 (function(){
@@ -59,7 +59,7 @@
                             scope.chart = nv.models[options.chart.type]();
 
                             angular.forEach(scope.chart, function(value, key){
-                                if (key === 'options');
+                                if (key === 'options' || key === '_options' || key === '_inherited' || key === '_d3options');
 
                                 else if (key === 'dispatch') {
                                     if (options.chart[key] === undefined || options.chart[key] === null) {
@@ -209,7 +209,10 @@
                                     'options',
                                     'axis',
                                     'rangeBand',
-                                    'rangeBands'
+                                    'rangeBands',
+                                    '_options',
+                                    '_inherited',
+                                    '_d3options'
                                 ].indexOf(key) < 0){
                                     if (options[key] === undefined || options[key] === null){
                                         if (scope._config.extended) options[key] = value();
@@ -236,7 +239,7 @@
                     // Configure 'title', 'subtitle', 'caption'.
                     // nvd3 has no sufficient models for it yet.
                     function configureWrapper(name){
-                        var _ = nv.utils.deepExtend(defaultWrapper(name), scope.options[name] || {});
+                        var _ = utils.deepExtend(defaultWrapper(name), scope.options[name] || {});
 
                         if (scope._config.extended) scope.options[name] = _;
 
@@ -256,7 +259,7 @@
 
                     // Add some styles to the whole directive element
                     function configureStyles(){
-                        var _ = nv.utils.deepExtend(defaultStyles(), scope.options['styles'] || {});
+                        var _ = utils.deepExtend(defaultStyles(), scope.options['styles'] || {});
 
                         if (scope._config.extended) scope.options['styles'] = _;
 
@@ -363,6 +366,21 @@
                         timeout = setTimeout(later, wait);
                         if (callNow) func.apply(context, args);
                     };
+                },
+                deepExtend: function(dst){
+                    var me = this;
+                    angular.forEach(arguments, function(obj) {
+                        if (obj !== dst) {
+                            angular.forEach(obj, function(value, key) {
+                                if (dst[key] && dst[key].constructor && dst[key].constructor === Object) {
+                                    me.deepExtend(dst[key], value);
+                                } else {
+                                    dst[key] = value;
+                                }
+                            });
+                        }
+                    });
+                    return dst;
                 }
             };
         });
