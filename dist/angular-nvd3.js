@@ -1,5 +1,5 @@
 /**************************************************************************
-* AngularJS-nvD3, v1.0.0; MIT License; 02/22/2015 21:18
+* AngularJS-nvD3, v1.0.0-alpha; MIT License; 24/02/2015 02:05
 * http://krispo.github.io/angular-nvd3
 **************************************************************************/
 (function(){
@@ -59,7 +59,7 @@
                             scope.chart = nv.models[options.chart.type]();
 
                             angular.forEach(scope.chart, function(value, key){
-                                if (key === 'options' || key === '_options' || key === '_inherited' || key === '_d3options');
+                                if (key === 'options' || key === '_options' || key === '_inherited' || key === '_d3options' || key === 'state');
 
                                 else if (key === 'dispatch') {
                                     if (options.chart[key] === undefined || options.chart[key] === null) {
@@ -104,22 +104,8 @@
                                     configure(scope.chart[key], options.chart[key], options.chart.type);
                                 }
 
-                                else if (//TODO: need to fix bug in nvd3
-                                    (key ==='clipEdge' && options.chart.type === 'multiBarHorizontalChart')
-                                        || (key === 'clipVoronoi' && options.chart.type === 'historicalBarChart')
-                                        || (key === 'color' && options.chart.type === 'indentedTreeChart')
-                                        || (key === 'defined' && (options.chart.type === 'historicalBarChart' || options.chart.type === 'cumulativeLineChart' || options.chart.type === 'lineWithFisheyeChart'))
-                                        || (key === 'forceX' && (options.chart.type === 'multiBarChart' || options.chart.type === 'discreteBarChart' || options.chart.type === 'multiBarHorizontalChart'))
-                                        || (key === 'interpolate' && options.chart.type === 'historicalBarChart')
-                                        || (key === 'isArea' && options.chart.type === 'historicalBarChart')
-                                        || (key === 'size' && options.chart.type === 'historicalBarChart')
-                                        || (key === 'stacked' && options.chart.type === 'stackedAreaChart')
-                                        || (key === 'values' && options.chart.type === 'pieChart')
-                                        || (key === 'xScale' && options.chart.type === 'scatterChart')
-                                        || (key === 'yScale' && options.chart.type === 'scatterChart')
-                                        || (key === 'x' && (options.chart.type === 'lineWithFocusChart' || options.chart.type === 'multiChart'))
-                                        || (key === 'y' && (options.chart.type === 'lineWithFocusChart' || options.chart.type === 'multiChart'))
-                                    );
+                                //TODO: need to fix bug in nvd3
+                                else if ((key === 'xTickFormat' || key === 'yTickFormat') && options.chart.type === 'lineWithFocusChart');
 
                                 else if (options.chart[key] === undefined || options.chart[key] === null){
                                     if (scope._config.extended) options.chart[key] = value();
@@ -157,15 +143,10 @@
                                 // Select the current element to add <svg> element and to render the chart in
                                 d3.select(element[0]).append('svg')
                                     .attr('height', scope.options.chart.height)
-                                    .attr('width', scope.options.chart.width)
+                                    .attr('width', scope.options.chart.width  || '100%')
                                     .datum(data)
                                     .transition().duration(scope.options.chart['transitionDuration'])
                                     .call(scope.chart);
-
-                                // Set up svg height and width. It is important for all browsers...
-                                d3.select(element[0]).select('svg')[0][0].style.height = scope.options.chart.height + 'px';
-                                d3.select(element[0]).select('svg')[0][0].style.width = scope.options.chart.width + 'px';
-                                if (scope.options.chart.type === 'multiChart') scope.chart.update(); // multiChart is not automatically updated
                             }
                         },
 
@@ -199,10 +180,6 @@
                                     }
                                     configureEvents(value, options[key]);
                                 }
-                                else if (//TODO: need to fix bug in nvd3
-                                    (key === 'xScale' && chartType === 'scatterChart')
-                                        || (key === 'yScale' && chartType === 'scatterChart')
-                                        || (key === 'values' && chartType === 'pieChart'));
                                 else if ([
                                     'scatter',
                                     'defined',
@@ -212,7 +189,8 @@
                                     'rangeBands',
                                     '_options',
                                     '_inherited',
-                                    '_d3options'
+                                    '_d3options',
+                                    '_calls'
                                 ].indexOf(key) < 0){
                                     if (options[key] === undefined || options[key] === null){
                                         if (scope._config.extended) options[key] = value();
@@ -330,7 +308,7 @@
 
                     // Watching on config changing
                     scope.$watch('config', function(newConfig, oldConfig){
-                        if (newConfig !== oldConfig && scope.chart){
+                        if (newConfig !== oldConfig){
                             scope._config = angular.extend(defaultConfig, newConfig);
                             scope.api.refresh();
                         }
@@ -353,7 +331,7 @@
 
         .factory('utils', function(){
             return {
-                debounce: function debounce(func, wait, immediate) {
+                debounce: function(func, wait, immediate) {
                     var timeout;
                     return function() {
                         var context = this, args = arguments;
