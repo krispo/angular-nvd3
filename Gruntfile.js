@@ -15,7 +15,7 @@ module.exports = function(grunt){
                         '* <%= pkg.title || pkg.name %>, ' +
                         'v<%= pkg.version %>; ' +
                         '<%= pkg.license %>; ' +
-                        '<%= grunt.template.today("mm/dd/yyyy HH:MM") %>\n' +
+                        '<%= grunt.template.today("dd/mm/yyyy HH:MM") %>\n' +
                         '<%= pkg.homepage ? "* " + pkg.homepage + "\\n" : "" %>' +
                         '**************************************************************************/\n',
                 stripBanners: true
