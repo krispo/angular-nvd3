@@ -1,5 +1,5 @@
 /**************************************************************************
-* AngularJS-nvD3, v0.1.0; MIT License; 02/21/2015 17:55
+* AngularJS-nvD3, v0.1.1; MIT License; 24/02/2015 19:26
 * http://krispo.github.io/angular-nvd3
 **************************************************************************/
 (function(){
@@ -58,8 +58,11 @@
                             // Initialize chart with specific type
                             scope.chart = nv.models[options.chart.type]();
 
+                            // Generate random chart ID
+                            scope.chart.id = Math.random().toString(36).substr(2, 15);
+
                             angular.forEach(scope.chart, function(value, key){
-                                if (key === 'options');
+                                if (key === 'options' || key === 'id' || key === 'resizeHandler');
 
                                 else if (key === 'dispatch') {
                                     if (options.chart[key] === undefined || options.chart[key] === null) {
@@ -175,13 +178,17 @@
                             element.find('.subtitle').remove();
                             element.find('.caption').remove();
                             element.empty();
-                            if (scope.chart && scope.chart.resizeHandler) {
-                                scope.chart.resizeHandler.clear();
-                            }
+                            if (scope.chart) {
+                                // clear window resize event handler
+                                if (scope.chart.resizeHandler) scope.chart.resizeHandler.clear();
 
+                                // remove chart from nv.graph list
+                                for (var i = 0; i < nv.graphs.length; i++)
+                                    if (nv.graphs[i].id === scope.chart.id) {
+                                        nv.graphs.splice(i, 1);
+                                    }
+                            }
                             scope.chart = null;
-                            nv.render.queue = [];
-                            nv.graphs = [];
                             nv.tooltip.cleanup();
                         },
 
@@ -236,7 +243,7 @@
                     // Configure 'title', 'subtitle', 'caption'.
                     // nvd3 has no sufficient models for it yet.
                     function configureWrapper(name){
-                        var _ = extendDeep(defaultWrapper(name), scope.options[name] || {});
+                        var _ = utils.deepExtend(defaultWrapper(name), scope.options[name] || {});
 
                         if (scope._config.extended) scope.options[name] = _;
 
@@ -256,7 +263,7 @@
 
                     // Add some styles to the whole directive element
                     function configureStyles(){
-                        var _ = extendDeep(defaultStyles(), scope.options['styles'] || {});
+                        var _ = utils.deepExtend(defaultStyles(), scope.options['styles'] || {});
 
                         if (scope._config.extended) scope.options['styles'] = _;
 
@@ -310,22 +317,6 @@
                         };
                     }
 
-                    // Deep Extend json object
-                    function extendDeep(dst) {
-                        angular.forEach(arguments, function(obj) {
-                            if (obj !== dst) {
-                                angular.forEach(obj, function(value, key) {
-                                    if (dst[key] && dst[key].constructor && dst[key].constructor === Object) {
-                                        extendDeep(dst[key], value);
-                                    } else {
-                                        dst[key] = value;
-                                    }
-                                });
-                            }
-                        });
-                        return dst;
-                    }
-
                     /* Event Handling */
                     // Watching on options changing
                     scope.$watch('options', utils.debounce(function(newOptions){
@@ -343,7 +334,7 @@
 
                     // Watching on config changing
                     scope.$watch('config', function(newConfig, oldConfig){
-                        if (newConfig !== oldConfig && scope.chart){
+                        if (newConfig !== oldConfig){
                             scope._config = angular.extend(defaultConfig, newConfig);
                             scope.api.refresh();
                         }
@@ -391,6 +382,21 @@
                             window.removeEventListener('resize', handler);
                         }
                     };
+                },
+                deepExtend: function(dst){
+                    var me = this;
+                    angular.forEach(arguments, function(obj) {
+                        if (obj !== dst) {
+                            angular.forEach(obj, function(value, key) {
+                                if (dst[key] && dst[key].constructor && dst[key].constructor === Object) {
+                                    me.deepExtend(dst[key], value);
+                                } else {
+                                    dst[key] = value;
+                                }
+                            });
+                        }
+                    });
+                    return dst;
                 }
             };
         });
