@@ -1,6 +1,6 @@
 # Angular-nvD3
 
-[![Build Status](https://travis-ci.org/krispo/angular-nvd3.svg?branch=master)](https://travis-ci.org/krispo/angular-nvd3)
+[![Build Status](https://travis-ci.org/krispo/angular-nvd3.svg?branch=0.x)](https://travis-ci.org/krispo/angular-nvd3)
 
 This thing is designed to make it easier to work with [nvd3.js](https://github.com/novus/nvd3) re-usable charting library. This directive allows you to easily customize your charts via JSON API.
 
