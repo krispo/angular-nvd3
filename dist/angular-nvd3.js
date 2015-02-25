@@ -1,5 +1,5 @@
 /**************************************************************************
-* AngularJS-nvD3, v1.0.0-alpha; MIT License; 24/02/2015 02:05
+* AngularJS-nvD3, v1.0.0-beta; MIT License; 25/02/2015 19:17
 * http://krispo.github.io/angular-nvd3
 **************************************************************************/
 (function(){
@@ -58,8 +58,19 @@
                             // Initialize chart with specific type
                             scope.chart = nv.models[options.chart.type]();
 
+                            // Generate random chart ID
+                            scope.chart.id = Math.random().toString(36).substr(2, 15);
+
                             angular.forEach(scope.chart, function(value, key){
-                                if (key === 'options' || key === '_options' || key === '_inherited' || key === '_d3options' || key === 'state');
+                                if ([
+                                    'options',
+                                    '_options',
+                                    '_inherited',
+                                    '_d3options',
+                                    'state',
+                                    'id',
+                                    'resizeHandler'
+                                ].indexOf(key) >= 0);
 
                                 else if (key === 'dispatch') {
                                     if (options.chart[key] === undefined || options.chart[key] === null) {
@@ -72,7 +83,7 @@
                                     'lines',
                                     'lines1',
                                     'lines2',
-                                    'bars', // TODO: Fix bug in nvd3, nv.models.historicalBar - chart.interactive (false -> _)
+                                    'bars',
                                     'bars1',
                                     'bars2',
                                     'stack1',
@@ -156,13 +167,17 @@
                             element.find('.subtitle').remove();
                             element.find('.caption').remove();
                             element.empty();
-                            if (scope.chart && scope.chart.resizeHandler) {
-                                scope.chart.resizeHandler.clear();
-                            }
+                            if (scope.chart) {
+                                // clear window resize event handler
+                                if (scope.chart.resizeHandler) scope.chart.resizeHandler.clear();
 
+                                // remove chart from nv.graph list
+                                for (var i = 0; i < nv.graphs.length; i++)
+                                    if (nv.graphs[i].id === scope.chart.id) {
+                                        nv.graphs.splice(i, 1);
+                                    }
+                            }
                             scope.chart = null;
-                            nv.render.queue = [];
-                            nv.graphs = [];
                             nv.tooltip.cleanup();
                         },
 
