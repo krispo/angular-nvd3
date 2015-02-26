@@ -125,7 +125,7 @@ Then build using [grunt](http://gruntjs.com/) (*node.js must be installed*):
 
 ## Release Notes
 
-### [1.0.0-beta (current, nvd3 v1.7.1)]((https://github.com/krispo/angular-nvd3/releases/tag/v1.0.0-beta))
+### [1.0.0-beta (current, nvd3 v1.7.1)](https://github.com/krispo/angular-nvd3/releases/tag/v1.0.0-beta)
 Under developing in **master** (1.x) branch
 
 ### [0.1.1 (stable, nvd3 v1.1.15-beta)](https://github.com/krispo/angular-nvd3/releases/tag/v0.1.1)
