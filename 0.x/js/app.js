@@ -44,7 +44,8 @@ var app = angular.module('mainApp', ['mainApp.controllers','ngRoute', 'json-tree
             disabled: false,
             autorefresh: true,
             charts: CHARTS,
-            constants: CONSTANTS
+            constants: CONSTANTS,
+            url: window.location.hostname.indexOf(CONSTANTS.productionHostname) > -1 ? '/angular-nvd3' : ''
         };
 
         $rootScope.utils = {
@@ -152,6 +153,7 @@ var app = angular.module('mainApp', ['mainApp.controllers','ngRoute', 'json-tree
 
     .constant('CONSTANTS', {
         version: '0.1.1',
+        productionHostname: 'krispo.github.io',
         otherCharts: [
             { name: "Real-time chart updating", url: "http://plnkr.co/edit/yKFROu?p=preview" },
             { name: "Events handling in Discrete Bar Chart", url: "http://plnkr.co/edit/ZvfBDk?p=preview"},
