@@ -28,7 +28,7 @@ Add dependencies to the `<head>` section of your main html:
 <script src="bower_components/angular/angular.js"></script>
 <script src="bower_components/d3/d3.js"></script>
 <script src="bower_components/nvd3/nv.d3.js"></script> <!-- or use another assembly -->
-<script src="bower_components/angular-nvd3/dist/angular-nvd3.js"></script>
+<script src="bower_components/angular-nvd3/dist/__angular-nvd3.js"></script>
 <link rel="stylesheet" href="bower_components/nvd3/nv.d3.css">
 ```
 

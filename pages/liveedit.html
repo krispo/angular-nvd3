@@ -22,7 +22,7 @@
             </div>
             <a href='{{params.selectedChart.plunker}}' target="_blank" style="float: right;">Edit in Plunker</a>
         </div><div class="span spanJT">
-            <json-tree json="options" edit-level="high" collapsed-level="2"></json-tree>
+            <json-tree json="options" edit-level="high" collapsed-level="2" timeout-init="{{params.mode === 'extended'?700:''}}" timeout="{{params.mode === 'extended'?0:''}}"></json-tree>
         </div>
     </div>
     <div style="float: right; font-size: x-small">

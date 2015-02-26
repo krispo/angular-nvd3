@@ -5,7 +5,7 @@ angular.module('mainApp.controllers')
     .controller('linePlusBarWithFocusChartCtrl', function($scope){
         $scope.options = {
             chart: {
-                type: 'linePlusBarWithFocusChart',
+                type: 'linePlusBarChart',
                 height: 500,
                 margin: {
                     top: 30,

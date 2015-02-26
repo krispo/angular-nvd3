@@ -25,7 +25,7 @@ An AngularJS would be installed as a dependency automatically. If it won't, inst
 Add dependencies to the `<head>` section of your main html:
 ```html
 <script src="bower_components/angular/angular.js"></script>
-<script src="bower_components/json-tree/json-tree.js"></script>
+<script src="bower_components/json-tree/_json-tree.js"></script>
 <link rel="stylesheet" href="bower_components/json-tree/json-tree.css">
 ```
 

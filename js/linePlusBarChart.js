@@ -3,7 +3,6 @@
 angular.module('mainApp.controllers')
 
     .controller('linePlusBarChartCtrl', function($scope){
-
         $scope.options = {
             chart: {
                 type: 'linePlusBarChart',

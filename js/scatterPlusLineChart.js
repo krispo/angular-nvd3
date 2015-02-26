@@ -6,7 +6,7 @@ angular.module('mainApp.controllers')
 
         $scope.options = {
             chart: {
-                type: 'scatterPlusLineChart',
+                type: 'scatterChart',
                 height: 450,
                 color: d3.scale.category10().range(),
                 scatter: {

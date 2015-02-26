@@ -10,6 +10,7 @@ angular.module('mainApp.controllers')
                 height: 450,
                 x: function(d){return d.label;},
                 y: function(d){return d.value;},
+                //yErr: function(d){ return [-Math.abs(d.value * Math.random() * 0.3), Math.abs(d.value * Math.random() * 0.3)] },
                 showControls: true,
                 showValues: true,
                 transitionDuration: 500,
