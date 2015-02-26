@@ -1,5 +1,5 @@
 /**************************************************************************
-* AngularJS-nvD3, v1.0.0-beta; MIT License; 25/02/2015 19:17
+* AngularJS-nvD3, v1.0.0-beta; MIT License; 25/02/2015 22:27
 * http://krispo.github.io/angular-nvd3
 **************************************************************************/
 (function(){
@@ -88,6 +88,7 @@
                                     'bars2',
                                     'stack1',
                                     'stack2',
+                                    'stacked',
                                     'multibar',
                                     'discretebar',
                                     'pie',
