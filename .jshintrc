@@ -1,4 +1,5 @@
 {
+    "es3": true,
     "eqeqeq": true,
     "esnext": true,
     "expr": true,
