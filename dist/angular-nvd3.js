@@ -1,5 +1,5 @@
 /**************************************************************************
-* AngularJS-nvD3, v1.0.0-beta; MIT License; 25/02/2015 22:27
+* AngularJS-nvD3, v1.0.0-beta; MIT License; 09/04/2015 15:55
 * http://krispo.github.io/angular-nvd3
 **************************************************************************/
 (function(){
@@ -238,7 +238,7 @@
                         if (scope._config.extended) scope.options[name] = _;
 
                         var wrapElement = angular.element('<div></div>').html(_['html'] || '')
-                            .addClass(name).addClass(_.class)
+                            .addClass(name).addClass(_.className)
                             .removeAttr('style')
                             .css(_.css);
 
@@ -270,7 +270,7 @@
                             case 'title': return {
                                 enable: false,
                                 text: 'Write Your Title',
-                                class: 'h4',
+                                className: 'h4',
                                 css: {
                                     width: scope.options.chart.width + 'px',
                                     textAlign: 'center'
