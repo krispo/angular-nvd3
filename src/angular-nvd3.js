@@ -12,7 +12,8 @@
                     options: '=',   //chart options, according to nvd3 core api, [required]
                     api: '=?',      //directive global api, [optional]
                     events: '=?',   //global events that directive would subscribe to, [optional]
-                    config: '=?'    //global directive configuration, [optional]
+                    config: '=?',    //global directive configuration, [optional]
+                    onmouseclick: '=?' //eventlistener for click event
                 },
                 link: function(scope, element, attrs){
                     var defaultConfig = {
@@ -155,6 +156,11 @@
                                     .datum(data)
                                     .transition().duration(scope.options.chart['transitionDuration'])
                                     .call(scope.chart);
+
+                                //Added Click eventlistener
+                                d3.selectAll(".nv-bar").on("click", function(ev){
+                                    scope.onmouseclick(ev);
+                                })
                             }
                         },
 
