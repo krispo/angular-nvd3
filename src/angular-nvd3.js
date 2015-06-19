@@ -4,7 +4,7 @@
 
     angular.module('nvd3', [])
 
-        .directive('nvd3', ['utils', function(utils){
+        .directive('nvd3', ['nvd3Utils', function(utils){
             return {
                 restrict: 'AE',
                 scope: {
@@ -341,7 +341,7 @@
             };
         }])
 
-        .factory('utils', function(){
+        .factory('nvd3Utils', function(){
             return {
                 debounce: function(func, wait, immediate) {
                     var timeout;
