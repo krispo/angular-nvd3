@@ -1,5 +1,5 @@
 /**************************************************************************
-* AngularJS-nvD3, v1.0.0-beta; MIT License; 19/06/2015 17:54
+* AngularJS-nvD3, v1.0.0-beta; MIT License; 25/06/2015 07:06
 * http://krispo.github.io/angular-nvd3
 **************************************************************************/
 (function(){
@@ -8,7 +8,7 @@
 
     angular.module('nvd3', [])
 
-        .directive('nvd3', ['nvd3Utils', function(utils){
+        .directive('nvd3', ['nvd3Utils', function(nvd3Utils){
             return {
                 restrict: 'AE',
                 scope: {
@@ -233,7 +233,7 @@
                     // Configure 'title', 'subtitle', 'caption'.
                     // nvd3 has no sufficient models for it yet.
                     function configureWrapper(name){
-                        var _ = utils.deepExtend(defaultWrapper(name), scope.options[name] || {});
+                        var _ = nvd3Utils.deepExtend(defaultWrapper(name), scope.options[name] || {});
 
                         if (scope._config.extended) scope.options[name] = _;
 
@@ -253,7 +253,7 @@
 
                     // Add some styles to the whole directive element
                     function configureStyles(){
-                        var _ = utils.deepExtend(defaultStyles(), scope.options['styles'] || {});
+                        var _ = nvd3Utils.deepExtend(defaultStyles(), scope.options['styles'] || {});
 
                         if (scope._config.extended) scope.options['styles'] = _;
 
@@ -309,7 +309,7 @@
 
                     /* Event Handling */
                     // Watching on options changing
-                    scope.$watch('options', utils.debounce(function(newOptions){
+                    scope.$watch('options', nvd3Utils.debounce(function(newOptions){
                         if (!scope._config.disabled && scope._config.autorefresh) scope.api.refresh();
                     }, scope._config.debounce, true), true);
 
