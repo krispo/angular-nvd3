@@ -4,7 +4,7 @@
 
     angular.module('nvd3', [])
 
-        .directive('nvd3', ['utils', function(utils){
+        .directive('nvd3', ['nvd3Utils', function(nvd3Utils){
             return {
                 restrict: 'AE',
                 scope: {
@@ -229,7 +229,7 @@
                     // Configure 'title', 'subtitle', 'caption'.
                     // nvd3 has no sufficient models for it yet.
                     function configureWrapper(name){
-                        var _ = utils.deepExtend(defaultWrapper(name), scope.options[name] || {});
+                        var _ = nvd3Utils.deepExtend(defaultWrapper(name), scope.options[name] || {});
 
                         if (scope._config.extended) scope.options[name] = _;
 
@@ -249,7 +249,7 @@
 
                     // Add some styles to the whole directive element
                     function configureStyles(){
-                        var _ = utils.deepExtend(defaultStyles(), scope.options['styles'] || {});
+                        var _ = nvd3Utils.deepExtend(defaultStyles(), scope.options['styles'] || {});
 
                         if (scope._config.extended) scope.options['styles'] = _;
 
@@ -305,7 +305,7 @@
 
                     /* Event Handling */
                     // Watching on options changing
-                    scope.$watch('options', utils.debounce(function(newOptions){
+                    scope.$watch('options', nvd3Utils.debounce(function(newOptions){
                         if (!scope._config.disabled && scope._config.autorefresh) scope.api.refresh();
                     }, scope._config.debounce, true), true);
 
@@ -341,7 +341,7 @@
             };
         }])
 
-        .factory('utils', function(){
+        .factory('nvd3Utils', function(){
             return {
                 debounce: function(func, wait, immediate) {
                     var timeout;
