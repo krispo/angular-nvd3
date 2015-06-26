@@ -3,7 +3,7 @@
     "version": "1.0.0-beta",
     "description": "An AngularJS directive for NVD3.js reusable charting library (based on D3.js)",
     "main": [
-      "src/angular-nvd3.js"
+      "dist/angular-nvd3.js"
     ],
     "license": "MIT",
     "keywords": [
