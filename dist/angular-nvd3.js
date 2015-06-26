@@ -1,5 +1,5 @@
 /**************************************************************************
-* AngularJS-nvD3, v1.0.0-beta; MIT License; 25/06/2015 09:43
+* AngularJS-nvD3, v1.0.0-beta; MIT License; 25/06/2015 18:32
 * http://krispo.github.io/angular-nvd3
 **************************************************************************/
 (function(){
@@ -139,8 +139,12 @@
                             if (options['styles'] || scope._config.extended) configureStyles();
 
                             nv.addGraph(function() {
+                                // Remove resize handler. Due to async execution should be placed here, not in the clearElement
+                                if (scope.chart.resizeHandler) {
+                                    scope.chart.resizeHandler.clear();
+                                }
                                 // Update the chart when window resizes
-                                scope.chart.resizeHandler = nv.utils.windowResize(function() { scope.chart.update(); });
+                                scope.chart.resizeHandler = nv.utils.windowResize(function() { scope.chart.update && scope.chart.update(); });
                                 return scope.chart;
                             }, options.chart['callback']);
                         },
@@ -148,7 +152,8 @@
                         // Update chart with new data
                         updateWithData: function (data){
                             if (data) {
-                                scope.options.chart['transitionDuration'] = +scope.options.chart['transitionDuration'] || 250;
+                                // TODO this triggers one more refresh. Refactor it!
+                                scope.options.chart.transitionDuration = +scope.options.chart.transitionDuration || 250;
                                 // remove whole svg element with old data
                                 d3.select(element[0]).select('svg').remove();
 
@@ -157,7 +162,7 @@
                                     .attr('height', scope.options.chart.height)
                                     .attr('width', scope.options.chart.width  || '100%')
                                     .datum(data)
-                                    .transition().duration(scope.options.chart['transitionDuration'])
+                                    .transition().duration(scope.options.chart.transitionDuration)
                                     .call(scope.chart);
                             }
                         },
@@ -169,16 +174,15 @@
                             element.find('.caption').remove();
                             element.empty();
                             if (scope.chart) {
-                                // clear window resize event handler
-                                if (scope.chart.resizeHandler) scope.chart.resizeHandler.clear();
-
                                 // remove chart from nv.graph list
-                                for (var i = 0; i < nv.graphs.length; i++)
-                                    if (nv.graphs[i].id === scope.chart.id) {
+                                for(var i = nv.graphs.length - 1; i >= 0; i--) {
+                                    if(nv.graphs[i].id === scope.chart.id) {
                                         nv.graphs.splice(i, 1);
                                     }
+                                }
+                                scope.chart = null;
                             }
-                            scope.chart = null;
+
                             nv.tooltip.cleanup();
                         },
 
