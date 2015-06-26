@@ -19,7 +19,7 @@
         <ul style="list-style-type: none; padding: 0px 10px 0px 10px;">
             <li class="col-xs-6 col-md-3" ng-repeat="key in utils.keys(params.charts) track by key">
                 <a href="#{{ params.charts[key].path }}" class="thumbnail">
-                    <img src="img/{{ key }}.png" alt="">
+                    <img ng-src="img/{{ key }}.png" alt="">
                     <div class="caption">{{ params.charts[key].title }}</div>
                 </a>
             </li>
