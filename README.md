@@ -125,6 +125,13 @@ Then build using [grunt](http://gruntjs.com/) (*node.js must be installed*):
 
 ## Release Notes
 
+### [1.0.0-rc (current, nvd3 v1.7.1)](https://github.com/krispo/angular-nvd3/releases/tag/v1.0.0-rc)
+* Rename `utils` module to avoid conflicts
+* Fix nvd3 version reference in bower.json
+* Remove usage of reserved word `class`
+* Fix multiple resize event listeners which were causing null pointer exceptions
+* Change bower.json's main property to use regular instead of minified file
+
 ### [1.0.0-beta (current, nvd3 v1.7.1)](https://github.com/krispo/angular-nvd3/releases/tag/v1.0.0-beta)
 Under developing in **master** (1.x) branch
 
