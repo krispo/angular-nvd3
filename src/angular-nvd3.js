@@ -171,12 +171,14 @@
                             element.empty();
                             if (scope.chart) {
                                 // remove chart from nv.graph list
-                                for (var i = 0; i < nv.graphs.length; i++)
-                                    if (nv.graphs[i].id === scope.chart.id) {
+                                for(var i = nv.graphs.length - 1; i >= 0; i--) {
+                                    if(nv.graphs[i].id === scope.chart.id) {
                                         nv.graphs.splice(i, 1);
                                     }
+                                }
+                                scope.chart = null;
                             }
-                            scope.chart = null;
+
                             nv.tooltip.cleanup();
                         },
 
