@@ -135,8 +135,12 @@
                             if (options['styles'] || scope._config.extended) configureStyles();
 
                             nv.addGraph(function() {
+                                // Remove resize handler. Due to async execution should be placed here, not in the clearElement
+                                if (scope.chart.resizeHandler) {
+                                    scope.chart.resizeHandler.clear();
+                                }
                                 // Update the chart when window resizes
-                                scope.chart.resizeHandler = nv.utils.windowResize(function() { scope.chart.update(); });
+                                scope.chart.resizeHandler = nv.utils.windowResize(function() { scope.chart.update && scope.chart.update(); });
                                 return scope.chart;
                             }, options.chart['callback']);
                         },
@@ -165,9 +169,6 @@
                             element.find('.caption').remove();
                             element.empty();
                             if (scope.chart) {
-                                // clear window resize event handler
-                                if (scope.chart.resizeHandler) scope.chart.resizeHandler.clear();
-
                                 // remove chart from nv.graph list
                                 for (var i = 0; i < nv.graphs.length; i++)
                                     if (nv.graphs[i].id === scope.chart.id) {
