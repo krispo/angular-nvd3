@@ -1,14 +1,14 @@
 /**************************************************************************
- * AngularJS-nvD3, v1.0.0-beta; MIT License; 25/02/2015 22:27
- * http://krispo.github.io/angular-nvd3
- **************************************************************************/
+* AngularJS-nvD3, v1.0.0-beta; MIT License; 26/06/2015 10:25
+* http://krispo.github.io/angular-nvd3
+**************************************************************************/
 (function(){
 
     'use strict';
 
     angular.module('nvd3', [])
 
-        .directive('nvd3', ['utils', function(utils){
+        .directive('nvd3', ['nvd3Utils', function(nvd3Utils){
             return {
                 restrict: 'AE',
                 scope: {
@@ -139,8 +139,10 @@
                             if (options['styles'] || scope._config.extended) configureStyles();
 
                             nv.addGraph(function() {
+                                // Remove resize handler. Due to async execution should be placed here, not in the clearElement
+                                if (scope.chart.resizeHandler) scope.chart.resizeHandler.clear();
                                 // Update the chart when window resizes
-                                scope.chart.resizeHandler = nv.utils.windowResize(function() { scope.chart.update(); });
+                                scope.chart.resizeHandler = nv.utils.windowResize(function() { scope.chart.update && scope.chart.update(); });
                                 return scope.chart;
                             }, options.chart['callback']);
                         },
@@ -148,7 +150,8 @@
                         // Update chart with new data
                         updateWithData: function (data){
                             if (data) {
-                                scope.options.chart['transitionDuration'] = +scope.options.chart['transitionDuration'] || 250;
+                                // TODO this triggers one more refresh. Refactor it!
+                                scope.options.chart.transitionDuration = +scope.options.chart.transitionDuration || 250;
                                 // remove whole svg element with old data
                                 d3.select(element[0]).select('svg').remove();
 
@@ -157,7 +160,7 @@
                                     .attr('height', scope.options.chart.height)
                                     .attr('width', scope.options.chart.width  || '100%')
                                     .datum(data)
-                                    .transition().duration(scope.options.chart['transitionDuration'])
+                                    .transition().duration(scope.options.chart.transitionDuration)
                                     .call(scope.chart);
                             }
                         },
@@ -169,16 +172,15 @@
                             element.find('.caption').remove();
                             element.empty();
                             if (scope.chart) {
-                                // clear window resize event handler
-                                if (scope.chart.resizeHandler) scope.chart.resizeHandler.clear();
-
                                 // remove chart from nv.graph list
-                                for (var i = 0; i < nv.graphs.length; i++)
-                                    if (nv.graphs[i].id === scope.chart.id) {
+                                for(var i = nv.graphs.length - 1; i >= 0; i--) {
+                                    if(nv.graphs[i].id === scope.chart.id) {
                                         nv.graphs.splice(i, 1);
                                     }
+                                }
+                                scope.chart = null;
                             }
-                            scope.chart = null;
+
                             nv.tooltip.cleanup();
                         },
 
@@ -233,12 +235,12 @@
                     // Configure 'title', 'subtitle', 'caption'.
                     // nvd3 has no sufficient models for it yet.
                     function configureWrapper(name){
-                        var _ = utils.deepExtend(defaultWrapper(name), scope.options[name] || {});
+                        var _ = nvd3Utils.deepExtend(defaultWrapper(name), scope.options[name] || {});
 
                         if (scope._config.extended) scope.options[name] = _;
 
                         var wrapElement = angular.element('<div></div>').html(_['html'] || '')
-                            .addClass(name).addClass(_.class)
+                            .addClass(name).addClass(_.className)
                             .removeAttr('style')
                             .css(_.css);
 
@@ -253,7 +255,7 @@
 
                     // Add some styles to the whole directive element
                     function configureStyles(){
-                        var _ = utils.deepExtend(defaultStyles(), scope.options['styles'] || {});
+                        var _ = nvd3Utils.deepExtend(defaultStyles(), scope.options['styles'] || {});
 
                         if (scope._config.extended) scope.options['styles'] = _;
 
@@ -270,7 +272,7 @@
                             case 'title': return {
                                 enable: false,
                                 text: 'Write Your Title',
-                                class: 'h4',
+                                className: 'h4',
                                 css: {
                                     width: scope.options.chart.width + 'px',
                                     textAlign: 'center'
@@ -309,7 +311,7 @@
 
                     /* Event Handling */
                     // Watching on options changing
-                    scope.$watch('options', utils.debounce(function(newOptions){
+                    scope.$watch('options', nvd3Utils.debounce(function(newOptions){
                         if (!scope._config.disabled && scope._config.autorefresh) scope.api.refresh();
                     }, scope._config.debounce, true), true);
 
@@ -345,7 +347,7 @@
             };
         }])
 
-        .factory('utils', function(){
+        .factory('nvd3Utils', function(){
             return {
                 debounce: function(func, wait, immediate) {
                     var timeout;

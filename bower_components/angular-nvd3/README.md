@@ -1,5 +1,7 @@
 # Angular-nvD3
 
+[![Build Status](https://travis-ci.org/krispo/angular-nvd3.svg?branch=master)](https://travis-ci.org/krispo/angular-nvd3)
+
 This thing is designed to make it easier to work with [nvd3.js](https://github.com/novus/nvd3) re-usable charting library. This directive allows you to easily customize your charts via JSON API.
 
 The key feature is that the original hierarchical structure of nvd3 models is completely preserved in directive JSON structure. This means that while you creating a complex chart that containing multiple elementary chart models (such as `line`, `bar`, `axis`, ...), you can in turn customize the properties of each internal elementary models as well as the global charting properties the way you want. This can be done as usual, but it becomes quite easily to customize while applying JSON approach to. 
@@ -28,7 +30,7 @@ Add dependencies to the `<head>` section of your main html:
 <script src="bower_components/angular/angular.js"></script>
 <script src="bower_components/d3/d3.js"></script>
 <script src="bower_components/nvd3/nv.d3.js"></script> <!-- or use another assembly -->
-<script src="bower_components/angular-nvd3/dist/__angular-nvd3.js"></script>
+<script src="bower_components/angular-nvd3/dist/angular-nvd3.js"></script>
 <link rel="stylesheet" href="bower_components/nvd3/nv.d3.css">
 ```
 
@@ -123,13 +125,26 @@ Then build using [grunt](http://gruntjs.com/) (*node.js must be installed*):
 
 ## Release Notes
 
-### 0.1.0 (current)
+### [1.0.0-rc (current, nvd3 v1.7.1)](https://github.com/krispo/angular-nvd3/releases/tag/v1.0.0-rc)
+* Rename `utils` module to avoid conflicts
+* Fix nvd3 version reference in bower.json
+* Remove usage of reserved word `class`
+* Fix multiple resize event listeners which were causing null pointer exceptions
+* Change bower.json's main property to use regular instead of minified file
+
+### [1.0.0-beta (current, nvd3 v1.7.1)](https://github.com/krispo/angular-nvd3/releases/tag/v1.0.0-beta)
+Under developing in **master** (1.x) branch
+
+### [0.1.1 (stable, nvd3 v1.1.15-beta)](https://github.com/krispo/angular-nvd3/releases/tag/v0.1.1)
+Under developing in **0.x** branch
+
+### 0.1.0
 * added update method to global api, [pull request](https://github.com/krispo/angular-nvd3/pull/27)
 * fixed bug for `multiChart`
 * added getScope method to global api. (give an access to internal directive scope, for example, we can get chart object like: `$scope.api.getScope().chart`)
 * fixed multiple chart rendering under initializing (fixed multiple callback calls)
 
-### [0.0.9 (stable)](https://github.com/krispo/angular-nvd3/releases/tag/v0.0.9)
+### 0.0.9
 ...
 
 ## License
