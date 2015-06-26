@@ -148,7 +148,8 @@
                         // Update chart with new data
                         updateWithData: function (data){
                             if (data) {
-                                scope.options.chart['transitionDuration'] = +scope.options.chart['transitionDuration'] || 250;
+                                // TODO this triggers one more refresh. Refactor it!
+                                scope.options.chart.transitionDuration = +scope.options.chart.transitionDuration || 250;
                                 // remove whole svg element with old data
                                 d3.select(element[0]).select('svg').remove();
 
@@ -157,7 +158,7 @@
                                     .attr('height', scope.options.chart.height)
                                     .attr('width', scope.options.chart.width  || '100%')
                                     .datum(data)
-                                    .transition().duration(scope.options.chart['transitionDuration'])
+                                    .transition().duration(scope.options.chart.transitionDuration)
                                     .call(scope.chart);
                             }
                         },
