@@ -58,10 +58,10 @@
                             scope.chart.id = Math.random().toString(36).substr(2, 15);
 
                             angular.forEach(scope.chart, function(value, key){
-                                if ([
-                                    '_d3options',
-                                    '_inherited',
-                                    '_options',
+                                if (key[0] === '_');
+                                else if ([
+                                    'clearHighlights',
+                                    'highlightPoint',
                                     'id',
                                     'options',
                                     'resizeHandler',
@@ -79,6 +79,7 @@
                                     'bars',
                                     'bars1',
                                     'bars2',
+                                    'boxplot',
                                     'bullet',
                                     'controls',
                                     'discretebar',
@@ -95,6 +96,8 @@
                                     'sparkline',
                                     'stack1',
                                     'stack2',
+                                    'sunburst',
+                                    'tooltip',
                                     'x2Axis',
                                     'xAxis',
                                     'y1Axis',
@@ -168,17 +171,19 @@
                             element.find('.subtitle').remove();
                             element.find('.caption').remove();
                             element.empty();
-                            if (scope.chart) {
-                                // remove chart from nv.graph list
+
+                            // To be compatible with old nvd3 (v1.7.1)
+                            if (nv.graphs && scope.chart) {
                                 for(var i = nv.graphs.length - 1; i >= 0; i--) {
                                     if(nv.graphs[i].id === scope.chart.id) {
                                         nv.graphs.splice(i, 1);
                                     }
                                 }
-                                scope.chart = null;
                             }
-
-                            nv.tooltip.cleanup();
+                            if (nv.tooltip && nv.tooltip.cleanup) {
+                                nv.tooltip.cleanup();
+                            }
+                            scope.chart = null;
                         },
 
                         // Get full directive scope
@@ -189,24 +194,24 @@
                     function configure(chart, options, chartType){
                         if (chart && options){
                             angular.forEach(chart, function(value, key){
-                                if (key === 'dispatch') {
+                                if (key[0] === '_');
+                                else if (key === 'dispatch') {
                                     if (options[key] === undefined || options[key] === null) {
                                         if (scope._config.extended) options[key] = {};
                                     }
                                     configureEvents(value, options[key]);
                                 }
                                 else if ([
-                                    '_calls',
-                                    '_d3options',
-                                    '_inherited',
-                                    '_options',
                                     'axis',
+                                    'clearHighlights',
                                     'defined',
+                                    'highlightPoint',
+                                    'nvPointerEventsClass',
                                     'options',
                                     'rangeBand',
                                     'rangeBands',
                                     'scatter'
-                                ].indexOf(key) < 0){
+                                ].indexOf(key) === -1) {
                                     if (options[key] === undefined || options[key] === null){
                                         if (scope._config.extended) options[key] = value();
                                     }
