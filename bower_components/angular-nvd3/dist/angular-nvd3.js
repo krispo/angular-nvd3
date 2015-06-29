@@ -1,5 +1,5 @@
 /**************************************************************************
-* AngularJS-nvD3, v1.0.0-rc; MIT License; 26/06/2015 11:56
+* AngularJS-nvD3, v1.0.0-rc; MIT License; 29/06/2015 15:12
 * http://krispo.github.io/angular-nvd3
 **************************************************************************/
 (function(){
@@ -62,14 +62,14 @@
                             scope.chart.id = Math.random().toString(36).substr(2, 15);
 
                             angular.forEach(scope.chart, function(value, key){
-                                if ([
-                                    'options',
-                                    '_options',
-                                    '_inherited',
-                                    '_d3options',
-                                    'state',
+                                if (key[0] === '_');
+                                else if ([
+                                    'clearHighlights',
+                                    'highlightPoint',
                                     'id',
-                                    'resizeHandler'
+                                    'options',
+                                    'resizeHandler',
+                                    'state'
                                 ].indexOf(key) >= 0);
 
                                 else if (key === 'dispatch') {
@@ -80,36 +80,40 @@
                                 }
 
                                 else if ([
-                                    'lines',
-                                    'lines1',
-                                    'lines2',
                                     'bars',
                                     'bars1',
                                     'bars2',
-                                    'stack1',
-                                    'stack2',
-                                    'stacked',
-                                    'multibar',
-                                    'discretebar',
-                                    'pie',
-                                    'scatter',
+                                    'boxplot',
                                     'bullet',
-                                    'sparkline',
-                                    'legend',
+                                    'controls',
+                                    'discretebar',
                                     'distX',
                                     'distY',
-                                    'xAxis',
+                                    'interactiveLayer',
+                                    'legend',
+                                    'lines',
+                                    'lines1',
+                                    'lines2',
+                                    'multibar',
+                                    'pie',
+                                    'scatter',
+                                    'sparkline',
+                                    'stack1',
+                                    'stack2',
+                                    'sunburst',
+                                    'tooltip',
                                     'x2Axis',
-                                    'yAxis',
-                                    'yAxis1',
-                                    'yAxis2',
+                                    'xAxis',
                                     'y1Axis',
                                     'y2Axis',
                                     'y3Axis',
                                     'y4Axis',
-                                    'interactiveLayer',
-                                    'controls'
-                                ].indexOf(key) >= 0){
+                                    'yAxis',
+                                    'yAxis1',
+                                    'yAxis2'
+                                ].indexOf(key) >= 0 ||
+                                        // stacked is a component for stackedAreaChart, but a boolean for multiBarChart and multiBarHorizontalChart
+                                        (key === 'stacked' && options.chart.type === 'stackedAreaChart')) {
                                     if (options.chart[key] === undefined || options.chart[key] === null) {
                                         if (scope._config.extended) options.chart[key] = {};
                                     }
@@ -171,17 +175,19 @@
                             element.find('.subtitle').remove();
                             element.find('.caption').remove();
                             element.empty();
-                            if (scope.chart) {
-                                // remove chart from nv.graph list
+
+                            // To be compatible with old nvd3 (v1.7.1)
+                            if (nv.graphs && scope.chart) {
                                 for(var i = nv.graphs.length - 1; i >= 0; i--) {
                                     if(nv.graphs[i].id === scope.chart.id) {
                                         nv.graphs.splice(i, 1);
                                     }
                                 }
-                                scope.chart = null;
                             }
-
-                            nv.tooltip.cleanup();
+                            if (nv.tooltip && nv.tooltip.cleanup) {
+                                nv.tooltip.cleanup();
+                            }
+                            scope.chart = null;
                         },
 
                         // Get full directive scope
@@ -192,24 +198,24 @@
                     function configure(chart, options, chartType){
                         if (chart && options){
                             angular.forEach(chart, function(value, key){
-                                if (key === 'dispatch') {
+                                if (key[0] === '_');
+                                else if (key === 'dispatch') {
                                     if (options[key] === undefined || options[key] === null) {
                                         if (scope._config.extended) options[key] = {};
                                     }
                                     configureEvents(value, options[key]);
                                 }
                                 else if ([
-                                    'scatter',
-                                    'defined',
-                                    'options',
                                     'axis',
+                                    'clearHighlights',
+                                    'defined',
+                                    'highlightPoint',
+                                    'nvPointerEventsClass',
+                                    'options',
                                     'rangeBand',
                                     'rangeBands',
-                                    '_options',
-                                    '_inherited',
-                                    '_d3options',
-                                    '_calls'
-                                ].indexOf(key) < 0){
+                                    'scatter'
+                                ].indexOf(key) === -1) {
                                     if (options[key] === undefined || options[key] === null){
                                         if (scope._config.extended) options[key] = value();
                                     }
