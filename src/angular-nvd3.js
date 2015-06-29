@@ -59,13 +59,13 @@
 
                             angular.forEach(scope.chart, function(value, key){
                                 if ([
-                                    'options',
-                                    '_options',
-                                    '_inherited',
                                     '_d3options',
-                                    'state',
+                                    '_inherited',
+                                    '_options',
                                     'id',
-                                    'resizeHandler'
+                                    'options',
+                                    'resizeHandler',
+                                    'state'
                                 ].indexOf(key) >= 0);
 
                                 else if (key === 'dispatch') {
@@ -76,34 +76,34 @@
                                 }
 
                                 else if ([
-                                    'lines',
-                                    'lines1',
-                                    'lines2',
                                     'bars',
                                     'bars1',
                                     'bars2',
-                                    'stack1',
-                                    'stack2',
-                                    'multibar',
-                                    'discretebar',
-                                    'pie',
-                                    'scatter',
                                     'bullet',
-                                    'sparkline',
-                                    'legend',
+                                    'controls',
+                                    'discretebar',
                                     'distX',
                                     'distY',
-                                    'xAxis',
+                                    'interactiveLayer',
+                                    'legend',
+                                    'lines',
+                                    'lines1',
+                                    'lines2',
+                                    'multibar',
+                                    'pie',
+                                    'scatter',
+                                    'sparkline',
+                                    'stack1',
+                                    'stack2',
                                     'x2Axis',
-                                    'yAxis',
-                                    'yAxis1',
-                                    'yAxis2',
+                                    'xAxis',
                                     'y1Axis',
                                     'y2Axis',
                                     'y3Axis',
                                     'y4Axis',
-                                    'interactiveLayer',
-                                    'controls'
+                                    'yAxis',
+                                    'yAxis1',
+                                    'yAxis2'
                                 ].indexOf(key) >= 0 ||
                                         // stacked is a component for stackedAreaChart, but a boolean for multiBarChart and multiBarHorizontalChart
                                         (key === 'stacked' && options.chart.type === 'stackedAreaChart')) {
@@ -196,16 +196,16 @@
                                     configureEvents(value, options[key]);
                                 }
                                 else if ([
-                                    'scatter',
+                                    '_calls',
+                                    '_d3options',
+                                    '_inherited',
+                                    '_options',
+                                    'axis',
                                     'defined',
                                     'options',
-                                    'axis',
                                     'rangeBand',
                                     'rangeBands',
-                                    '_options',
-                                    '_inherited',
-                                    '_d3options',
-                                    '_calls'
+                                    'scatter'
                                 ].indexOf(key) < 0){
                                     if (options[key] === undefined || options[key] === null){
                                         if (scope._config.extended) options[key] = value();
