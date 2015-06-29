@@ -1,5 +1,5 @@
 /**************************************************************************
-* AngularJS-nvD3, v1.0.0-rc; MIT License; 26/06/2015 11:56
+* AngularJS-nvD3, v1.0.0-rc; MIT License; 29/06/2015 11:23
 * http://krispo.github.io/angular-nvd3
 **************************************************************************/
 (function(){
@@ -88,7 +88,6 @@
                                     'bars2',
                                     'stack1',
                                     'stack2',
-                                    'stacked',
                                     'multibar',
                                     'discretebar',
                                     'pie',
@@ -109,7 +108,9 @@
                                     'y4Axis',
                                     'interactiveLayer',
                                     'controls'
-                                ].indexOf(key) >= 0){
+                                ].indexOf(key) >= 0 ||
+                                        // stacked is a component for stackedAreaChart, but a boolean for multiBarChart and multiBarHorizontalChart
+                                        (key === 'stacked' && options.chart.type === 'stackedAreaChart')) {
                                     if (options.chart[key] === undefined || options.chart[key] === null) {
                                         if (scope._config.extended) options.chart[key] = {};
                                     }
