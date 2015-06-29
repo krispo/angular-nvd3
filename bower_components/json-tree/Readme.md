@@ -25,11 +25,11 @@ An AngularJS would be installed as a dependency automatically. If it won't, inst
 Add dependencies to the `<head>` section of your main html:
 ```html
 <script src="bower_components/angular/angular.js"></script>
-<script src="bower_components/json-tree/_json-tree.js"></script>
+<script src="bower_components/json-tree/json-tree.js"></script>
 <link rel="stylesheet" href="bower_components/json-tree/json-tree.css">
 ```
 
-If you don't use bower, you can manually download and unpack json-tree ([zip](https://github.com/krispo/json-tree/archive/v0.1.0.zip), [tar.gz](https://github.com/krispo/json-tree/archive/v0.1.0.tar.gz)).
+If you don't use bower, you can manually download and unpack json-tree ([zip](https://github.com/krispo/json-tree/archive/v0.1.1.zip), [tar.gz](https://github.com/krispo/json-tree/archive/v0.1.1.tar.gz)).
 
 ### Basic usage
 
@@ -91,5 +91,5 @@ angular.module('myApp', ['json-tree'])
 ```
 
 ---
-For more details of technically usage, please, watch example [online](https://rawgithub.com/krispo/json-tree/master/example.html) and test it.
+For more details of technically usage, please, watch example [online](http://krispo.github.io/json-tree) and test it.
 There is given a short instruction.
