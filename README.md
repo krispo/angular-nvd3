@@ -125,6 +125,10 @@ Then build using [grunt](http://gruntjs.com/) (*node.js must be installed*):
 
 ## Release Notes
 
+### [1.0.0-rc.2 (current, nvd3 v1.8.1)](https://github.com/krispo/angular-nvd3/releases/tag/v1.0.0-rc.2)
+* Add support of nvd3 1.8.1
+* Fix [issue](https://github.com/krispo/angular-nvd3/issues/100) with `stacked` parameter
+
 ### [1.0.0-rc (current, nvd3 v1.7.1)](https://github.com/krispo/angular-nvd3/releases/tag/v1.0.0-rc)
 * Rename `utils` module to avoid conflicts
 * Fix nvd3 version reference in bower.json
