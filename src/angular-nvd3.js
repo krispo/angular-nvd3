@@ -84,7 +84,6 @@
                                     'bars2',
                                     'stack1',
                                     'stack2',
-                                    'stacked',
                                     'multibar',
                                     'discretebar',
                                     'pie',
@@ -105,7 +104,9 @@
                                     'y4Axis',
                                     'interactiveLayer',
                                     'controls'
-                                ].indexOf(key) >= 0){
+                                ].indexOf(key) >= 0 ||
+                                        // stacked is a component for stackedAreaChart, but a boolean for multiBarChart and multiBarHorizontalChart
+                                        (key === 'stacked' && options.chart.type === 'stackedAreaChart')) {
                                     if (options.chart[key] === undefined || options.chart[key] === null) {
                                         if (scope._config.extended) options.chart[key] = {};
                                     }
