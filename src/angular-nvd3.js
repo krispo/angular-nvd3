@@ -139,6 +139,7 @@
                             if (options['styles'] || scope._config.extended) configureStyles();
 
                             nv.addGraph(function() {
+                              if (!scope.chart) return;
                                 // Remove resize handler. Due to async execution should be placed here, not in the clearElement
                                 if (scope.chart.resizeHandler) scope.chart.resizeHandler.clear();
                                 // Update the chart when window resizes

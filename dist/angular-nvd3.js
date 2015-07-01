@@ -1,5 +1,5 @@
 /**************************************************************************
-* AngularJS-nvD3, v1.0.0-rc; MIT License; 29/06/2015 15:12
+* AngularJS-nvD3, v1.0.0-rc.2; MIT License; 01/07/2015 15:26
 * http://krispo.github.io/angular-nvd3
 **************************************************************************/
 (function(){
@@ -143,6 +143,7 @@
                             if (options['styles'] || scope._config.extended) configureStyles();
 
                             nv.addGraph(function() {
+                              if (!scope.chart) return;
                                 // Remove resize handler. Due to async execution should be placed here, not in the clearElement
                                 if (scope.chart.resizeHandler) scope.chart.resizeHandler.clear();
                                 // Update the chart when window resizes
