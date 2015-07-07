@@ -1,2 +1,6 @@
+.directory
 .idea
 bower.json
+coverage
+node_modules
+libpeerconnection.log

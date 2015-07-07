@@ -7,16 +7,17 @@ json-tree {
 }
 json-tree input[type="text"]{
     width: 4em;
-    height: 12px;
+    height: 18px;
 }
 json-tree input[type="number"]{
-    width: 4em;
-    height: 12px;
+    width: 5em;
+    height: 17px;
     vertical-align: middle;
+    font-size: x-small;
 }
 json-tree textarea {
-    width: 5em;
-    height: 12px;
+    width: 6em;
+    height: 17px;
     padding-top: 0px;
     margin-bottom: -4px;
     border-color: gray;
@@ -25,7 +26,7 @@ json-tree textarea {
 }
 json-tree textarea:focus {
     width: auto;
-    min-height: 100px;
+    min-height: 150px;
     height: auto;
     position: absolute;
     z-index: 10;
