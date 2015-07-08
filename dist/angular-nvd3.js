@@ -1,5 +1,5 @@
 /**************************************************************************
-* AngularJS-nvD3, v1.0.0-rc.2; MIT License; 02/07/2015 13:05
+* AngularJS-nvD3, v1.0.0-rc.2; MIT License; 07/07/2015 20:39
 * http://krispo.github.io/angular-nvd3
 **************************************************************************/
 (function(){
@@ -182,7 +182,7 @@
                             // To be compatible with old nvd3 (v1.7.1)
                             if (nv.graphs && scope.chart) {
                                 for(var i = nv.graphs.length - 1; i >= 0; i--) {
-                                    if(nv.graphs[i].id === scope.chart.id) {
+                                    if(nv.graphs[i] && nv.graphs[i].id === scope.chart.id) {
                                         nv.graphs.splice(i, 1);
                                     }
                                 }

@@ -178,7 +178,7 @@
                             // To be compatible with old nvd3 (v1.7.1)
                             if (nv.graphs && scope.chart) {
                                 for(var i = nv.graphs.length - 1; i >= 0; i--) {
-                                    if(nv.graphs[i].id === scope.chart.id) {
+                                    if(nv.graphs[i] && nv.graphs[i].id === scope.chart.id) {
                                         nv.graphs.splice(i, 1);
                                     }
                                 }
