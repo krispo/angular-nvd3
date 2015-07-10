@@ -1,5 +1,5 @@
 /**************************************************************************
-* AngularJS-nvD3, v1.0.0-rc; MIT License; 29/06/2015 15:12
+* AngularJS-nvD3, v1.0.0-rc.2; MIT License; 10/07/2015 10:55
 * http://krispo.github.io/angular-nvd3
 **************************************************************************/
 (function(){
@@ -325,7 +325,7 @@
                     scope.$watch('data', function(newData, oldData){
                         if (newData !== oldData && scope.chart){
                             if (!scope._config.disabled && scope._config.autorefresh) {
-                                scope._config.refreshDataOnly ? scope.chart.update() : scope.api.refresh(); // if wanted to refresh data only, use chart.update method, otherwise use full refresh.
+                                scope._config.refreshDataOnly && scope.chart.update ? scope.chart.update() : scope.api.refresh(); // if wanted to refresh data only, use chart.update method, otherwise use full refresh.
                             }
                         }
                     }, scope._config.deepWatchData);
