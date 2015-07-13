@@ -183,6 +183,7 @@
                             if (nv.tooltip && nv.tooltip.cleanup) {
                                 nv.tooltip.cleanup();
                             }
+                            if (scope.chart && scope.chart.resizeHandler) scope.chart.resizeHandler.clear();
                             scope.chart = null;
                         },
 
