@@ -1,7 +1,7 @@
 {
     "title": "AngularJS-nvD3-PH",
     "name": "angular-nvd3-ph",
-    "version": "1.0.0-rc.3",
+    "version": "1.0.0-rc.3.1",
     "description": "Fork of Angular-NVD3 directive for NVD3.js reusable charting library",
     "repository": {
         "type": "git",
@@ -19,7 +19,7 @@
     ],
     "license": "MIT License",
     "author": {
-        "name": ""
+        "name": "https://github.com/lnookl/angular-nvd3-ph/graphs/contributors"
     },
     "devDependencies": {
         "grunt": "^0.4.4",
