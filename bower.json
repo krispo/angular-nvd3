@@ -1,6 +1,6 @@
 {
   "name": "angular-nvd3-ph",
-  "version": "1.0.0-rc.2",
+  "version": "1.0.0-rc.3",
   "description": "Fork of Angular-NVD3 directive for NVD3.js reusable charting library",
   "main": [
     "dist/angular-nvd3.js"
