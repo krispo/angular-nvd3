@@ -1,7 +1,7 @@
 {
-    "name": "angular-nvd3",
+    "name": "angular-nvd3-ph",
     "version": "1.0.0-rc.2",
-    "description": "An AngularJS directive for NVD3.js reusable charting library (based on D3.js)",
+    "description": "Fork of Angular-NVD3 directive for NVD3.js reusable charting library",
     "main": [
       "dist/angular-nvd3.js"
     ],
@@ -21,17 +21,16 @@
         "svg"
     ],
     "authors": [
-        "Konstantin Skipor"
+        ""
     ],
-    "homepage": "http://krispo.github.io/angular-nvd3",
     "repository": {
         "type": "git",
-        "url": "https://github.com/krispo/angular-nvd3.git"
+        "url": "https://github.com/lnookl/angular-nvd3-ph.git"
     },
     "dependencies": {
         "angular": "^1.x",
-        "d3": "^3.3.13",
-        "nvd3": "^1.7.1"
+        "d3": "^3.5.6",
+        "nvd3": "^1.8.1"
     },
     "ignore": [
         "**/.*",
