@@ -1,6 +1,5 @@
 /**************************************************************************
-* AngularJS-nvD3, v1.0.0-rc.2; MIT License; 10/07/2015 10:55
-* http://krispo.github.io/angular-nvd3
+* AngularJS-nvD3-PH, v1.0.0-rc.2; MIT License; 04/08/2015 15:15
 **************************************************************************/
 (function(){
 
@@ -162,6 +161,7 @@
                                 // Select the current element to add <svg> element and to render the chart in
                                 d3.select(element[0]).append('svg')
                                     .attr('height', scope.options.chart.height)
+                                    .attr('style', 'height:' + scope.options.chart.height + 'px')
                                     .attr('width', scope.options.chart.width  || '100%')
                                     .datum(data)
                                     .transition().duration(scope.options.chart.transitionDuration)

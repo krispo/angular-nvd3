@@ -7,7 +7,7 @@
         "type": "git",
         "url": "https://github.com/lnookl/angular-nvd3-ph.git"
     },
-    "main": "dist/angular-nvd3.js",
+    "main": "dist/angular-nvd3-ph.js",
     "keywords": [
         "angular",
         "nvd3",
