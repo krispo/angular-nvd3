@@ -1,5 +1,5 @@
 /**************************************************************************
- * AngularJS-nvD3-PH, v1.0.0-rc.3.1; MIT License; 04/08/2015 17:19
+ * AngularJS-nvD3-PH, v1.0.0-rc.3.3; MIT License; 04/08/2015 17:19
  **************************************************************************/
 (function () {
 
@@ -179,13 +179,9 @@
 
             // Fully clear directive element
             clearElement: function () {
-              var tips = window.document.querySelectorAll('.nvtooltip');
-
-              angular.forEach(tips, function (tip) {
-                tip = d3.select(tip);
-                var style = tip.attr('style');
-                tip.attr('style', style.replace('opacity: 1;', 'opacity: 0;'));
-              });
+              if(scope.chart){
+                d3.select('#' + scope.chart.tooltip.id()).remove();
+              }
 
               element.find('.title').remove();
               element.find('.subtitle').remove();
