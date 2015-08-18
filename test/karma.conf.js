@@ -16,7 +16,7 @@ module.exports = function(config) {
             'lib/d3.min.js',
             'lib/nv.d3.min.js',
             'src/**/*.js',
-            'test/**/*Spec.js'
+            'test/**/*.spec.js'
         ],
 
         // List of frameworks you want to use. Typically, you will set this to ['jasmine'], ['mocha'] or ['qunit']...

@@ -1,46 +1,46 @@
 {
-    "name": "angular-nvd3",
-    "version": "1.0.0-rc.2",
-    "description": "An AngularJS directive for NVD3.js reusable charting library (based on D3.js)",
-    "main": [
-      "dist/angular-nvd3.js"
-    ],
-    "license": "MIT",
-    "keywords": [
-        "d3",
-        "d3-",
-        "nvd3",
-        "nvd3-",
-        "angular",
-        "angular-",
-        "angular-nvd3",
-        "nvd3-angular",
-        "directives",
-        "visualization",
-        "charts",
-        "svg"
-    ],
-    "authors": [
-        "Konstantin Skipor"
-    ],
-    "homepage": "http://krispo.github.io/angular-nvd3",
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/krispo/angular-nvd3.git"
-    },
-    "dependencies": {
-        "angular": "^1.x",
-        "d3": "^3.3.13",
-        "nvd3": "^1.7.1"
-    },
-    "ignore": [
-        "**/.*",
-        "node_modules",
-        "bower_components",
-        "src",
-        "test",
-        "tests",
-        "lib",
-        "examples"
-    ]
+  "name": "angular-nvd3-ph",
+  "version": "1.0.0-rc.3.4",
+  "description": "Fork of Angular-NVD3 directive for NVD3.js reusable charting library",
+  "main": [
+    "dist/angular-nvd3-ph.js"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "d3",
+    "d3-",
+    "nvd3",
+    "nvd3-",
+    "angular",
+    "angular-",
+    "angular-nvd3",
+    "nvd3-angular",
+    "directives",
+    "visualization",
+    "charts",
+    "svg"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lnookl/angular-nvd3-ph.git"
+  },
+  "dependencies": {
+    "angular": "~1.x",
+    "d3": "~3.5.6",
+    "nvd3": "~1.8.1"
+  },
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "src",
+    "test",
+    "tests",
+    "lib",
+    "examples"
+  ],
+  "authors": [
+    "https://github.com/lnookl/angular-nvd3-ph/graphs/contributors"
+  ],
+  "homepage": "https://github.com/lnookl/angular-nvd3-ph"
 }
