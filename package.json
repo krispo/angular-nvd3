@@ -1,7 +1,7 @@
 {
     "title": "AngularJS-nvD3-PH",
     "name": "angular-nvd3-ph",
-    "version": "1.0.0-rc.3.3",
+    "version": "1.0.0-rc.3.4",
     "description": "Fork of Angular-NVD3 directive for NVD3.js reusable charting library",
     "repository": {
         "type": "git",

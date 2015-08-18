@@ -1,5 +1,5 @@
 /**************************************************************************
- * AngularJS-nvD3-PH, v1.0.0-rc.3.3; MIT License; 04/08/2015 17:19
+ * AngularJS-nvD3-PH, v1.0.0-rc.3.4; MIT License; 04/08/2015 17:19
  **************************************************************************/
 (function () {
 
@@ -25,6 +25,7 @@
             autorefresh: true,
             refreshDataOnly: false,
             deepWatchData: true,
+            resizeHandler: false, //default: false, if true then chart updates after page resize
             debounce: 10 // default 10ms, time silence to prevent refresh while multiple options changes at a time
           };
 
@@ -143,17 +144,19 @@
 
 
               nv.addGraph(function () {
-                // Remove resize handler. Due to async execution should be placed here, not in the clearElement
-                if (!scope.$$destroyed && scope.chart.resizeHandler) {
-                  scope.chart.resizeHandler.clear();
-                }
-                // Update the chart when window resizes
-                if (!scope.$$destroyed) {
-                  scope.chart.resizeHandler = nv.utils.windowResize(function () {
-                    !scope.$$destroyed && scope.chart.update && scope.chart.update();
+                if (scope._config.resizeHandler) {
+                  // Remove resize handler. Due to async execution should be placed here, not in the clearElement
+                  if (!scope.$$destroyed && scope.chart.resizeHandler) {
+                    scope.chart.resizeHandler.clear();
+                  }
+                  // Update the chart when window resizes
+                  if (!scope.$$destroyed) {
+                    scope.chart.resizeHandler = nv.utils.windowResize(function () {
+                      !scope.$$destroyed && scope.chart.update && scope.chart.update();
 
-                    return scope.chart;
-                  });
+                      return scope.chart;
+                    });
+                  }
                 }
               }, options.chart['callback']);
             },
@@ -179,7 +182,7 @@
 
             // Fully clear directive element
             clearElement: function () {
-              if(scope.chart){
+              if (scope.chart) {
                 d3.select('#' + scope.chart.tooltip.id()).remove();
               }
 
