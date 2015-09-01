@@ -140,9 +140,11 @@
 
                             nv.addGraph(function() {
                                 // Remove resize handler. Due to async execution should be placed here, not in the clearElement
-                                if (scope.chart.resizeHandler) scope.chart.resizeHandler.clear();
+                                if (scope.chart && scope.chart.resizeHandler) scope.chart.resizeHandler.clear();
                                 // Update the chart when window resizes
-                                scope.chart.resizeHandler = nv.utils.windowResize(function() { scope.chart.update && scope.chart.update(); });
+                                scope.chart.resizeHandler = nv.utils.windowResize(function() {
+                                    scope.chart && scope.chart.update && scope.chart.update();
+                                });
                                 return scope.chart;
                             }, options.chart['callback']);
                         },
