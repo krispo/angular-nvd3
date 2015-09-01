@@ -1,5 +1,5 @@
 /**************************************************************************
-* AngularJS-nvD3, v1.0.0-rc.2; MIT License; 10/07/2015 10:55
+* AngularJS-nvD3, v1.0.0-rc.2; MIT License; 14/07/2015 01:00
 * http://krispo.github.io/angular-nvd3
 **************************************************************************/
 (function(){
@@ -187,6 +187,7 @@
                             if (nv.tooltip && nv.tooltip.cleanup) {
                                 nv.tooltip.cleanup();
                             }
+                            if (scope.chart && scope.chart.resizeHandler) scope.chart.resizeHandler.clear();
                             scope.chart = null;
                         },
 
