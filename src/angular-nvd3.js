@@ -65,7 +65,9 @@
                                     'id',
                                     'options',
                                     'resizeHandler',
-                                    'state'
+                                    'state',
+                                    'open',
+                                    'close'
                                 ].indexOf(key) >= 0);
 
                                 else if (key === 'dispatch') {
@@ -213,7 +215,9 @@
                                     'options',
                                     'rangeBand',
                                     'rangeBands',
-                                    'scatter'
+                                    'scatter',
+                                    'open',
+                                    'close'
                                 ].indexOf(key) === -1) {
                                     if (options[key] === undefined || options[key] === null){
                                         if (scope._config.extended) options[key] = value();

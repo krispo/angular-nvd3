@@ -1,5 +1,5 @@
 /**************************************************************************
-* AngularJS-nvD3, v1.0.1; MIT License; 01/09/2015 21:01
+* AngularJS-nvD3, v1.0.1; MIT License; 02/09/2015 22:05
 * http://krispo.github.io/angular-nvd3
 **************************************************************************/
 (function(){
@@ -69,7 +69,9 @@
                                     'id',
                                     'options',
                                     'resizeHandler',
-                                    'state'
+                                    'state',
+                                    'open',
+                                    'close'
                                 ].indexOf(key) >= 0);
 
                                 else if (key === 'dispatch') {
@@ -217,7 +219,9 @@
                                     'options',
                                     'rangeBand',
                                     'rangeBands',
-                                    'scatter'
+                                    'scatter',
+                                    'open',
+                                    'close'
                                 ].indexOf(key) === -1) {
                                     if (options[key] === undefined || options[key] === null){
                                         if (scope._config.extended) options[key] = value();
