@@ -120,6 +120,7 @@
 
                                 //TODO: need to fix bug in nvd3
                                 else if ((key === 'xTickFormat' || key === 'yTickFormat') && options.chart.type === 'lineWithFocusChart');
+                                else if ((key === 'tooltips') && options.chart.type === 'boxPlotChart');
 
                                 else if (options.chart[key] === undefined || options.chart[key] === null){
                                     if (scope._config.extended) options.chart[key] = value();

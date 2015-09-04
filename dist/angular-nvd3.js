@@ -1,5 +1,5 @@
 /**************************************************************************
-* AngularJS-nvD3, v1.0.1; MIT License; 02/09/2015 22:05
+* AngularJS-nvD3, v1.0.1; MIT License; 04/09/2015 21:33
 * http://krispo.github.io/angular-nvd3
 **************************************************************************/
 (function(){
@@ -124,6 +124,7 @@
 
                                 //TODO: need to fix bug in nvd3
                                 else if ((key === 'xTickFormat' || key === 'yTickFormat') && options.chart.type === 'lineWithFocusChart');
+                                else if ((key === 'tooltips') && options.chart.type === 'boxPlotChart');
 
                                 else if (options.chart[key] === undefined || options.chart[key] === null){
                                     if (scope._config.extended) options.chart[key] = value();
