@@ -1,5 +1,5 @@
 /**************************************************************************
-* AngularJS-nvD3, v1.0.1; MIT License; 04/09/2015 21:33
+* AngularJS-nvD3, v1.0.1; MIT License; 07/09/2015 08:40
 * http://krispo.github.io/angular-nvd3
 **************************************************************************/
 (function(){
@@ -134,7 +134,11 @@
                             });
 
                             // Update with data
-                            scope.api.updateWithData(scope.data);
+                            if (options.chart.type === 'sunburstChart') {
+                                scope.api.updateWithData(angular.copy(scope.data));
+                            } else {
+                                scope.api.updateWithData(scope.data);
+                            }
 
                             // Configure wrappers
                             if (options['title'] || scope._config.extended) configureWrapper('title');

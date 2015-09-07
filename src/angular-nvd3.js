@@ -130,7 +130,11 @@
                             });
 
                             // Update with data
-                            scope.api.updateWithData(scope.data);
+                            if (options.chart.type === 'sunburstChart') {
+                                scope.api.updateWithData(angular.copy(scope.data));
+                            } else {
+                                scope.api.updateWithData(scope.data);
+                            }
 
                             // Configure wrappers
                             if (options['title'] || scope._config.extended) configureWrapper('title');
