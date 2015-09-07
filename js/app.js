@@ -151,6 +151,7 @@ var app = angular.module('mainApp', ['mainApp.controllers','ngRoute', 'json-tree
         //lineWithFisheyeChart: { path: '/lineWithFisheyeChart', title: 'Line with Fisheye Chart', plunker: 'http://plnkr.co/edit/YFruJE?p=preview' }
         candlestickBarChart: { path: '/candlestickBarChart', title: 'Candlestick Chart', plunker: '' },
         sunburstChart: { path: '/sunburstChart', title: 'Sunburst Chart', plunker: '' },
+        ohlcBarChart: { path: '/ohlcBarChart', title: 'OHLC Chart', plunker: '' },
     })
 
     .constant('CONSTANTS', {
