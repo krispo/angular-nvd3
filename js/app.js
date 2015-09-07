@@ -149,6 +149,7 @@ var app = angular.module('mainApp', ['mainApp.controllers','ngRoute', 'json-tree
         parallelCoordinates: { path: '/parallelCoordinates', title: 'Parallel Coordinates', plunker: 'http://plnkr.co/edit/rCQhcL?p=preview' },
         multiChart: { path: '/multiChart', title: 'Multi Chart', plunker: 'http://plnkr.co/edit/zsNxBJ?p=preview' },
         //lineWithFisheyeChart: { path: '/lineWithFisheyeChart', title: 'Line with Fisheye Chart', plunker: 'http://plnkr.co/edit/YFruJE?p=preview' }
+        candlestickBarChart: { path: '/candlestickBarChart', title: 'Candlestick Chart', plunker: '' },
     })
 
     .constant('CONSTANTS', {

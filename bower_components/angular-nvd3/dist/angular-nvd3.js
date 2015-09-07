@@ -1,7 +1,7 @@
 /**************************************************************************
-* AngularJS-nvD3, v1.0.0-rc; MIT License; 29/06/2015 15:12
-* http://krispo.github.io/angular-nvd3
-**************************************************************************/
+ * AngularJS-nvD3, v1.0.1; MIT License; 07/09/2015 08:40
+ * http://krispo.github.io/angular-nvd3
+ **************************************************************************/
 (function(){
 
     'use strict';
@@ -64,13 +64,15 @@
                             angular.forEach(scope.chart, function(value, key){
                                 if (key[0] === '_');
                                 else if ([
-                                    'clearHighlights',
-                                    'highlightPoint',
-                                    'id',
-                                    'options',
-                                    'resizeHandler',
-                                    'state'
-                                ].indexOf(key) >= 0);
+                                        'clearHighlights',
+                                        'highlightPoint',
+                                        'id',
+                                        'options',
+                                        'resizeHandler',
+                                        'state',
+                                        'open',
+                                        'close'
+                                    ].indexOf(key) >= 0);
 
                                 else if (key === 'dispatch') {
                                     if (options.chart[key] === undefined || options.chart[key] === null) {
@@ -80,40 +82,40 @@
                                 }
 
                                 else if ([
-                                    'bars',
-                                    'bars1',
-                                    'bars2',
-                                    'boxplot',
-                                    'bullet',
-                                    'controls',
-                                    'discretebar',
-                                    'distX',
-                                    'distY',
-                                    'interactiveLayer',
-                                    'legend',
-                                    'lines',
-                                    'lines1',
-                                    'lines2',
-                                    'multibar',
-                                    'pie',
-                                    'scatter',
-                                    'sparkline',
-                                    'stack1',
-                                    'stack2',
-                                    'sunburst',
-                                    'tooltip',
-                                    'x2Axis',
-                                    'xAxis',
-                                    'y1Axis',
-                                    'y2Axis',
-                                    'y3Axis',
-                                    'y4Axis',
-                                    'yAxis',
-                                    'yAxis1',
-                                    'yAxis2'
-                                ].indexOf(key) >= 0 ||
+                                        'bars',
+                                        'bars1',
+                                        'bars2',
+                                        'boxplot',
+                                        'bullet',
+                                        'controls',
+                                        'discretebar',
+                                        'distX',
+                                        'distY',
+                                        'interactiveLayer',
+                                        'legend',
+                                        'lines',
+                                        'lines1',
+                                        'lines2',
+                                        'multibar',
+                                        'pie',
+                                        'scatter',
+                                        'sparkline',
+                                        'stack1',
+                                        'stack2',
+                                        'sunburst',
+                                        'tooltip',
+                                        'x2Axis',
+                                        'xAxis',
+                                        'y1Axis',
+                                        'y2Axis',
+                                        'y3Axis',
+                                        'y4Axis',
+                                        'yAxis',
+                                        'yAxis1',
+                                        'yAxis2'
+                                    ].indexOf(key) >= 0 ||
                                         // stacked is a component for stackedAreaChart, but a boolean for multiBarChart and multiBarHorizontalChart
-                                        (key === 'stacked' && options.chart.type === 'stackedAreaChart')) {
+                                    (key === 'stacked' && options.chart.type === 'stackedAreaChart')) {
                                     if (options.chart[key] === undefined || options.chart[key] === null) {
                                         if (scope._config.extended) options.chart[key] = {};
                                     }
@@ -122,6 +124,7 @@
 
                                 //TODO: need to fix bug in nvd3
                                 else if ((key === 'xTickFormat' || key === 'yTickFormat') && options.chart.type === 'lineWithFocusChart');
+                                else if ((key === 'tooltips') && options.chart.type === 'boxPlotChart');
 
                                 else if (options.chart[key] === undefined || options.chart[key] === null){
                                     if (scope._config.extended) options.chart[key] = value();
@@ -131,7 +134,11 @@
                             });
 
                             // Update with data
-                            scope.api.updateWithData(scope.data);
+                            if (options.chart.type === 'sunburstChart') {
+                                scope.api.updateWithData(angular.copy(scope.data));
+                            } else {
+                                scope.api.updateWithData(scope.data);
+                            }
 
                             // Configure wrappers
                             if (options['title'] || scope._config.extended) configureWrapper('title');
@@ -144,9 +151,11 @@
 
                             nv.addGraph(function() {
                                 // Remove resize handler. Due to async execution should be placed here, not in the clearElement
-                                if (scope.chart.resizeHandler) scope.chart.resizeHandler.clear();
+                                if (scope.chart && scope.chart.resizeHandler) scope.chart.resizeHandler.clear();
                                 // Update the chart when window resizes
-                                scope.chart.resizeHandler = nv.utils.windowResize(function() { scope.chart.update && scope.chart.update(); });
+                                scope.chart.resizeHandler = nv.utils.windowResize(function() {
+                                    scope.chart && scope.chart.update && scope.chart.update();
+                                });
                                 return scope.chart;
                             }, options.chart['callback']);
                         },
@@ -187,6 +196,7 @@
                             if (nv.tooltip && nv.tooltip.cleanup) {
                                 nv.tooltip.cleanup();
                             }
+                            if (scope.chart && scope.chart.resizeHandler) scope.chart.resizeHandler.clear();
                             scope.chart = null;
                         },
 
@@ -206,16 +216,18 @@
                                     configureEvents(value, options[key]);
                                 }
                                 else if ([
-                                    'axis',
-                                    'clearHighlights',
-                                    'defined',
-                                    'highlightPoint',
-                                    'nvPointerEventsClass',
-                                    'options',
-                                    'rangeBand',
-                                    'rangeBands',
-                                    'scatter'
-                                ].indexOf(key) === -1) {
+                                        'axis',
+                                        'clearHighlights',
+                                        'defined',
+                                        'highlightPoint',
+                                        'nvPointerEventsClass',
+                                        'options',
+                                        'rangeBand',
+                                        'rangeBands',
+                                        'scatter',
+                                        'open',
+                                        'close'
+                                    ].indexOf(key) === -1) {
                                     if (options[key] === undefined || options[key] === null){
                                         if (scope._config.extended) options[key] = value();
                                     }
@@ -325,7 +337,7 @@
                     scope.$watch('data', function(newData, oldData){
                         if (newData !== oldData && scope.chart){
                             if (!scope._config.disabled && scope._config.autorefresh) {
-                                scope._config.refreshDataOnly ? scope.chart.update() : scope.api.refresh(); // if wanted to refresh data only, use chart.update method, otherwise use full refresh.
+                                scope._config.refreshDataOnly && scope.chart.update ? scope.chart.update() : scope.api.refresh(); // if wanted to refresh data only, use chart.update method, otherwise use full refresh.
                             }
                         }
                     }, scope._config.deepWatchData);
