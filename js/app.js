@@ -152,6 +152,7 @@ var app = angular.module('mainApp', ['mainApp.controllers','ngRoute', 'json-tree
         candlestickBarChart: { path: '/candlestickBarChart', title: 'Candlestick Chart', plunker: '' },
         sunburstChart: { path: '/sunburstChart', title: 'Sunburst Chart', plunker: '' },
         ohlcBarChart: { path: '/ohlcBarChart', title: 'OHLC Chart', plunker: '' },
+        boxPlotChart: { path: '/boxPlotChart', title: 'Box Plot Chart', plunker: '' },
     })
 
     .constant('CONSTANTS', {

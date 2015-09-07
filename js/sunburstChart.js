@@ -7,7 +7,7 @@ angular.module('mainApp.controllers')
         $scope.options = {
             chart: {
                 type: 'sunburstChart',
-                height: 300,
+                height: 450,
                 color: d3.scale.category20c(),
                 transitionDuration: 250
             }

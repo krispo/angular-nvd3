@@ -7,7 +7,7 @@ angular.module('mainApp.controllers')
         $scope.options = {
             chart: {
                 type: 'candlestickBarChart',
-                height: 300,
+                height: 450,
                 margin : {
                     top: 20,
                     right: 20,
