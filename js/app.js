@@ -149,10 +149,10 @@ var app = angular.module('mainApp', ['mainApp.controllers','ngRoute', 'json-tree
         parallelCoordinates: { path: '/parallelCoordinates', title: 'Parallel Coordinates', plunker: 'http://plnkr.co/edit/rCQhcL?p=preview' },
         multiChart: { path: '/multiChart', title: 'Multi Chart', plunker: 'http://plnkr.co/edit/zsNxBJ?p=preview' },
         //lineWithFisheyeChart: { path: '/lineWithFisheyeChart', title: 'Line with Fisheye Chart', plunker: 'http://plnkr.co/edit/YFruJE?p=preview' }
-        candlestickBarChart: { path: '/candlestickBarChart', title: 'Candlestick Chart', plunker: '' },
-        sunburstChart: { path: '/sunburstChart', title: 'Sunburst Chart', plunker: '' },
-        ohlcBarChart: { path: '/ohlcBarChart', title: 'OHLC Chart', plunker: '' },
-        boxPlotChart: { path: '/boxPlotChart', title: 'Box Plot Chart', plunker: '' },
+        candlestickBarChart: { path: '/candlestickBarChart', title: 'Candlestick Chart', plunker: 'http://plnkr.co/edit/5vQOj9?p=preview' },
+        sunburstChart: { path: '/sunburstChart', title: 'Sunburst Chart', plunker: 'http://plnkr.co/edit/emCcNv?p=preview' },
+        ohlcBarChart: { path: '/ohlcBarChart', title: 'OHLC Chart', plunker: 'http://plnkr.co/edit/nevaIQ?p=preview' },
+        boxPlotChart: { path: '/boxPlotChart', title: 'Box Plot Chart', plunker: 'http://plnkr.co/edit/7VHjgy?p=preview' },
     })
 
     .constant('CONSTANTS', {
