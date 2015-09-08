@@ -125,21 +125,26 @@ Then build using [grunt](http://gruntjs.com/) (*node.js must be installed*):
 
 ## Release Notes
 
-### [1.0.0-rc.2 (current, nvd3 v1.8.1)](https://github.com/krispo/angular-nvd3/releases/tag/v1.0.0-rc.2)
+### [1.0.1 (current, nvd3 v1.8.1)](https://github.com/krispo/angular-nvd3/releases/tag/v1.0.1)
+* Add support for `Candlestick Chart`, `OHLC Chart`, `Sunburst Chart`, `Pox Plot Chart`
+
+### 1.0.0-rc.2 (nvd3 v1.8.1)
 * Add support of nvd3 1.8.1
 * Fix [issue](https://github.com/krispo/angular-nvd3/issues/100) with `stacked` parameter
 
-### [1.0.0-rc (current, nvd3 v1.7.1)](https://github.com/krispo/angular-nvd3/releases/tag/v1.0.0-rc)
+### 1.0.0-rc
 * Rename `utils` module to avoid conflicts
 * Fix nvd3 version reference in bower.json
 * Remove usage of reserved word `class`
 * Fix multiple resize event listeners which were causing null pointer exceptions
 * Change bower.json's main property to use regular instead of minified file
 
-### [1.0.0-beta (current, nvd3 v1.7.1)](https://github.com/krispo/angular-nvd3/releases/tag/v1.0.0-beta)
+### 1.0.0-beta (nvd3 v1.7.1)
 Under developing in **master** (1.x) branch
 
-### [0.1.1 (stable, nvd3 v1.1.15-beta)](https://github.com/krispo/angular-nvd3/releases/tag/v0.1.1)
+--
+
+### [0.1.1 (stable for nvd3 v1.1.15-beta)](https://github.com/krispo/angular-nvd3/releases/tag/v0.1.1)
 Under developing in **0.x** branch
 
 ### 0.1.0
