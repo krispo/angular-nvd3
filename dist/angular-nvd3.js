@@ -1,5 +1,5 @@
 /**************************************************************************
-* AngularJS-nvD3, v1.0.1; MIT License; 07/09/2015 08:40
+* AngularJS-nvD3, v1.0.1; MIT License; 09/09/2015 17:27
 * http://krispo.github.io/angular-nvd3
 **************************************************************************/
 (function(){
@@ -230,6 +230,8 @@
                                 ].indexOf(key) === -1) {
                                     if (options[key] === undefined || options[key] === null){
                                         if (scope._config.extended) options[key] = value();
+                                    } else if (key === 'tooltip') {
+                                      configure(chart[key], options[key], chartType);
                                     }
                                     else chart[key](options[key]);
                                 }

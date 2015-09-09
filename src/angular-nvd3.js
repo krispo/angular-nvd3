@@ -226,6 +226,8 @@
                                 ].indexOf(key) === -1) {
                                     if (options[key] === undefined || options[key] === null){
                                         if (scope._config.extended) options[key] = value();
+                                    } else if (key === 'tooltip') {
+                                      configure(chart[key], options[key], chartType);
                                     }
                                     else chart[key](options[key]);
                                 }
