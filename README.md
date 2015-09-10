@@ -125,6 +125,9 @@ Then build using [grunt](http://gruntjs.com/) (*node.js must be installed*):
 
 ## Release Notes
 
+### 1.0.2-dev (current development version)
+* Fixed `tooltip` [issue](https://github.com/krispo/angular-nvd3/pull/222) for interactive guideline.
+
 ### [1.0.1 (current, nvd3 v1.8.1)](https://github.com/krispo/angular-nvd3/releases/tag/v1.0.1)
 * Add support for `Candlestick Chart`, `OHLC Chart`, `Sunburst Chart`, `Pox Plot Chart`
 
