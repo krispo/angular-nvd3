@@ -144,7 +144,9 @@ Then build using [grunt](http://gruntjs.com/) (*node.js must be installed*):
 Under developing in **master** (1.x) branch
 
 --
+
 > If you use the old nvd3 version (v1.1.15-beta), I recommend you to use an updated assembly (`nv.d3.js` and `nv.d3.css`, you can find it in the `lib` directory of this project) with some fixes rather than the last one installed via bower.
+
 ### [0.1.1 (stable for nvd3 v1.1.15-beta)](https://github.com/krispo/angular-nvd3/releases/tag/v0.1.1)
 Under developing in **0.x** branch
 
