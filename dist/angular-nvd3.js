@@ -1,5 +1,5 @@
 /**************************************************************************
-* AngularJS-nvD3, v1.0.2-dev; MIT License; 10/09/2015 12:42
+* AngularJS-nvD3, v1.0.2-dev; MIT License; 15/09/2015 20:40
 * http://krispo.github.io/angular-nvd3
 **************************************************************************/
 (function(){
@@ -25,7 +25,7 @@
                         disabled: false,
                         autorefresh: true,
                         refreshDataOnly: false,
-                        deepWatchData: true,
+                        deepWatchData: false, // to increase performance by default
                         debounce: 10 // default 10ms, time silence to prevent refresh while multiple options changes at a time
                     };
 

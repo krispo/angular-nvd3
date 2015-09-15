@@ -21,7 +21,7 @@
                         disabled: false,
                         autorefresh: true,
                         refreshDataOnly: false,
-                        deepWatchData: true,
+                        deepWatchData: false, // to increase performance by default
                         debounce: 10 // default 10ms, time silence to prevent refresh while multiple options changes at a time
                     };
 
