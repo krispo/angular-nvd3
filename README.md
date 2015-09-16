@@ -32,7 +32,7 @@ Add dependencies to the `<head>` section of your main html:
 <link rel="stylesheet" href="bower_components/nvd3/nv.d3.css">
 ```
 
-If you don't use bower, you can manually download and unpack directive the latest version ([zip](https://github.com/krispo/angular-nvd3/archive/v1.0.1.zip), [tar.gz](https://github.com/krispo/angular-nvd3/archive/v1.0.1.tar.gz)).
+If you don't use bower, you can manually download and unpack directive the latest version ([zip](https://github.com/krispo/angular-nvd3/archive/v1.0.2.zip), [tar.gz](https://github.com/krispo/angular-nvd3/archive/v1.0.2.tar.gz)).
 
 ### Basic usage
 
@@ -123,15 +123,15 @@ Then build using [grunt](http://gruntjs.com/) (*node.js must be installed*):
 
 ## Release Notes
 
-### 1.0.2-dev (current development version)
+### [1.0.2 (current, nvd3 v1.8.1)](https://github.com/krispo/angular-nvd3/releases/tag/v1.0.2)
 * Fixed `tooltip` [issue](https://github.com/krispo/angular-nvd3/pull/222) for interactive guideline.
 * Set `deepWatchData` to `false` by default
 * Added `deepWatchOptions` and `deepWatchConfig` properties
 
-### [1.0.1 (current, nvd3 v1.8.1)](https://github.com/krispo/angular-nvd3/releases/tag/v1.0.1)
+### 1.0.1
 * Add support for `Candlestick Chart`, `OHLC Chart`, `Sunburst Chart`, `Pox Plot Chart`
 
-### 1.0.0-rc.2 (nvd3 v1.8.1)
+### 1.0.0-rc.2
 * Add support of nvd3 1.8.1
 * Fix [issue](https://github.com/krispo/angular-nvd3/issues/100) with `stacked` parameter
 
