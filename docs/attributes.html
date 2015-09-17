@@ -13,7 +13,11 @@ Setting up the global directive config in your controller like:
     extended: false, // default: false
     disabled: false, // default: false
     autorefresh: true, // default: true
-    refreshDataOnly: false // default: false
+    refreshDataOnly: false, // default: false
+    deepWatchOptions: true, // default: true
+    deepWatchData: false, // default: false
+    deepWatchConfig: true, // default: true
+    debounce: 10 // default: 10
 };</code></pre>
 
 <table class="tableAPI">
@@ -41,6 +45,22 @@ Setting up the global directive config in your controller like:
     <tr>
         <td class="api">refreshDataOnly</td>
         <td class="desc"><b>false</b>: boolean.<br> Refresh chart with data only, and without refreshing the full directive. It is especially useful for real-time updated charts.</td>
+    </tr>
+    <tr>
+        <td class="api">deepWatchOptions</td>
+        <td class="desc"><b>true</b>: boolean.<br> If <i>true</i>, directive watches for updating complex options.</td>
+    </tr>
+    <tr>
+        <td class="api">deepWatchData</td>
+        <td class="desc"><b>false</b>: boolean.<br> If <i>true</i>, directive watches for updating complex data objects. Inequality of the <i>watchExpression</i> is determined according to the angular.equals function. To save the value of the object for later comparison, the angular.copy function is used. This therefore means that watching complex objects will have adverse memory and performance implications.</td>
+    </tr>
+    <tr>
+        <td class="api">deepWatchConfig</td>
+        <td class="desc"><b>true</b>: boolean.<br> If <i>true</i>, directive watches for updating complex configs.</td>
+    </tr>
+    <tr>
+        <td class="api">debounce</td>
+        <td class="desc"><b>10</b>: number.<br> Time silence to prevent refresh while multiple options changing at a time.</td>
     </tr>
 </table>
 
