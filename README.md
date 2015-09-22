@@ -27,9 +27,9 @@ Add dependencies to the `<head>` section of your main html:
 <meta charset="utf-8">  <!-- it's important for d3.js -->
 <script src="bower_components/angular/angular.js"></script>
 <script src="bower_components/d3/d3.js"></script>
-<script src="bower_components/nvd3/nv.d3.js"></script> <!-- or use another assembly -->
+<script src="bower_components/nvd3/build/nv.d3.js"></script> <!-- or use another assembly -->
 <script src="bower_components/angular-nvd3/dist/angular-nvd3.js"></script>
-<link rel="stylesheet" href="bower_components/nvd3/nv.d3.css">
+<link rel="stylesheet" href="bower_components/nvd3/build/nv.d3.css">
 ```
 
 If you don't use bower, you can manually download and unpack directive the latest version ([zip](https://github.com/krispo/angular-nvd3/archive/v1.0.2.zip), [tar.gz](https://github.com/krispo/angular-nvd3/archive/v1.0.2.tar.gz)).
