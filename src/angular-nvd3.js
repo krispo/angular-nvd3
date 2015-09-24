@@ -166,7 +166,7 @@
                                 // remove whole svg element with old data
                                 d3.select(element[0]).select('svg').remove();
 								
-								if (scope.options.chart.width && !isNaN(scope.options.chart.height)) scope.options.chart.height += 'px';
+								if (scope.options.chart.height && !isNaN(scope.options.chart.height)) scope.options.chart.height += 'px';
 								if (scope.options.chart.width && !isNaN(scope.options.chart.width)) scope.options.chart.width += 'px';
 
                                 // Select the current element to add <svg> element and to render the chart in
