@@ -165,14 +165,21 @@
                                 scope.options.chart.transitionDuration = +scope.options.chart.transitionDuration || 250;
                                 // remove whole svg element with old data
                                 d3.select(element[0]).select('svg').remove();
-								
-								if (scope.options.chart.height && !isNaN(scope.options.chart.height)) scope.options.chart.height += 'px';
-								if (scope.options.chart.width && !isNaN(scope.options.chart.width)) scope.options.chart.width += 'px';
+
+                                var h, w, svg;
 
                                 // Select the current element to add <svg> element and to render the chart in
-                                d3.select(element[0]).append('svg')
-									.style({height: scope.options.chart.height, width: scope.options.chart.width})
-                                    .datum(data)
+                                svg = d3.select(element[0]).append('svg');
+                                if (h = scope.options.chart.height) {
+                                    if (!isNaN(+h)) h += 'px'; //check if height is number
+                                    svg.attr('height', h).style({height: h});
+                                }
+                                if (w = scope.options.chart.width) {
+                                    if (!isNaN(+w)) w += 'px'; //check if width is number
+                                    svg.attr('width', w).style({width: w});
+                                }
+
+                                svg.datum(data)
                                     .transition().duration(scope.options.chart.transitionDuration)
                                     .call(scope.chart);
                             }

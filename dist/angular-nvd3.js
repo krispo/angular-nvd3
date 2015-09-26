@@ -1,5 +1,5 @@
 /**************************************************************************
-* AngularJS-nvD3, v1.0.2; MIT License; 16/09/2015 21:33
+* AngularJS-nvD3, v1.0.2; MIT License; 26/09/2015 21:38
 * http://krispo.github.io/angular-nvd3
 **************************************************************************/
 (function(){
@@ -170,11 +170,20 @@
                                 // remove whole svg element with old data
                                 d3.select(element[0]).select('svg').remove();
 
+                                var h, w, svg;
+
                                 // Select the current element to add <svg> element and to render the chart in
-                                d3.select(element[0]).append('svg')
-                                    .attr('height', scope.options.chart.height)
-                                    .attr('width', scope.options.chart.width  || '100%')
-                                    .datum(data)
+                                svg = d3.select(element[0]).append('svg');
+                                if (h = scope.options.chart.height) {
+                                    if (!isNaN(+h)) h += 'px'; //check if height is number
+                                    svg.attr('height', h).style({height: h});
+                                }
+                                if (w = scope.options.chart.width) {
+                                    if (!isNaN(+w)) w += 'px'; //check if width is number
+                                    svg.attr('width', w).style({width: w});
+                                }
+
+                                svg.datum(data)
                                     .transition().duration(scope.options.chart.transitionDuration)
                                     .call(scope.chart);
                             }
