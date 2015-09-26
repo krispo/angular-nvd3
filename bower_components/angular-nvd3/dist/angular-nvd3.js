@@ -1,7 +1,7 @@
 /**************************************************************************
- * AngularJS-nvD3, v1.0.1; MIT License; 07/09/2015 08:40
- * http://krispo.github.io/angular-nvd3
- **************************************************************************/
+* AngularJS-nvD3, v1.0.3-dev; MIT License; 26/09/2015 21:44
+* http://krispo.github.io/angular-nvd3
+**************************************************************************/
 (function(){
 
     'use strict';
@@ -25,7 +25,9 @@
                         disabled: false,
                         autorefresh: true,
                         refreshDataOnly: false,
-                        deepWatchData: true,
+                        deepWatchOptions: true,
+                        deepWatchData: false, // to increase performance by default
+                        deepWatchConfig: true,
                         debounce: 10 // default 10ms, time silence to prevent refresh while multiple options changes at a time
                     };
 
@@ -64,15 +66,15 @@
                             angular.forEach(scope.chart, function(value, key){
                                 if (key[0] === '_');
                                 else if ([
-                                        'clearHighlights',
-                                        'highlightPoint',
-                                        'id',
-                                        'options',
-                                        'resizeHandler',
-                                        'state',
-                                        'open',
-                                        'close'
-                                    ].indexOf(key) >= 0);
+                                    'clearHighlights',
+                                    'highlightPoint',
+                                    'id',
+                                    'options',
+                                    'resizeHandler',
+                                    'state',
+                                    'open',
+                                    'close'
+                                ].indexOf(key) >= 0);
 
                                 else if (key === 'dispatch') {
                                     if (options.chart[key] === undefined || options.chart[key] === null) {
@@ -82,40 +84,40 @@
                                 }
 
                                 else if ([
-                                        'bars',
-                                        'bars1',
-                                        'bars2',
-                                        'boxplot',
-                                        'bullet',
-                                        'controls',
-                                        'discretebar',
-                                        'distX',
-                                        'distY',
-                                        'interactiveLayer',
-                                        'legend',
-                                        'lines',
-                                        'lines1',
-                                        'lines2',
-                                        'multibar',
-                                        'pie',
-                                        'scatter',
-                                        'sparkline',
-                                        'stack1',
-                                        'stack2',
-                                        'sunburst',
-                                        'tooltip',
-                                        'x2Axis',
-                                        'xAxis',
-                                        'y1Axis',
-                                        'y2Axis',
-                                        'y3Axis',
-                                        'y4Axis',
-                                        'yAxis',
-                                        'yAxis1',
-                                        'yAxis2'
-                                    ].indexOf(key) >= 0 ||
+                                    'bars',
+                                    'bars1',
+                                    'bars2',
+                                    'boxplot',
+                                    'bullet',
+                                    'controls',
+                                    'discretebar',
+                                    'distX',
+                                    'distY',
+                                    'interactiveLayer',
+                                    'legend',
+                                    'lines',
+                                    'lines1',
+                                    'lines2',
+                                    'multibar',
+                                    'pie',
+                                    'scatter',
+                                    'sparkline',
+                                    'stack1',
+                                    'stack2',
+                                    'sunburst',
+                                    'tooltip',
+                                    'x2Axis',
+                                    'xAxis',
+                                    'y1Axis',
+                                    'y2Axis',
+                                    'y3Axis',
+                                    'y4Axis',
+                                    'yAxis',
+                                    'yAxis1',
+                                    'yAxis2'
+                                ].indexOf(key) >= 0 ||
                                         // stacked is a component for stackedAreaChart, but a boolean for multiBarChart and multiBarHorizontalChart
-                                    (key === 'stacked' && options.chart.type === 'stackedAreaChart')) {
+                                        (key === 'stacked' && options.chart.type === 'stackedAreaChart')) {
                                     if (options.chart[key] === undefined || options.chart[key] === null) {
                                         if (scope._config.extended) options.chart[key] = {};
                                     }
@@ -168,11 +170,20 @@
                                 // remove whole svg element with old data
                                 d3.select(element[0]).select('svg').remove();
 
+                                var h, w, svg;
+
                                 // Select the current element to add <svg> element and to render the chart in
-                                d3.select(element[0]).append('svg')
-                                    .attr('height', scope.options.chart.height)
-                                    .attr('width', scope.options.chart.width  || '100%')
-                                    .datum(data)
+                                svg = d3.select(element[0]).append('svg');
+                                if (h = scope.options.chart.height) {
+                                    if (!isNaN(+h)) h += 'px'; //check if height is number
+                                    svg.attr('height', h).style({height: h});
+                                }
+                                if (w = scope.options.chart.width) {
+                                    if (!isNaN(+w)) w += 'px'; //check if width is number
+                                    svg.attr('width', w).style({width: w});
+                                }
+
+                                svg.datum(data)
                                     .transition().duration(scope.options.chart.transitionDuration)
                                     .call(scope.chart);
                             }
@@ -215,19 +226,25 @@
                                     }
                                     configureEvents(value, options[key]);
                                 }
+                                else if (key === 'tooltip') {
+                                    if (options[key] === undefined || options[key] === null) {
+                                        if (scope._config.extended) options[key] = {};
+                                    }
+                                    configure(chart[key], options[key], chartType);
+                                }
                                 else if ([
-                                        'axis',
-                                        'clearHighlights',
-                                        'defined',
-                                        'highlightPoint',
-                                        'nvPointerEventsClass',
-                                        'options',
-                                        'rangeBand',
-                                        'rangeBands',
-                                        'scatter',
-                                        'open',
-                                        'close'
-                                    ].indexOf(key) === -1) {
+                                    'axis',
+                                    'clearHighlights',
+                                    'defined',
+                                    'highlightPoint',
+                                    'nvPointerEventsClass',
+                                    'options',
+                                    'rangeBand',
+                                    'rangeBands',
+                                    'scatter',
+                                    'open',
+                                    'close'
+                                ].indexOf(key) === -1) {
                                     if (options[key] === undefined || options[key] === null){
                                         if (scope._config.extended) options[key] = value();
                                     }
@@ -331,7 +348,7 @@
                     // Watching on options changing
                     scope.$watch('options', nvd3Utils.debounce(function(newOptions){
                         if (!scope._config.disabled && scope._config.autorefresh) scope.api.refresh();
-                    }, scope._config.debounce, true), true);
+                    }, scope._config.debounce, true), scope._config.deepWatchOptions);
 
                     // Watching on data changing
                     scope.$watch('data', function(newData, oldData){
@@ -348,7 +365,7 @@
                             scope._config = angular.extend(defaultConfig, newConfig);
                             scope.api.refresh();
                         }
-                    }, true);
+                    }, scope._config.deepWatchConfig);
 
                     //subscribe on global events
                     angular.forEach(scope.events, function(eventHandler, event){
