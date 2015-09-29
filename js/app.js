@@ -1,6 +1,6 @@
 'use strict';
 
-var app = angular.module('mainApp', ['mainApp.controllers','ngRoute', 'json-tree', 'nvd3'])
+var app = angular.module('mainApp', ['mainApp.controllers','ngRoute', 'json-tree', 'nvd3', 'gridster', 'ui.bootstrap'])
 
 /**
  * Config -------------------------------------------------------------------------
@@ -10,6 +10,7 @@ var app = angular.module('mainApp', ['mainApp.controllers','ngRoute', 'json-tree
         $routeProvider.when('/quickstart', {templateUrl: 'pages/quickstart.html', controller: 'quickstartCtrl'});
         $routeProvider.when('/liveedit', {templateUrl: 'pages/liveedit.html', controller: 'mainCtrl'});
         $routeProvider.when('/feedback', {templateUrl: 'pages/feedback.html', controller: 'mainCtrl'});
+        $routeProvider.when('/dashboard', {templateUrl: 'pages/gridster/dashboard.html', controller: 'dashboardCtrl'});
 
         angular.forEach(CHARTS, function(value, key){
             $routeProvider.when(value.path, {templateUrl: 'pages/liveedit.html', controller: key + 'Ctrl'});
@@ -84,7 +85,7 @@ var app = angular.module('mainApp', ['mainApp.controllers','ngRoute', 'json-tree
  */
     .controller('mainCtrl', function($scope, $location){
         $scope.isActive = function(viewLocation){
-            if (viewLocation === '/liveedit') return (($location.path() !== '/quickstart') && ($location.path() !== '/') && ($location.path() !== '/feedback'));
+            if (viewLocation === '/liveedit') return (($location.path() !== '/quickstart') && ($location.path() !== '/') && ($location.path() !== '/feedback') && ($location.path() !== '/dashboard'));
             else return viewLocation === $location.path();
         };
     })

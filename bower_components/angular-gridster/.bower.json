@@ -1,0 +1,42 @@
+{
+  "name": "angular-gridster",
+  "version": "0.13.5",
+  "main": [
+    "src/angular-gridster.js",
+    "dist/angular-gridster.min.css"
+  ],
+  "dependencies": {
+    "angular": ">= 1.2.0",
+    "javascript-detect-element-resize": "sdecima/javascript-detect-element-resize#~0.5.1"
+  },
+  "devDependencies": {
+    "angular-mocks": ">= 1.2.0",
+    "angular-animate": ">= 1.2.0",
+    "jquery": "*",
+    "jquery-simulate": "*"
+  },
+  "ignore": [
+    "test",
+    ".bowerrc",
+    ".editorconfig",
+    ".gitattributes",
+    ".gitignore",
+    ".jshintrc",
+    ".travis.yml",
+    "Gruntfile.js",
+    "karma.conf.js",
+    "ptor.conf.js",
+    "package.json"
+  ],
+  "homepage": "https://github.com/ManifestWebDesign/angular-gridster",
+  "_release": "0.13.5",
+  "_resolution": {
+    "type": "version",
+    "tag": "v0.13.5",
+    "commit": "281de99fa8faf744ddf78ebb517ae1f265a4fe7a"
+  },
+  "_source": "git://github.com/ManifestWebDesign/angular-gridster.git",
+  "_target": "~0.13.5",
+  "_originalSource": "angular-gridster",
+  "_direct": true
+}
