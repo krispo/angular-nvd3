@@ -171,6 +171,7 @@ var app = angular.module('mainApp', ['mainApp.controllers','ngRoute', 'json-tree
             { name: "Creating multiple charts inside ng-repeat", url: "http://plnkr.co/edit/qFa4UL?p=preview"},
             { name: "Stacked Multi Bar chart with random barColor", url: "http://plnkr.co/edit/TwKry8?p=preview"},
             { name: "Pie Chart with custom legend position and size", url: "http://embed.plnkr.co/TJqjjkHaD2S0VjsGmN3c/preview"},
+            { name: "Updating with Large Data", url: "http://plnkr.co/edit/PqepCg"},
             { name: "Ionic Framework demo", url: "http://plnkr.co/edit/e3HZQN?p=preview"}
         ]
     })
