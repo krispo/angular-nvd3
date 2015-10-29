@@ -1,48 +1,62 @@
 
-.controls {
+.dashboard .controls {
     margin-bottom: 20px;
 }
-.page-header {
-    margin-top: 20px;
+.dashboard .page-header {
+    padding: 0;
+    margin: 20px 20px 15px 20px;
 }
-ul {
+
+.dashboard .page-header .btn {
+    margin-left: 5px;
+}
+
+.dashboard .page-header .form-control {
+    width: 150px;
+    display:inline-block;
+}
+
+.dashboard ul {
     list-style: none;
 }
-.box {
+.dashboard .box {
     height: 100%;
     border: 1px solid #ccc;
     background-color: #fff;
 }
-.box-header {
+.dashboard .box-header {
     background-color: #eee;
     padding: 0 30px 0 10px;
     border-bottom: 1px solid #ccc;
     cursor: move;
     position: relative;
 }
-.box-header h3 {
-    margin-top: 10px;
+.dashboard .box-header h3 {
+    width: 100%;
+    font-size: 20px;
+    margin: 6px 0px;
     display: inline-block;
 }
-.box-content {
+.dashboard .box-content {
     padding: 10px;
 }
-.box-header-btns {
-    top: 15px;
+.dashboard .box-header-btns {
+    top: 9px;
     right: 10px;
     cursor: pointer;
     position: absolute;
 }
-a {
+.dashboard .box-header-btns a {
     color: #ccc;
 }
-form {
+.dashboard form {
     margin-bottom: 0;
 }
-.gridster {
+.dashboard .gridster {
     border: 1px solid #ccc;
 }
 
-.modal {
+/* Modal */
+.dashboard .modal {
     overflow-y: hidden;
 }

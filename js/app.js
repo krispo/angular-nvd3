@@ -62,7 +62,11 @@ var app = angular.module('mainApp', ['mainApp.controllers','ngRoute', 'json-tree
                 return (prettify) ? JSON.stringify(json, undefined, 2) : json;
             },
 
-            reload: function(){ $route.reload(); }
+            reload: function(){
+              $route.reload();
+            },
+
+
         };
 
         /* global events for all nvd3 directives */
