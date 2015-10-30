@@ -1,5 +1,5 @@
 /**************************************************************************
-* AngularJS-nvD3, v1.0.3-dev; MIT License; 30/10/2015 16:29
+* AngularJS-nvD3, v1.0.3-dev; MIT License; 30/10/2015 23:59
 * http://krispo.github.io/angular-nvd3
 **************************************************************************/
 (function(){
@@ -181,6 +181,8 @@
                                 if (w = scope.options.chart.width) {
                                     if (!isNaN(+w)) w += 'px'; //check if width is number
                                     svg.attr('width', w).style({width: w});
+                                } else {
+                                  svg.attr('width', '100%').style({width: '100%'});
                                 }
 
                                 svg.datum(data)
