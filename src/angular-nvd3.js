@@ -39,7 +39,7 @@
 
                         // Update chart layout (for example if container is resized)
                         update: function() {
-                            scope.chart.update();
+                            if (scope.chart) scope.chart.update();
                         },
 
                         // Update chart with new options

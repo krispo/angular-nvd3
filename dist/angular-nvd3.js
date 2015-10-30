@@ -1,5 +1,5 @@
 /**************************************************************************
-* AngularJS-nvD3, v1.0.3-dev; MIT License; 27/10/2015 10:25
+* AngularJS-nvD3, v1.0.3-dev; MIT License; 30/10/2015 16:29
 * http://krispo.github.io/angular-nvd3
 **************************************************************************/
 (function(){
@@ -43,7 +43,7 @@
 
                         // Update chart layout (for example if container is resized)
                         update: function() {
-                            scope.chart.update();
+                            if (scope.chart) scope.chart.update();
                         },
 
                         // Update chart with new options
