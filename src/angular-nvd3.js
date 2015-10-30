@@ -279,7 +279,7 @@
 
                         if (_.enable) {
                             if (name === 'title') element.prepend(wrapElement);
-                            else if (name === 'subtitle') element.find('.title').after(wrapElement);
+                            else if (name === 'subtitle') angular.element(element[0].querySelector('.title')).after(wrapElement);
                             else if (name === 'caption') element.append(wrapElement);
                         }
                     }

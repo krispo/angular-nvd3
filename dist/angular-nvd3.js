@@ -1,5 +1,5 @@
 /**************************************************************************
-* AngularJS-nvD3, v1.0.3-dev; MIT License; 26/09/2015 21:44
+* AngularJS-nvD3, v1.0.3-dev; MIT License; 27/10/2015 10:25
 * http://krispo.github.io/angular-nvd3
 **************************************************************************/
 (function(){
@@ -283,7 +283,7 @@
 
                         if (_.enable) {
                             if (name === 'title') element.prepend(wrapElement);
-                            else if (name === 'subtitle') element.find('.title').after(wrapElement);
+                            else if (name === 'subtitle') angular.element(element[0].querySelector('.title')).after(wrapElement);
                             else if (name === 'caption') element.append(wrapElement);
                         }
                     }
