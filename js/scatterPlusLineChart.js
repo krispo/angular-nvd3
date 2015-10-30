@@ -14,9 +14,9 @@ angular.module('mainApp.controllers')
                 },
                 showDistX: true,
                 showDistY: true,
-                tooltipContent: function(key) {
-                    return '<h3>' + key + '</h3>';
-                },
+                //tooltipContent: function(d) {
+                //    return d.series && '<h3>' + d.series[0].key + '</h3>';
+                //},
                 transitionDuration: 350,
                 xAxis: {
                     axisLabel: 'X Axis',
@@ -29,7 +29,7 @@ angular.module('mainApp.controllers')
                     tickFormat: function(d){
                         return d3.format('.02f')(d);
                     },
-                    axisLabelDistance: 30
+                    axisLabelDistance: -5
                 }
             }
         };

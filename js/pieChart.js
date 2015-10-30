@@ -13,6 +13,7 @@ angular.module('mainApp.controllers')
                 showLabels: true,
                 transitionDuration: 500,
                 labelThreshold: 0.01,
+                labelSunbeamLayout: true,
                 legend: {
                     margin: {
                         top: 5,

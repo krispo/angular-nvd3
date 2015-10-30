@@ -11,7 +11,7 @@ angular.module('mainApp.controllers')
                 margin : {
                     top: 20,
                     right: 20,
-                    bottom: 60,
+                    bottom: 30,
                     left: 40
                 },
                 x: function(d){return d[0];},
