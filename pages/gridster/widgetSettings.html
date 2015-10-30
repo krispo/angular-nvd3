@@ -22,8 +22,7 @@
                             <select name="type"
                                     class="form-control"
                                     ng-model="form.type"
-                                    ng-options="value.title for (key, value) in params.charts"
-                                    ng-change="utils.selectChart(form.type)">
+                                    ng-options="value for value in widgetTypes">
                             </select>
                         </div>
                     </div>
