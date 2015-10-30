@@ -11,11 +11,11 @@ angular.module('mainApp.controllers')
                 margin : {
                     top: 20,
                     right: 20,
-                    bottom: 60,
+                    bottom: 45,
                     left: 45
                 },
                 clipEdge: true,
-                staggerLabels: true,
+                //staggerLabels: true,
                 transitionDuration: 500,
                 stacked: true,
                 xAxis: {
@@ -27,7 +27,7 @@ angular.module('mainApp.controllers')
                 },
                 yAxis: {
                     axisLabel: 'Y Axis',
-                    axisLabelDistance: 40,
+                    axisLabelDistance: -20,
                     tickFormat: function(d){
                         return d3.format(',.1f')(d);
                     }

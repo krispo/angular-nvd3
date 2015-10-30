@@ -42,7 +42,8 @@ angular.module('mainApp.controllers')
                     axisLabel: 'Y1 Axis',
                     tickFormat: function(d){
                         return d3.format(',f')(d);
-                    }
+                    },
+                    axisLabelDistance: 12
                 },
                 y2Axis: {
                     axisLabel: 'Y2 Axis',

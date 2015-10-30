@@ -181,6 +181,8 @@
                                 if (w = scope.options.chart.width) {
                                     if (!isNaN(+w)) w += 'px'; //check if width is number
                                     svg.attr('width', w).style({width: w});
+                                } else {
+                                  svg.attr('width', '100%').style({width: '100%'});
                                 }
 
                                 svg.datum(data)

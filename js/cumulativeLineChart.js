@@ -11,7 +11,7 @@ angular.module('mainApp.controllers')
                 margin : {
                     top: 20,
                     right: 20,
-                    bottom: 60,
+                    bottom: 50,
                     left: 65
                 },
                 x: function(d){ return d[0]; },
@@ -37,7 +37,7 @@ angular.module('mainApp.controllers')
                     tickFormat: function(d){
                         return d3.format(',.1%')(d);
                     },
-                    axisLabelDistance: 20
+                    axisLabelDistance: 0
                 }
             }
         };

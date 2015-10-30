@@ -30,7 +30,7 @@ angular.module('mainApp.controllers', [])
                     tickFormat: function(d){
                         return d3.format('.02f')(d);
                     },
-                    axisLabelDistance: 30
+                    axisLabelDistance: -10
                 },
                 callback: function(chart){
                     console.log("!!! lineChart callback !!!");

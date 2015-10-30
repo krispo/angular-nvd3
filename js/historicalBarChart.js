@@ -11,7 +11,7 @@ angular.module('mainApp.controllers')
                 margin : {
                     top: 20,
                     right: 20,
-                    bottom: 60,
+                    bottom: 65,
                     left: 50
                 },
                 x: function(d){return d[0];},
@@ -26,12 +26,12 @@ angular.module('mainApp.controllers')
                     tickFormat: function(d) {
                         return d3.time.format('%x')(new Date(d))
                     },
-                    rotateLabels: 50,
+                    rotateLabels: 30,
                     showMaxMin: false
                 },
                 yAxis: {
                     axisLabel: 'Y Axis',
-                    axisLabelDistance: 35,
+                    axisLabelDistance: -10,
                     tickFormat: function(d){
                         return d3.format(',.1f')(d);
                     }

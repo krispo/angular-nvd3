@@ -11,7 +11,7 @@ angular.module('mainApp.controllers')
                 margin : {
                     top: 20,
                     right: 20,
-                    bottom: 60,
+                    bottom: 50,
                     left: 55
                 },
                 x: function(d){return d.label;},
@@ -26,7 +26,7 @@ angular.module('mainApp.controllers')
                 },
                 yAxis: {
                     axisLabel: 'Y Axis',
-                    axisLabelDistance: 30
+                    axisLabelDistance: -10
                 }
             }
         };
