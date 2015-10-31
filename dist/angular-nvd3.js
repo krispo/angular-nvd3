@@ -1,5 +1,5 @@
 /**************************************************************************
-* AngularJS-nvD3, v1.0.3-dev; MIT License; 30/10/2015 23:59
+* AngularJS-nvD3, v1.0.3-dev; MIT License; 01/11/2015 02:15
 * http://krispo.github.io/angular-nvd3
 **************************************************************************/
 (function(){
@@ -158,6 +158,82 @@
                                 scope.chart.resizeHandler = nv.utils.windowResize(function() {
                                     scope.chart && scope.chart.update && scope.chart.update();
                                 });
+
+                                //// Zoom feature - start
+                                // TODO: Only scatterChart is tested for now
+                                var fixDomain, zoomed, unzoomed;
+                                if (options.chart.type === 'scatterChart' && options.chart.zoom !== undefined) {
+                                    var xScale = scope.chart.xAxis.scale();
+                                    var yScale = scope.chart.yAxis.scale();
+                                    var xDomain = scope.chart.xDomain || xScale.domain;
+                                    var yDomain = scope.chart.yDomain || yScale.domain;
+                                    var x_boundary = xScale.domain().slice();
+                                    var y_boundary = yScale.domain().slice();
+                                    var scaleExtent = [1, 10];
+                                    if (options.chart.zoom.scaleExtent !== undefined)
+                                        scaleExtent = options.chart.zoom.scaleExtent;
+
+                                    var scale = 1;
+                                    if (options.chart.zoom.scale !== undefined)
+                                        scale = options.chart.zoom.scale;
+
+                                    // create d3 zoom handler
+                                    var d3zoom = d3.behavior.zoom();
+
+                                    // ensure nice axis
+                                    xScale.nice();
+                                    yScale.nice();
+
+                                    // fix domain
+                                    fixDomain = function (domain, boundary) {
+                                        domain[0] = Math.min(Math.max(domain[0], boundary[0]), boundary[1] - boundary[1] / scaleExtent[1]);
+                                        domain[1] = Math.max(boundary[0] + boundary[1] / scaleExtent[1], Math.min(domain[1], boundary[1]));
+                                        return domain;
+                                    };
+                                    // zoom event handler
+                                    zoomed = function () {
+                                        if (options.chart.zoom.zoomed !== undefined) {
+                                            var domains = options.chart.zoom.zoomed();
+                                            xDomain([domains.x1, domains.x2]);
+                                            yDomain([domains.y1, domains.y2]);
+                                        } else {
+                                            xDomain(fixDomain(xScale.domain(), x_boundary));
+                                            yDomain(fixDomain(yScale.domain(), y_boundary));
+                                        }
+                                        scope.chart.update();
+                                    };
+
+                                    // unzoomed event handler
+                                    unzoomed = function () {
+                                        if (options.chart.zoom.unzoomed !== undefined) {
+                                            var domains = options.chart.zoom.unzoomed();
+                                            xDomain([domains.x1, domains.x2]);
+                                            yDomain([domains.y1, domains.y2]);
+                                        } else {
+                                            xDomain(x_boundary);
+                                            yDomain(y_boundary);
+                                        }
+                                        d3zoom.scale(1);
+                                        d3zoom.translate([0, 0]);
+                                        scope.chart.update();
+                                    };
+
+                                    // initialize
+                                    d3zoom.x(xScale)
+                                        .y(yScale)
+                                        .scaleExtent(scaleExtent)
+                                        .on('zoom', zoomed);
+
+                                    if (options.chart.zoom.translate !== undefined)
+                                        d3zoom.translate(options.chart.zoom.translate);
+
+                                    scope.svg.call(d3zoom);
+
+                                    if (options.chart.zoom.unzoomEventType !== undefined)
+                                        scope.svg.on(options.chart.zoom.unzoomEventType, unzoomed);
+                                    }
+                                //// Zoom feature - end
+        
                                 return scope.chart;
                             }, options.chart['callback']);
                         },
@@ -170,22 +246,22 @@
                                 // remove whole svg element with old data
                                 d3.select(element[0]).select('svg').remove();
 
-                                var h, w, svg;
+                                var h, w;
 
                                 // Select the current element to add <svg> element and to render the chart in
-                                svg = d3.select(element[0]).append('svg');
+                                scope.svg = d3.select(element[0]).append('svg');
                                 if (h = scope.options.chart.height) {
                                     if (!isNaN(+h)) h += 'px'; //check if height is number
-                                    svg.attr('height', h).style({height: h});
+                                    scope.svg.attr('height', h).style({height: h});
                                 }
                                 if (w = scope.options.chart.width) {
                                     if (!isNaN(+w)) w += 'px'; //check if width is number
-                                    svg.attr('width', w).style({width: w});
+                                    scope.svg.attr('width', w).style({width: w});
                                 } else {
-                                  svg.attr('width', '100%').style({width: '100%'});
+                                  scope.svg.attr('width', '100%').style({width: '100%'});
                                 }
 
-                                svg.datum(data)
+                                scope.svg.datum(data)
                                     .transition().duration(scope.options.chart.transitionDuration)
                                     .call(scope.chart);
                             }
