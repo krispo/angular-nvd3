@@ -189,7 +189,7 @@
                                     // zoom event handler
                                     zoomed = function () {
                                         if (options.chart.zoom.zoomed !== undefined) {
-                                            var domains = options.chart.zoom.zoomed();
+                                            var domains = options.chart.zoom.zoomed(xScale.domain(), yScale.domain());
                                             xDomain([domains.x1, domains.x2]);
                                             yDomain([domains.y1, domains.y2]);
                                         } else {
@@ -202,7 +202,7 @@
                                     // unzoomed event handler
                                     unzoomed = function () {
                                         if (options.chart.zoom.unzoomed !== undefined) {
-                                            var domains = options.chart.zoom.unzoomed();
+                                            var domains = options.chart.zoom.unzoomed(xScale.domain(), yScale.domain());
                                             xDomain([domains.x1, domains.x2]);
                                             yDomain([domains.y1, domains.y2]);
                                         } else {
