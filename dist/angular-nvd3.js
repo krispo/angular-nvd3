@@ -1,5 +1,5 @@
 /**************************************************************************
-* AngularJS-nvD3, v1.0.3-dev; MIT License; 30/10/2015 23:59
+* AngularJS-nvD3, v1.0.3-dev; MIT License; 01/11/2015 17:01
 * http://krispo.github.io/angular-nvd3
 **************************************************************************/
 (function(){
@@ -158,6 +158,14 @@
                                 scope.chart.resizeHandler = nv.utils.windowResize(function() {
                                     scope.chart && scope.chart.update && scope.chart.update();
                                 });
+
+                                //// Zoom feature - start
+                                // TODO: Only scatterChart is tested for now
+                                if (options.chart.type === 'scatterChart' && options.chart.zoom !== undefined) {
+                                    nvd3Utils.zoom(scope, options);
+                                }
+                                //// Zoom feature - end
+        
                                 return scope.chart;
                             }, options.chart['callback']);
                         },
@@ -170,22 +178,22 @@
                                 // remove whole svg element with old data
                                 d3.select(element[0]).select('svg').remove();
 
-                                var h, w, svg;
+                                var h, w;
 
                                 // Select the current element to add <svg> element and to render the chart in
-                                svg = d3.select(element[0]).append('svg');
+                                scope.svg = d3.select(element[0]).append('svg');
                                 if (h = scope.options.chart.height) {
                                     if (!isNaN(+h)) h += 'px'; //check if height is number
-                                    svg.attr('height', h).style({height: h});
+                                    scope.svg.attr('height', h).style({height: h});
                                 }
                                 if (w = scope.options.chart.width) {
                                     if (!isNaN(+w)) w += 'px'; //check if width is number
-                                    svg.attr('width', w).style({width: w});
+                                    scope.svg.attr('width', w).style({width: w});
                                 } else {
-                                  svg.attr('width', '100%').style({width: '100%'});
+                                  scope.svg.attr('width', '100%').style({width: '100%'});
                                 }
 
-                                svg.datum(data)
+                                scope.svg.datum(data)
                                     .transition().duration(scope.options.chart.transitionDuration)
                                     .call(scope.chart);
                             }
@@ -414,6 +422,84 @@
                         }
                     });
                     return dst;
+                },
+                zoom: function(scope, options) {
+                    var zoom = options.chart.zoom;
+                    var xScale = scope.chart.xAxis.scale()
+                        , yScale = scope.chart.yAxis.scale()
+                        , xDomain = scope.chart.xDomain || xScale.domain
+                        , yDomain = scope.chart.yDomain || yScale.domain
+                        , x_boundary = xScale.domain().slice()
+                        , y_boundary = yScale.domain().slice()
+
+                    // initialize zoom options
+                        , scale = zoom.scale || 1
+                        , translate = zoom.translate || [0, 0]
+                        , scaleExtent = zoom.scaleExtent || [1, 10]
+                        , useFixedDomain = zoom.useFixedDomain || false
+                        , useNiceScale = zoom.useNiceScale || false
+                        , horizontalOff = zoom.horizontalOff || false
+                        , verticalOff = zoom.verticalOff || false
+
+                    // auxiliary functions
+                        , fixDomain
+                        , d3zoom
+                        , zoomed
+                        , unzoomed
+                        ;
+
+                    // ensure nice axis
+                    if (useNiceScale) {
+                        xScale.nice();
+                        yScale.nice();
+                    }
+
+                    // fix domain
+                    fixDomain = function (domain, boundary) {
+                        domain[0] = Math.min(Math.max(domain[0], boundary[0]), boundary[1] - boundary[1] / scaleExtent[1]);
+                        domain[1] = Math.max(boundary[0] + boundary[1] / scaleExtent[1], Math.min(domain[1], boundary[1]));
+                        return domain;
+                    };
+
+                    // zoom event handler
+                    zoomed = function () {
+                        if (zoom.zoomed !== undefined) {
+                            var domains = zoom.zoomed(xScale.domain(), yScale.domain());
+                            if (!horizontalOff) xDomain([domains.x1, domains.x2]);
+                            if (!verticalOff) yDomain([domains.y1, domains.y2]);
+                        } else {
+                            if (!horizontalOff) xDomain(useFixedDomain ? fixDomain(xScale.domain(), x_boundary) : xScale.domain());
+                            if (!verticalOff) yDomain(useFixedDomain ? fixDomain(yScale.domain(), y_boundary) : yScale.domain());
+                        }
+                        scope.chart.update();
+                    };
+
+                    // unzoomed event handler
+                    unzoomed = function () {
+                        if (zoom.unzoomed !== undefined) {
+                            var domains = zoom.unzoomed(xScale.domain(), yScale.domain());
+                            if (!horizontalOff) xDomain([domains.x1, domains.x2]);
+                            if (!verticalOff) yDomain([domains.y1, domains.y2]);
+                        } else {
+                            if (!horizontalOff) xDomain(x_boundary);
+                            if (!verticalOff) yDomain(y_boundary);
+                        }
+                        d3zoom.scale(scale).translate(translate);
+                        scope.chart.update();
+                    };
+
+                    // create d3 zoom handler
+                    d3zoom = d3.behavior.zoom()
+                        .x(xScale)
+                        .y(yScale)
+                        .scaleExtent(scaleExtent)
+                        .on('zoom', zoomed);
+
+                    scope.svg.call(d3zoom);
+
+                    d3zoom.scale(scale).translate(translate).event(scope.svg);
+
+                    if (zoom.unzoomEventType !== undefined) scope.svg.on(zoom.unzoomEventType, unzoomed);
                 }
             };
         });
