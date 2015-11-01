@@ -11,10 +11,10 @@ module.exports = function(config) {
 
         // List of files/patterns to load in the browser.
         files: [
-            'lib/angular.min.js',
-            'lib/angular-mocks.js',
-            'lib/d3.min.js',
-            'lib/nv.d3.min.js',
+            'node_modules/angular/angular.min.js',
+            'node_modules/angular-mocks/angular-mocks.js',
+            'node_modules/d3/d3.min.js',
+            'node_modules/nvd3/build/nv.d3.min.js',
             'src/**/*.js',
             'test/**/*Spec.js'
         ],

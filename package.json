@@ -33,7 +33,11 @@
         "grunt-contrib-uglify": "^0.4.0",
         "grunt-contrib-watch": "^0.6.1",
         "karma": "~0.10",
-        "karma-coverage": "^0.2.1"
+        "karma-coverage": "^0.2.1",
+        "angular": "^1.x",
+        "angular-mocks": "^1.x",
+        "d3": "^3.3",
+        "nvd3": "^1.7.1"
     },
     "scripts": {
         "test": "karma start test/karma.conf.js",
