@@ -5,6 +5,7 @@
     "expr": true,
     "immed": true,
     "laxbreak": true,
+    "laxcomma": true,
     "latedef": true,
     "newcap": true,
     "nonew": true,

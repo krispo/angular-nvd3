@@ -1,5 +1,5 @@
 /**************************************************************************
-* AngularJS-nvD3, v1.0.3-dev; MIT License; 01/11/2015 11:00
+* AngularJS-nvD3, v1.0.3-dev; MIT License; 01/11/2015 17:01
 * http://krispo.github.io/angular-nvd3
 **************************************************************************/
 (function(){
@@ -161,77 +161,9 @@
 
                                 //// Zoom feature - start
                                 // TODO: Only scatterChart is tested for now
-                                var fixDomain, zoomed, unzoomed;
                                 if (options.chart.type === 'scatterChart' && options.chart.zoom !== undefined) {
-                                    var xScale = scope.chart.xAxis.scale();
-                                    var yScale = scope.chart.yAxis.scale();
-                                    var xDomain = scope.chart.xDomain || xScale.domain;
-                                    var yDomain = scope.chart.yDomain || yScale.domain;
-                                    var x_boundary = xScale.domain().slice();
-                                    var y_boundary = yScale.domain().slice();
-                                    var scaleExtent = [1, 10];
-                                    if (options.chart.zoom.scaleExtent !== undefined)
-                                        scaleExtent = options.chart.zoom.scaleExtent;
-
-                                    var scale = 1;
-                                    if (options.chart.zoom.scale !== undefined)
-                                        scale = options.chart.zoom.scale;
-
-                                    // create d3 zoom handler
-                                    var d3zoom = d3.behavior.zoom();
-
-                                    // ensure nice axis
-                                    xScale.nice();
-                                    yScale.nice();
-
-                                    // fix domain
-                                    fixDomain = function (domain, boundary) {
-                                        domain[0] = Math.min(Math.max(domain[0], boundary[0]), boundary[1] - boundary[1] / scaleExtent[1]);
-                                        domain[1] = Math.max(boundary[0] + boundary[1] / scaleExtent[1], Math.min(domain[1], boundary[1]));
-                                        return domain;
-                                    };
-                                    // zoom event handler
-                                    zoomed = function () {
-                                        if (options.chart.zoom.zoomed !== undefined) {
-                                            var domains = options.chart.zoom.zoomed(xScale.domain(), yScale.domain());
-                                            xDomain([domains.x1, domains.x2]);
-                                            yDomain([domains.y1, domains.y2]);
-                                        } else {
-                                            xDomain(fixDomain(xScale.domain(), x_boundary));
-                                            yDomain(fixDomain(yScale.domain(), y_boundary));
-                                        }
-                                        scope.chart.update();
-                                    };
-
-                                    // unzoomed event handler
-                                    unzoomed = function () {
-                                        if (options.chart.zoom.unzoomed !== undefined) {
-                                            var domains = options.chart.zoom.unzoomed(xScale.domain(), yScale.domain());
-                                            xDomain([domains.x1, domains.x2]);
-                                            yDomain([domains.y1, domains.y2]);
-                                        } else {
-                                            xDomain(x_boundary);
-                                            yDomain(y_boundary);
-                                        }
-                                        d3zoom.scale(1);
-                                        d3zoom.translate([0, 0]);
-                                        scope.chart.update();
-                                    };
-
-                                    // initialize
-                                    d3zoom.x(xScale)
-                                        .y(yScale)
-                                        .scaleExtent(scaleExtent)
-                                        .on('zoom', zoomed);
-
-                                    if (options.chart.zoom.translate !== undefined)
-                                        d3zoom.translate(options.chart.zoom.translate);
-
-                                    scope.svg.call(d3zoom);
-
-                                    if (options.chart.zoom.unzoomEventType !== undefined)
-                                        scope.svg.on(options.chart.zoom.unzoomEventType, unzoomed);
-                                    }
+                                    nvd3Utils.zoom(scope, options);
+                                }
                                 //// Zoom feature - end
         
                                 return scope.chart;
@@ -490,6 +422,84 @@
                         }
                     });
                     return dst;
+                },
+                zoom: function(scope, options) {
+                    var zoom = options.chart.zoom;
+                    var xScale = scope.chart.xAxis.scale()
+                        , yScale = scope.chart.yAxis.scale()
+                        , xDomain = scope.chart.xDomain || xScale.domain
+                        , yDomain = scope.chart.yDomain || yScale.domain
+                        , x_boundary = xScale.domain().slice()
+                        , y_boundary = yScale.domain().slice()
+
+                    // initialize zoom options
+                        , scale = zoom.scale || 1
+                        , translate = zoom.translate || [0, 0]
+                        , scaleExtent = zoom.scaleExtent || [1, 10]
+                        , useFixedDomain = zoom.useFixedDomain || false
+                        , useNiceScale = zoom.useNiceScale || false
+                        , horizontalOff = zoom.horizontalOff || false
+                        , verticalOff = zoom.verticalOff || false
+
+                    // auxiliary functions
+                        , fixDomain
+                        , d3zoom
+                        , zoomed
+                        , unzoomed
+                        ;
+
+                    // ensure nice axis
+                    if (useNiceScale) {
+                        xScale.nice();
+                        yScale.nice();
+                    }
+
+                    // fix domain
+                    fixDomain = function (domain, boundary) {
+                        domain[0] = Math.min(Math.max(domain[0], boundary[0]), boundary[1] - boundary[1] / scaleExtent[1]);
+                        domain[1] = Math.max(boundary[0] + boundary[1] / scaleExtent[1], Math.min(domain[1], boundary[1]));
+                        return domain;
+                    };
+
+                    // zoom event handler
+                    zoomed = function () {
+                        if (zoom.zoomed !== undefined) {
+                            var domains = zoom.zoomed(xScale.domain(), yScale.domain());
+                            if (!horizontalOff) xDomain([domains.x1, domains.x2]);
+                            if (!verticalOff) yDomain([domains.y1, domains.y2]);
+                        } else {
+                            if (!horizontalOff) xDomain(useFixedDomain ? fixDomain(xScale.domain(), x_boundary) : xScale.domain());
+                            if (!verticalOff) yDomain(useFixedDomain ? fixDomain(yScale.domain(), y_boundary) : yScale.domain());
+                        }
+                        scope.chart.update();
+                    };
+
+                    // unzoomed event handler
+                    unzoomed = function () {
+                        if (zoom.unzoomed !== undefined) {
+                            var domains = zoom.unzoomed(xScale.domain(), yScale.domain());
+                            if (!horizontalOff) xDomain([domains.x1, domains.x2]);
+                            if (!verticalOff) yDomain([domains.y1, domains.y2]);
+                        } else {
+                            if (!horizontalOff) xDomain(x_boundary);
+                            if (!verticalOff) yDomain(y_boundary);
+                        }
+                        d3zoom.scale(scale).translate(translate);
+                        scope.chart.update();
+                    };
+
+                    // create d3 zoom handler
+                    d3zoom = d3.behavior.zoom()
+                        .x(xScale)
+                        .y(yScale)
+                        .scaleExtent(scaleExtent)
+                        .on('zoom', zoomed);
+
+                    scope.svg.call(d3zoom);
+
+                    d3zoom.scale(scale).translate(translate).event(scope.svg);
+
+                    if (zoom.unzoomEventType !== undefined) scope.svg.on(zoom.unzoomEventType, unzoomed);
                 }
             };
         });
