@@ -1,7 +1,7 @@
 /**************************************************************************
-* AngularJS-nvD3, v1.0.3-dev; MIT License; 26/09/2015 21:44
-* http://krispo.github.io/angular-nvd3
-**************************************************************************/
+ * AngularJS-nvD3, v1.0.3-dev; MIT License; 02/11/2015 13:49
+ * http://krispo.github.io/angular-nvd3
+ **************************************************************************/
 (function(){
 
     'use strict';
@@ -66,15 +66,16 @@
                             angular.forEach(scope.chart, function(value, key){
                                 if (key[0] === '_');
                                 else if ([
-                                    'clearHighlights',
-                                    'highlightPoint',
-                                    'id',
-                                    'options',
-                                    'resizeHandler',
-                                    'state',
-                                    'open',
-                                    'close'
-                                ].indexOf(key) >= 0);
+                                        'clearHighlights',
+                                        'highlightPoint',
+                                        'id',
+                                        'options',
+                                        'resizeHandler',
+                                        'state',
+                                        'open',
+                                        'close',
+                                        'tooltipContent'
+                                    ].indexOf(key) >= 0);
 
                                 else if (key === 'dispatch') {
                                     if (options.chart[key] === undefined || options.chart[key] === null) {
@@ -84,40 +85,40 @@
                                 }
 
                                 else if ([
-                                    'bars',
-                                    'bars1',
-                                    'bars2',
-                                    'boxplot',
-                                    'bullet',
-                                    'controls',
-                                    'discretebar',
-                                    'distX',
-                                    'distY',
-                                    'interactiveLayer',
-                                    'legend',
-                                    'lines',
-                                    'lines1',
-                                    'lines2',
-                                    'multibar',
-                                    'pie',
-                                    'scatter',
-                                    'sparkline',
-                                    'stack1',
-                                    'stack2',
-                                    'sunburst',
-                                    'tooltip',
-                                    'x2Axis',
-                                    'xAxis',
-                                    'y1Axis',
-                                    'y2Axis',
-                                    'y3Axis',
-                                    'y4Axis',
-                                    'yAxis',
-                                    'yAxis1',
-                                    'yAxis2'
-                                ].indexOf(key) >= 0 ||
+                                        'bars',
+                                        'bars1',
+                                        'bars2',
+                                        'boxplot',
+                                        'bullet',
+                                        'controls',
+                                        'discretebar',
+                                        'distX',
+                                        'distY',
+                                        'interactiveLayer',
+                                        'legend',
+                                        'lines',
+                                        'lines1',
+                                        'lines2',
+                                        'multibar',
+                                        'pie',
+                                        'scatter',
+                                        'sparkline',
+                                        'stack1',
+                                        'stack2',
+                                        'sunburst',
+                                        'tooltip',
+                                        'x2Axis',
+                                        'xAxis',
+                                        'y1Axis',
+                                        'y2Axis',
+                                        'y3Axis',
+                                        'y4Axis',
+                                        'yAxis',
+                                        'yAxis1',
+                                        'yAxis2'
+                                    ].indexOf(key) >= 0 ||
                                         // stacked is a component for stackedAreaChart, but a boolean for multiBarChart and multiBarHorizontalChart
-                                        (key === 'stacked' && options.chart.type === 'stackedAreaChart')) {
+                                    (key === 'stacked' && options.chart.type === 'stackedAreaChart')) {
                                     if (options.chart[key] === undefined || options.chart[key] === null) {
                                         if (scope._config.extended) options.chart[key] = {};
                                     }
@@ -152,12 +153,22 @@
                             if (options['styles'] || scope._config.extended) configureStyles();
 
                             nv.addGraph(function() {
+                                if (!scope.chart) return;
+
                                 // Remove resize handler. Due to async execution should be placed here, not in the clearElement
-                                if (scope.chart && scope.chart.resizeHandler) scope.chart.resizeHandler.clear();
+                                if (scope.chart.resizeHandler) scope.chart.resizeHandler.clear();
+
                                 // Update the chart when window resizes
                                 scope.chart.resizeHandler = nv.utils.windowResize(function() {
                                     scope.chart && scope.chart.update && scope.chart.update();
                                 });
+
+                                // Zoom feature
+                                // TODO: Only scatterChart is tested for now
+                                if (options.chart.type === 'scatterChart' && options.chart.zoom !== undefined) {
+                                    nvd3Utils.zoom(scope, options);
+                                }
+
                                 return scope.chart;
                             }, options.chart['callback']);
                         },
@@ -170,22 +181,22 @@
                                 // remove whole svg element with old data
                                 d3.select(element[0]).select('svg').remove();
 
-                                var h, w, svg;
+                                var h, w;
 
                                 // Select the current element to add <svg> element and to render the chart in
-                                svg = d3.select(element[0]).append('svg');
+                                scope.svg = d3.select(element[0]).append('svg');
                                 if (h = scope.options.chart.height) {
                                     if (!isNaN(+h)) h += 'px'; //check if height is number
-                                    svg.attr('height', h).style({height: h});
+                                    scope.svg.attr('height', h).style({height: h});
                                 }
                                 if (w = scope.options.chart.width) {
                                     if (!isNaN(+w)) w += 'px'; //check if width is number
-                                    svg.attr('width', w).style({width: w});
+                                    scope.svg.attr('width', w).style({width: w});
                                 } else {
-                                  svg.attr('width', '100%').style({width: '100%'});
+                                    scope.svg.attr('width', '100%').style({width: '100%'});
                                 }
 
-                                svg.datum(data)
+                                scope.svg.datum(data)
                                     .transition().duration(scope.options.chart.transitionDuration)
                                     .call(scope.chart);
                             }
@@ -234,19 +245,22 @@
                                     }
                                     configure(chart[key], options[key], chartType);
                                 }
+                                else if (key === 'contentGenerator') {
+                                    if (options[key]) chart[key](options[key]);
+                                }
                                 else if ([
-                                    'axis',
-                                    'clearHighlights',
-                                    'defined',
-                                    'highlightPoint',
-                                    'nvPointerEventsClass',
-                                    'options',
-                                    'rangeBand',
-                                    'rangeBands',
-                                    'scatter',
-                                    'open',
-                                    'close'
-                                ].indexOf(key) === -1) {
+                                        'axis',
+                                        'clearHighlights',
+                                        'defined',
+                                        'highlightPoint',
+                                        'nvPointerEventsClass',
+                                        'options',
+                                        'rangeBand',
+                                        'rangeBands',
+                                        'scatter',
+                                        'open',
+                                        'close'
+                                    ].indexOf(key) === -1) {
                                     if (options[key] === undefined || options[key] === null){
                                         if (scope._config.extended) options[key] = value();
                                     }
@@ -285,7 +299,7 @@
 
                         if (_.enable) {
                             if (name === 'title') element.prepend(wrapElement);
-                            else if (name === 'subtitle') element.find('.title').after(wrapElement);
+                            else if (name === 'subtitle') angular.element(element[0].querySelector('.title')).after(wrapElement);
                             else if (name === 'caption') element.append(wrapElement);
                         }
                     }
@@ -414,6 +428,84 @@
                         }
                     });
                     return dst;
+                },
+                zoom: function(scope, options) {
+                    var zoom = options.chart.zoom;
+                    var xScale = scope.chart.xAxis.scale()
+                        , yScale = scope.chart.yAxis.scale()
+                        , xDomain = scope.chart.xDomain || xScale.domain
+                        , yDomain = scope.chart.yDomain || yScale.domain
+                        , x_boundary = xScale.domain().slice()
+                        , y_boundary = yScale.domain().slice()
+
+                    // initialize zoom options
+                        , scale = zoom.scale || 1
+                        , translate = zoom.translate || [0, 0]
+                        , scaleExtent = zoom.scaleExtent || [1, 10]
+                        , useFixedDomain = zoom.useFixedDomain || false
+                        , useNiceScale = zoom.useNiceScale || false
+                        , horizontalOff = zoom.horizontalOff || false
+                        , verticalOff = zoom.verticalOff || false
+
+                    // auxiliary functions
+                        , fixDomain
+                        , d3zoom
+                        , zoomed
+                        , unzoomed
+                        ;
+
+                    // ensure nice axis
+                    if (useNiceScale) {
+                        xScale.nice();
+                        yScale.nice();
+                    }
+
+                    // fix domain
+                    fixDomain = function (domain, boundary) {
+                        domain[0] = Math.min(Math.max(domain[0], boundary[0]), boundary[1] - boundary[1] / scaleExtent[1]);
+                        domain[1] = Math.max(boundary[0] + boundary[1] / scaleExtent[1], Math.min(domain[1], boundary[1]));
+                        return domain;
+                    };
+
+                    // zoom event handler
+                    zoomed = function () {
+                        if (zoom.zoomed !== undefined) {
+                            var domains = zoom.zoomed(xScale.domain(), yScale.domain());
+                            if (!horizontalOff) xDomain([domains.x1, domains.x2]);
+                            if (!verticalOff) yDomain([domains.y1, domains.y2]);
+                        } else {
+                            if (!horizontalOff) xDomain(useFixedDomain ? fixDomain(xScale.domain(), x_boundary) : xScale.domain());
+                            if (!verticalOff) yDomain(useFixedDomain ? fixDomain(yScale.domain(), y_boundary) : yScale.domain());
+                        }
+                        scope.chart.update();
+                    };
+
+                    // unzoomed event handler
+                    unzoomed = function () {
+                        if (zoom.unzoomed !== undefined) {
+                            var domains = zoom.unzoomed(xScale.domain(), yScale.domain());
+                            if (!horizontalOff) xDomain([domains.x1, domains.x2]);
+                            if (!verticalOff) yDomain([domains.y1, domains.y2]);
+                        } else {
+                            if (!horizontalOff) xDomain(x_boundary);
+                            if (!verticalOff) yDomain(y_boundary);
+                        }
+                        d3zoom.scale(scale).translate(translate);
+                        scope.chart.update();
+                    };
+
+                    // create d3 zoom handler
+                    d3zoom = d3.behavior.zoom()
+                        .x(xScale)
+                        .y(yScale)
+                        .scaleExtent(scaleExtent)
+                        .on('zoom', zoomed);
+
+                    scope.svg.call(d3zoom);
+
+                    d3zoom.scale(scale).translate(translate).event(scope.svg);
+
+                    if (zoom.unzoomEventType !== undefined) scope.svg.on(zoom.unzoomEventType, unzoomed);
                 }
             };
         });
