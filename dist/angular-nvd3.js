@@ -1,5 +1,5 @@
 /**************************************************************************
-* AngularJS-nvD3, v1.0.3-dev; MIT License; 02/11/2015 13:49
+* AngularJS-nvD3, v1.0.3-dev; MIT License; 02/11/2015 16:18
 * http://krispo.github.io/angular-nvd3
 **************************************************************************/
 (function(){
@@ -73,7 +73,8 @@
                                     'resizeHandler',
                                     'state',
                                     'open',
-                                    'close'
+                                    'close',
+                                    'tooltipContent'
                                 ].indexOf(key) >= 0);
 
                                 else if (key === 'dispatch') {
@@ -243,6 +244,9 @@
                                         if (scope._config.extended) options[key] = {};
                                     }
                                     configure(chart[key], options[key], chartType);
+                                }
+                                else if (key === 'contentGenerator') {
+                                    if (options[key]) chart[key](options[key]);
                                 }
                                 else if ([
                                     'axis',

@@ -69,7 +69,8 @@
                                     'resizeHandler',
                                     'state',
                                     'open',
-                                    'close'
+                                    'close',
+                                    'tooltipContent'
                                 ].indexOf(key) >= 0);
 
                                 else if (key === 'dispatch') {
@@ -239,6 +240,9 @@
                                         if (scope._config.extended) options[key] = {};
                                     }
                                     configure(chart[key], options[key], chartType);
+                                }
+                                else if (key === 'contentGenerator') {
+                                    if (options[key]) chart[key](options[key]);
                                 }
                                 else if ([
                                     'axis',
