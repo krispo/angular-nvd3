@@ -1,5 +1,5 @@
 /**************************************************************************
-* AngularJS-nvD3, v1.0.3-dev; MIT License; 01/11/2015 17:01
+* AngularJS-nvD3, v1.0.3-dev; MIT License; 02/11/2015 13:49
 * http://krispo.github.io/angular-nvd3
 **************************************************************************/
 (function(){
@@ -152,19 +152,21 @@
                             if (options['styles'] || scope._config.extended) configureStyles();
 
                             nv.addGraph(function() {
+                                if (!scope.chart) return;
+
                                 // Remove resize handler. Due to async execution should be placed here, not in the clearElement
-                                if (scope.chart && scope.chart.resizeHandler) scope.chart.resizeHandler.clear();
+                                if (scope.chart.resizeHandler) scope.chart.resizeHandler.clear();
+
                                 // Update the chart when window resizes
                                 scope.chart.resizeHandler = nv.utils.windowResize(function() {
                                     scope.chart && scope.chart.update && scope.chart.update();
                                 });
 
-                                //// Zoom feature - start
+                                // Zoom feature
                                 // TODO: Only scatterChart is tested for now
                                 if (options.chart.type === 'scatterChart' && options.chart.zoom !== undefined) {
                                     nvd3Utils.zoom(scope, options);
                                 }
-                                //// Zoom feature - end
         
                                 return scope.chart;
                             }, options.chart['callback']);
