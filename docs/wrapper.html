@@ -1,1 +1,63 @@
-Configuring with Title, Subtitle and Caption.
+You can add <code>Title</code>, <code>Subtitle</code> and <code>Caption</code> to the option's definition as follows:
+
+<pre><code class="javascript">$scope.options = {
+    // chart options
+    chart: {
+        type: 'lineChart',
+        ...
+    },
+
+    // title options
+    title: {
+        enable: true,
+        text: 'Title for Line Chart'
+    },
+
+    // subtitle options
+    subtitle: {
+        enable: true,
+        text: 'Subtitle for simple line chart. Lorem ipsum dolor sit amet...',
+        css: {
+            'text-align': 'center',
+            'margin': '10px 13px 0px 7px'
+        }
+    },
+
+    // caption options
+    caption: {
+        enable: true,
+        html: '<b>Figure 1.</b> Lorem ipsum dolor sit amet...',
+        css: {
+            'text-align': 'justify',
+            'margin': '10px 13px 0px 7px'
+        }
+    }
+}</code></pre>
+
+<code>Title</code>, <code>Subtitle</code> and <code>Caption</code> can contain the following options:
+<table class="tableAPI">
+    <tr>
+        <th class="api">Option</th>
+        <th class="desc">Description</th>
+    </tr>
+    <tr>
+        <td class="api">enable</td>
+        <td class="desc"><b>true</b>: boolean. Use / don't use.</td>
+    </tr>
+    <tr>
+        <td class="api">text</td>
+        <td class="desc"><b>Some text.</b>: string. Used as a plain text.</td>
+    </tr>
+    <tr>
+        <td class="api">html</td>
+        <td class="desc"><b>Some html.</b>: string. Used as a html instead of a plain text.</td>
+    </tr>
+    <tr>
+        <td class="api">className</td>
+        <td class="desc"><b>h4</b>: string. Add any class definition.</td>
+    </tr>
+    <tr>
+        <td class="api">css</td>
+        <td class="desc"><b>{}</b>: object. Add additional styles for html.</td>
+    </tr>
+</table>

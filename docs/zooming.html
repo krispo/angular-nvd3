@@ -1,0 +1,99 @@
+Zooming functionality (since v1.0.3+) is available in the following charts:
+
+<ul>
+    <li>Scatter Chart</li>
+    <li>Scatter Plus Line Chart</li>
+</ul>
+
+<pre><code class="javascript">chart: {
+    /* Chart options ... */
+
+    zoom: {
+        //NOTE: All attributes below are optional
+        scale: 1,
+        scaleExtent: [1, 10],
+        translate: [0, 0],
+        useFixedDomain: false,
+        useNiceScale: false,
+        horizontalOff: false,
+        verticalOff: false,
+        zoomed: function(xDomain, yDomain) {
+            var domains = {x1: 0, x2: 0, y1: 1, y2: 1};
+            return domains;
+        },
+        unzoomed: function(xDomain, yDomain) {
+            var domains = {x1: 0, x2: 0, y1: 0, y2: 0};
+            return domains;
+        },
+        unzoomEventType: 'dblclick.zoom'
+    }
+}</code></pre>
+
+:
+<table class="tableAPI">
+    <tr>
+        <th class="api">Option</th>
+        <th class="desc">Description</th>
+    </tr>
+    <tr>
+        <td class="api">scale</td>
+        <td class="desc"><b>1</b>: number. Initial scale factor.</td>
+    </tr>
+    <tr>
+        <td class="api">scaleExtent</td>
+        <td class="desc"><b>[1, 10]</b>: array. <br/> Specifies the zoom scale's allowed range as a two-element array, [minimum, maximum].</td>
+    </tr>
+    <tr>
+        <td class="api">translate</td>
+        <td class="desc"><b>[0, 0]</b>: array. Specifies the current zoom translation vector.</td>
+    </tr>
+    <tr>
+        <td class="api">useFixedDomain</td>
+        <td class="desc"><b>false</b>: boolean. Restrict zooming area to only available data range.</td>
+    </tr>
+    <tr>
+        <td class="api">useNiceScale</td>
+        <td class="desc"><b>false</b>: boolean. Extend the scale domain to nice round numbers.</td>
+    </tr>
+    <tr>
+        <td class="api">horizontalOff</td>
+        <td class="desc"><b>false</b>: boolean. Turn off horizontal zoom.</td>
+    </tr>
+    <tr>
+        <td class="api">verticalOff</td>
+        <td class="desc"><b>false</b>: boolean. Turn off vertical zoom.</td>
+    </tr>
+    <tr>
+        <td class="api">zoomed(xDomain, yDomain)</td>
+        <td class="desc"><b>noop</b>: function. Zoom event handler.
+            <div style="font-size: small;">
+                Input: xDomain: [lowX, highX], yDomain: [lowY, highY]. <br/>
+                Output: {x1: lowX, x2: highX, y1: lowY, y2: highY}.
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td class="api">unzoomed(xDomain, yDomain)</td>
+        <td class="desc"><b>noop</b>: function. Unzoom event handler.
+            <div style="font-size: small;">
+                Input: xDomain: [lowX, highX], yDomain: [lowY, highY]. <br/>
+                Output: {x1: lowX, x2: highX, y1: lowY, y2: highY}.
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td class="api">unzoomEventType</td>
+        <td class="desc"><b>dblclick.zoom</b>: string. Which event type use to reset zoom to initial state. Available events:
+            <div style="font-size: x-small;">
+                        mousedown.zoom
+                <br/>   mousewheel.zoom
+                <br/>   mousemove.zoom
+                <br/>   DOMMouseScroll.zoom
+                <br/>   dblclick.zoom
+                <br/>   touchstart.zoom
+                <br/>   touchmove.zoom
+                <br/>   touchend.zoom
+            </div>
+        </td>
+    </tr>
+</table>
