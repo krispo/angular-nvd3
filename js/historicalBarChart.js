@@ -20,7 +20,7 @@ angular.module('mainApp.controllers')
                 valueFormat: function(d){
                     return d3.format(',.1f')(d);
                 },
-                transitionDuration: 500,
+                duration: 100,
                 xAxis: {
                     axisLabel: 'X Axis',
                     tickFormat: function(d) {
@@ -35,6 +35,15 @@ angular.module('mainApp.controllers')
                     tickFormat: function(d){
                         return d3.format(',.1f')(d);
                     }
+                },
+                zoom: {
+                    enabled: true,
+                    scaleExtent: [1, 10],
+                    useFixedDomain: false,
+                    useNiceScale: false,
+                    horizontalOff: false,
+                    verticalOff: true,
+                    unzoomEventType: 'dblclick.zoom'
                 }
             }
         };

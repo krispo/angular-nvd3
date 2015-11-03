@@ -18,7 +18,7 @@ angular.module('mainApp.controllers')
                 y: function(d){return d[1];},
                 useVoronoi: false,
                 clipEdge: true,
-                transitionDuration: 500,
+                duration: 100,
                 useInteractiveGuideline: true,
                 xAxis: {
                     showMaxMin: false,
@@ -30,6 +30,15 @@ angular.module('mainApp.controllers')
                     tickFormat: function(d){
                         return d3.format(',.2f')(d);
                     }
+                },
+                zoom: {
+                    enabled: true,
+                    scaleExtent: [1, 10],
+                    useFixedDomain: false,
+                    useNiceScale: false,
+                    horizontalOff: false,
+                    verticalOff: true,
+                    unzoomEventType: 'dblclick.zoom'
                 }
             }
         };

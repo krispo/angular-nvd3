@@ -16,7 +16,7 @@ angular.module('mainApp.controllers')
                 },
                 x: function(d){ return d['date']; },
                 y: function(d){ return d['close']; },
-                transitionDuration: 300,
+                duration: 100,
 
                 xAxis: {
                     axisLabel: 'Dates',
@@ -32,6 +32,15 @@ angular.module('mainApp.controllers')
                         return '$' + d3.format(',.1f')(d);
                     },
                     showMaxMin: false
+                },
+                zoom: {
+                    enabled: true,
+                    scaleExtent: [1, 10],
+                    useFixedDomain: false,
+                    useNiceScale: false,
+                    horizontalOff: false,
+                    verticalOff: true,
+                    unzoomEventType: 'dblclick.zoom'
                 }
             }
         };
