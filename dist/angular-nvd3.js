@@ -1,5 +1,5 @@
 /**************************************************************************
-* AngularJS-nvD3, v1.0.3-dev; MIT License; 03/11/2015 11:20
+* AngularJS-nvD3, v1.0.3-dev; MIT License; 03/11/2015 16:38
 * http://krispo.github.io/angular-nvd3
 **************************************************************************/
 (function(){
@@ -432,6 +432,11 @@
                 },
                 zoom: function(scope, options) {
                     var zoom = options.chart.zoom;
+
+                    // check if zoom enabled
+                    var enabled = (typeof zoom.enabled === 'undefined' || zoom.enabled === null) ? true : zoom.enabled;
+                    if (!enabled) return;
+
                     var xScale = scope.chart.xAxis.scale()
                         , yScale = scope.chart.yAxis.scale()
                         , xDomain = scope.chart.xDomain || xScale.domain
@@ -447,6 +452,7 @@
                         , useNiceScale = zoom.useNiceScale || false
                         , horizontalOff = zoom.horizontalOff || false
                         , verticalOff = zoom.verticalOff || false
+                        , unzoomEventType = zoom.unzoomEventType || 'dblclick.zoom'
 
                     // auxiliary functions
                         , fixDomain
@@ -506,7 +512,7 @@
 
                     d3zoom.scale(scale).translate(translate).event(scope.svg);
 
-                    if (zoom.unzoomEventType !== undefined) scope.svg.on(zoom.unzoomEventType, unzoomed);
+                    if (unzoomEventType !== 'none') scope.svg.on(unzoomEventType, unzoomed);
                 }
             };
         });
