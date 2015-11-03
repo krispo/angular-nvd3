@@ -10,6 +10,7 @@ Zooming functionality (since v1.0.3+) is available in the following charts:
 
     zoom: {
         //NOTE: All attributes below are optional
+        enabled: true,
         scale: 1,
         scaleExtent: [1, 10],
         translate: [0, 0],
@@ -29,11 +30,14 @@ Zooming functionality (since v1.0.3+) is available in the following charts:
     }
 }</code></pre>
 
-:
 <table class="tableAPI">
     <tr>
         <th class="api">Option</th>
         <th class="desc">Description</th>
+    </tr>
+    <tr>
+        <td class="api">enabled</td>
+        <td class="desc"><b>true</b>: boolean. Turn on / off zooming.</td>
     </tr>
     <tr>
         <td class="api">scale</td>
@@ -83,7 +87,7 @@ Zooming functionality (since v1.0.3+) is available in the following charts:
     </tr>
     <tr>
         <td class="api">unzoomEventType</td>
-        <td class="desc"><b>dblclick.zoom</b>: string. Which event type use to reset zoom to initial state. Available events:
+        <td class="desc"><b>"dblclick.zoom"</b>: string. Which event type use to reset zoom to initial state. Available events:
             <div style="font-size: x-small;">
                         mousedown.zoom
                 <br/>   mousewheel.zoom
@@ -93,7 +97,16 @@ Zooming functionality (since v1.0.3+) is available in the following charts:
                 <br/>   touchstart.zoom
                 <br/>   touchmove.zoom
                 <br/>   touchend.zoom
+                <br/>   none
             </div>
         </td>
     </tr>
 </table>
+Note that all options are optional, so to include zooming is enough to define an empty zoom options:
+<pre><code class="javascript">chart: {
+    /* Chart options ... */
+
+    zoom: {}
+}</code></pre>
+Zooming in action: <a href="http://krispo.github.io/angular-nvd3/#/scatterChart" target="_blank">Scatter Chart</a>,
+<a href="http://krispo.github.io/angular-nvd3/#/scatterPlusLineChart" target="_blank">Scatter + Line Chart</a>

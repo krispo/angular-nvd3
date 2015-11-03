@@ -30,6 +30,16 @@ angular.module('mainApp.controllers')
                         return d3.format('.02f')(d);
                     },
                     axisLabelDistance: -5
+                },
+                zoom: {
+                    //NOTE: All attributes below are optional
+                    enabled: true,
+                    scaleExtent: [1, 10],
+                    useFixedDomain: true,
+                    useNiceScale: false,
+                    horizontalOff: false,
+                    verticalOff: false,
+                    unzoomEventType: 'dblclick.zoom'
                 }
             }
         };
