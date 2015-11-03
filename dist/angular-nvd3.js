@@ -1,5 +1,5 @@
 /**************************************************************************
-* AngularJS-nvD3, v1.0.3-dev; MIT License; 03/11/2015 16:38
+* AngularJS-nvD3, v1.0.3-dev; MIT License; 03/11/2015 20:57
 * http://krispo.github.io/angular-nvd3
 **************************************************************************/
 (function(){
@@ -164,9 +164,16 @@
                                     scope.chart && scope.chart.update && scope.chart.update();
                                 });
 
-                                // Zoom feature
-                                // TODO: Only scatterChart is tested for now
-                                if (options.chart.type === 'scatterChart' && options.chart.zoom !== undefined) {
+                                /// Zoom feature
+                                if (options.chart.zoom !== undefined && [
+                                        'scatterChart',
+                                        'lineChart',
+                                        'candlestickBarChart',
+                                        'cumulativeLineChart',
+                                        'historicalBarChart',
+                                        'ohlcBarChart',
+                                        'stackedAreaChart'
+                                    ].indexOf(options.chart.type) > -1) {
                                     nvd3Utils.zoom(scope, options);
                                 }
         
