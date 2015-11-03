@@ -204,12 +204,16 @@ var app = angular.module('mainApp', ['mainApp.controllers','ngRoute', 'json-tree
             id: -1,
             caption: 'Customize Chart Options'
         },{
-            id: 'doc_wrapper',
-            title: 'Wrapper',
-            url: './docs/wrapper.html'
+            id: 'doc_options',
+            title: 'Options',
+            url: './docs/options.html'
         },{
             id: 'doc_events',
             title: 'Events',
             url: './docs/events.html'
-        },]
+        },{
+            id: 'doc_wrapper',
+            title: 'Wrapper',
+            url: './docs/wrapper.html'
+        }]
     })

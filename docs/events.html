@@ -1,1 +1,41 @@
-Configuring with events
+Any <code>dispatch</code> object contains event handlers for the specific chart element.
+Check <a href="http://krispo.github.io/angular-nvd3/#/lineChart" target="_blank">Live Edit</a> page in extended mode and find all events in json tree that are available for the specific chart.
+General dispatch options contain only general chart events. For example, for line chart:
+<pre><code class="javascript">chart: {
+    ...
+    // general chart and tooltip events
+    dispatch: {
+        stateChange: function(e){ console.log('stateChange') },
+        changeState: function(e){ console.log('changeState') },
+        tooltipShow: function(e){ console.log('tooltipShow') },
+        tooltipHide: function(e){ console.log('tooltipHide') },
+        renderEnd: function(e){ console.log('renderEnd') }
+    }
+    ...
+}</code></pre>
+If you want to get and handle events for a specific chart element, you can do this via basic dispatch options. For our line chart example, this can be done as follows:
+<pre><code class="javascript">chart: {
+    ...
+    // line chart events
+    lines: {
+        dispatch: {
+            elementClick: function(e){ console.log('click') },
+            elementMouseover: function(e){ console.log('mouseover') },
+            elementMouseout: function(e){ console.log('mouseout') },
+            renderEnd: function(e){ console.log('renderEnd') }
+        }
+    },
+
+    // legend events
+    legend: {
+        dispatch: {
+            legendClick: function(e) {...},
+            legendDblclick: function(e) {...},
+            legendMouseover: function(e) {...},
+            legendMouseout: function(e) {...},
+            stateChange: function(e) {...}
+        }
+    }
+    ...
+}</code></pre>
+Note that the chart events are different from the global events (that not actually relate to the chart, but directive), described in <code>Attributes</code> section.

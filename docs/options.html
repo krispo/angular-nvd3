@@ -1,0 +1,33 @@
+NVD3 has a set of very basic models, such as <code>line</code>, <code>scatter</code>, <code>bar</code>,
+<code>multibar</code>, <code>pie</code>, <code>legend</code> and so on.
+And any other chart is build on top of some of these basic models.
+So, in the chart api you can find the <code>general</code> chart options (are placed in the root) and  options for these basic models in a separate chart option (<code>lines</code>, <code>bars</code>, <code>discretebar</code>, ...).
+<br/><br/>
+For example, the <code>lineWithFocusChart</code> has 2 line charts (main and focus), so the basic <code>line</code> model is used twice in this chart.
+And as a result, in the chart options you can find <code>lines</code> and <code>lines2</code> fields, that contain the basic line options.
+Actually, all these basic options are optional, and in most cases you can never use it at all,
+because as a rule (but not always) all these options are duplicated in the general chart options.
+For example, you can specify option <code>forceX</code> in two ways, as a general option:
+<pre><code class="javascript">chart: {
+    ...
+    forceX: 100,
+    ...
+}</code></pre>
+and as the option of the basic <code>line</code> model:
+<pre><code class="javascript">chart: {
+    ...
+    lines: { //options for basic line model; main chart
+        forceX: 100
+    },
+    ...
+}</code></pre>
+But there is no the same general option for a small focus chart.
+So, if we want to specify the same option for a small focus chart, we can specify it only via basic line model <code>lines2</code>:
+<pre><code class="javascript">chart: {
+    ...
+    lines2: { //options for basic line model; focus chart
+        forceX: 100
+    },
+    ...
+}</code></pre>
+This is a simple example, when we can use the options of the basic models to fine-tune the chart.
