@@ -1,5 +1,5 @@
 /**************************************************************************
- * AngularJS-nvD3, v1.0.3-dev; MIT License; 03/11/2015 11:20
+ * AngularJS-nvD3, v1.0.3-dev; MIT License; 04/11/2015 17:22
  * http://krispo.github.io/angular-nvd3
  **************************************************************************/
 (function(){
@@ -24,7 +24,7 @@
                         visible: true,
                         disabled: false,
                         autorefresh: true,
-                        refreshDataOnly: false,
+                        refreshDataOnly: true,
                         deepWatchOptions: true,
                         deepWatchData: false, // to increase performance by default
                         deepWatchConfig: true,
@@ -164,7 +164,7 @@
                                     scope.chart && scope.chart.update && scope.chart.update();
                                 });
 
-                                // Zoom feature
+                                /// Zoom feature
                                 if (options.chart.zoom !== undefined && [
                                         'scatterChart',
                                         'lineChart',

@@ -13,7 +13,7 @@ Setting up the global directive config in your controller like:
     extended: false, // default: false
     disabled: false, // default: false
     autorefresh: true, // default: true
-    refreshDataOnly: false, // default: false
+    refreshDataOnly: true, // default: true
     deepWatchOptions: true, // default: true
     deepWatchData: false, // default: false
     deepWatchConfig: true, // default: true
@@ -44,7 +44,8 @@ Setting up the global directive config in your controller like:
     </tr>
     <tr>
         <td class="api">refreshDataOnly</td>
-        <td class="desc"><b>false</b>: boolean.<br> Refresh chart with data only, and without refreshing the full directive. It is especially useful for real-time updated charts.</td>
+        <td class="desc"><b>true</b>: boolean. (since v1.0.3+ it's <b>true</b> by default)
+            <br> Refresh chart with data only, and without refreshing the full directive. It is especially useful for real-time updated charts.</td>
     </tr>
     <tr>
         <td class="api">deepWatchOptions</td>
@@ -52,7 +53,8 @@ Setting up the global directive config in your controller like:
     </tr>
     <tr>
         <td class="api">deepWatchData</td>
-        <td class="desc"><b>false</b>: boolean.<br> If <i>true</i>, directive watches for updating complex data objects. Inequality of the <i>watchExpression</i> is determined according to the angular.equals function. To save the value of the object for later comparison, the angular.copy function is used. This therefore means that watching complex objects will have adverse memory and performance implications.</td>
+        <td class="desc"><b>false</b>: boolean. (since v1.0.2+ it's <b>false</b> by default)
+            <br> If <i>true</i>, directive watches for updating complex data objects. Inequality of the <i>watchExpression</i> is determined according to the angular.equals function. To save the value of the object for later comparison, the angular.copy function is used. This therefore means that watching complex objects will have adverse memory and performance implications.</td>
     </tr>
     <tr>
         <td class="api">deepWatchConfig</td>
