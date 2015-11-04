@@ -1,5 +1,5 @@
 /**************************************************************************
- * AngularJS-nvD3, v1.0.3-dev; MIT License; 04/11/2015 17:22
+ * AngularJS-nvD3, v1.0.3-dev; MIT License; 04/11/2015 20:22
  * http://krispo.github.io/angular-nvd3
  **************************************************************************/
 (function(){
@@ -184,8 +184,6 @@
                         // Update chart with new data
                         updateWithData: function (data){
                             if (data) {
-                                // TODO this triggers one more refresh. Refactor it!
-                                scope.options.chart.transitionDuration = +scope.options.chart.transitionDuration || 250;
                                 // remove whole svg element with old data
                                 d3.select(element[0]).select('svg').remove();
 
@@ -204,9 +202,7 @@
                                     scope.svg.attr('width', '100%').style({width: '100%'});
                                 }
 
-                                scope.svg.datum(data)
-                                    .transition().duration(scope.options.chart.transitionDuration)
-                                    .call(scope.chart);
+                                scope.svg.datum(data).call(scope.chart);
                             }
                         },
 
