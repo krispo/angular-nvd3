@@ -20,7 +20,7 @@
                         visible: true,
                         disabled: false,
                         autorefresh: true,
-                        refreshDataOnly: false,
+                        refreshDataOnly: true,
                         deepWatchOptions: true,
                         deepWatchData: false, // to increase performance by default
                         deepWatchConfig: true,
