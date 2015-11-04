@@ -16,7 +16,7 @@ angular.module('mainApp.controllers')
                 },
                 clipEdge: true,
                 //staggerLabels: true,
-                transitionDuration: 500,
+                duration: 500,
                 stacked: true,
                 xAxis: {
                     axisLabel: 'Time (ms)',

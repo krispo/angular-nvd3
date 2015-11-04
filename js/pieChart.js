@@ -11,7 +11,7 @@ angular.module('mainApp.controllers')
                 x: function(d){return d.key;},
                 y: function(d){return d.y;},
                 showLabels: true,
-                transitionDuration: 500,
+                duration: 500,
                 labelThreshold: 0.01,
                 labelSunbeamLayout: true,
                 legend: {

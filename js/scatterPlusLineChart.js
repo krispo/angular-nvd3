@@ -17,7 +17,7 @@ angular.module('mainApp.controllers')
                 //tooltipContent: function(d) {
                 //    return d.series && '<h3>' + d.series[0].key + '</h3>';
                 //},
-                transitionDuration: 350,
+                duration: 350,
                 xAxis: {
                     axisLabel: 'X Axis',
                     tickFormat: function(d){

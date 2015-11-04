@@ -20,7 +20,7 @@ angular.module('mainApp.controllers')
                 valueFormat: function(d){
                     return d3.format(',.4f')(d);
                 },
-                transitionDuration: 500,
+                duration: 500,
                 xAxis: {
                     axisLabel: 'X Axis'
                 },

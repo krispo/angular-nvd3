@@ -19,7 +19,7 @@ angular.module('mainApp.controllers')
                 average: function(d) { return d.mean/100; },
 
                 color: d3.scale.category10().range(),
-                transitionDuration: 300,
+                duration: 300,
                 useInteractiveGuideline: true,
                 clipVoronoi: false,
 

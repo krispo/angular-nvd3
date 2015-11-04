@@ -7,7 +7,7 @@ angular.module('mainApp.controllers')
         $scope.options = {
             chart: {
                 type: 'bulletChart',
-                transitionDuration: 500
+                duration: 500
             }
         };
 

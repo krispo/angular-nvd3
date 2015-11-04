@@ -12,7 +12,7 @@ angular.module('mainApp.controllers')
                 xTickFormat: function(d) {
                     return d3.time.format('%x')(new Date($scope.data[d].x))
                 },
-                transitionDuration: 250
+                duration: 250
             }
         };
 

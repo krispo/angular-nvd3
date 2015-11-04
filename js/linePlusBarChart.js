@@ -16,7 +16,7 @@ angular.module('mainApp.controllers')
                 x: function(d, i){return i;},
                 y: function(d){return d[1];},
                 color: d3.scale.category10().range(),
-                transitionDuration: 250,
+                duration: 250,
                 xAxis: {
                     axisLabel: 'X Axis',
                     showMaxMin: false,

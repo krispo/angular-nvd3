@@ -14,7 +14,7 @@ angular.module('mainApp.controllers')
                     bottom: 60,
                     left: 40
                 },
-                transitionDuration: 500,
+                duration: 500,
                 xAxis: {
                     axisLabel: 'X Axis',
                     tickFormat: function(d){

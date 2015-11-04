@@ -13,7 +13,7 @@ angular.module('mainApp.controllers')
                 //yErr: function(d){ return [-Math.abs(d.value * Math.random() * 0.3), Math.abs(d.value * Math.random() * 0.3)] },
                 showControls: true,
                 showValues: true,
-                transitionDuration: 500,
+                duration: 500,
                 xAxis: {
                     showMaxMin: false
                 },

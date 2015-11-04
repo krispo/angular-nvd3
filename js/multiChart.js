@@ -17,7 +17,7 @@ angular.module('mainApp.controllers')
                 },
                 color: d3.scale.category10().range(),
                 //useInteractiveGuideline: true,
-                transitionDuration: 500,
+                duration: 500,
                 xAxis: {
                     tickFormat: function(d){
                         return d3.format(',f')(d);

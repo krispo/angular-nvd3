@@ -9,7 +9,7 @@ angular.module('mainApp.controllers')
                 type: 'sunburstChart',
                 height: 450,
                 color: d3.scale.category20c(),
-                transitionDuration: 250
+                duration: 250
             }
         };
 

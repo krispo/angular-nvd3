@@ -17,7 +17,7 @@ angular.module('mainApp.controllers')
                     startAngle: function(d) { return d.startAngle/2 -Math.PI/2 },
                     endAngle: function(d) { return d.endAngle/2 -Math.PI/2 }
                 },
-                transitionDuration: 500,
+                duration: 500,
                 legend: {
                     margin: {
                         top: 5,
