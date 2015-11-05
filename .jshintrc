@@ -23,6 +23,7 @@
         "navigator": false,
         "window": false,
         "clearTimeout": false,
-        "setTimeout": false
+        "setTimeout": false,
+        "document": false
     }
 }
