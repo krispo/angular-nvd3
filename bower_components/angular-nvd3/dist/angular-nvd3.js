@@ -213,6 +213,14 @@
                             element.find('.caption').remove();
                             element.empty();
 
+                            // remove tooltip if exists
+                            if (scope.chart && scope.chart.tooltip && scope.chart.tooltip.id) {
+                                var id = scope.chart.tooltip.id;
+                                if (typeof id === 'function') id = id();
+                                var tooltipElem = angular.element(document.body.querySelector('#' + id));
+                                tooltipElem.remove();
+                            }
+
                             // To be compatible with old nvd3 (v1.7.1)
                             if (nv.graphs && scope.chart) {
                                 for (var i = nv.graphs.length - 1; i >= 0; i--) {
