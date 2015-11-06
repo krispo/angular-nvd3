@@ -125,14 +125,14 @@ Then build using [grunt](http://gruntjs.com/) (*node.js must be installed*):
 ## Release Notes
 
 ### [1.0.3 (current, nvd3 v1.8.1)](https://github.com/krispo/angular-nvd3/releases/tag/v1.0.3)
-* Fixed width and height issues for IE: #16, #158, #200, #226.
-* Fixed tooltip issue #172
+* Fixed width and height issues for IE: [#16](https://github.com/krispo/angular-nvd3/issues/16), [#158](https://github.com/krispo/angular-nvd3/issues/158), [#200](https://github.com/krispo/angular-nvd3/issues/200), [#226](https://github.com/krispo/angular-nvd3/issues/226).
+* Fixed tooltip issue [#172](https://github.com/krispo/angular-nvd3/issues/172)
 * Set `refreshDataOnly = true` by default
 * Added `zoom & pan` functionality
 * Fixed tooltip content, subtitle and many other issues...
 
 ### 1.0.2
-* Fixed `tooltip` #222 for interactive guideline.
+* Fixed `tooltip` [#222](https://github.com/krispo/angular-nvd3/pull/222) for interactive guideline.
 * Set `deepWatchData` to `false` by default
 * Added `deepWatchOptions` and `deepWatchConfig` properties
 
