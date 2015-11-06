@@ -1,6 +1,7 @@
 # Angular-nvD3
 
 [![Build Status](https://travis-ci.org/krispo/angular-nvd3.svg?branch=master)](https://travis-ci.org/krispo/angular-nvd3)
+[![NPM Version](http://img.shields.io/npm/v/angular-nvd3.svg?style=flat)](https://www.npmjs.org/package/angular-nvd3)
 
 This thing is designed to make it easier to work with [nvd3.js](https://github.com/novus/nvd3) re-usable charting library. This directive allows you to easily customize your charts via JSON API.
 
@@ -32,7 +33,7 @@ Add dependencies to the `<head>` section of your main html:
 <link rel="stylesheet" href="bower_components/nvd3/build/nv.d3.css">
 ```
 
-If you don't use bower, you can manually download and unpack directive the latest version ([zip](https://github.com/krispo/angular-nvd3/archive/v1.0.2.zip), [tar.gz](https://github.com/krispo/angular-nvd3/archive/v1.0.2.tar.gz)).
+If you don't use bower, you can manually download and unpack directive the latest version ([zip](https://github.com/krispo/angular-nvd3/archive/v1.0.3.zip), [tar.gz](https://github.com/krispo/angular-nvd3/archive/v1.0.3.tar.gz)).
 
 ### Basic usage
 
