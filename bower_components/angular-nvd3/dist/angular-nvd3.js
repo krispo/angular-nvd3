@@ -1,7 +1,7 @@
 /**************************************************************************
- * AngularJS-nvD3, v1.0.3-dev; MIT License; 04/11/2015 21:03
- * http://krispo.github.io/angular-nvd3
- **************************************************************************/
+* AngularJS-nvD3, v1.0.3; MIT License; 06/11/2015 13:30
+* http://krispo.github.io/angular-nvd3
+**************************************************************************/
 (function(){
 
     'use strict';
@@ -215,10 +215,7 @@
 
                             // remove tooltip if exists
                             if (scope.chart && scope.chart.tooltip && scope.chart.tooltip.id) {
-                                var id = scope.chart.tooltip.id;
-                                if (typeof id === 'function') id = id();
-                                var tooltipElem = angular.element(document.body.querySelector('#' + id));
-                                tooltipElem.remove();
+                                d3.select('#' + scope.chart.tooltip.id()).remove();
                             }
 
                             // To be compatible with old nvd3 (v1.7.1)

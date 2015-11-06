@@ -1,6 +1,6 @@
 {
     "name": "angular-nvd3",
-    "version": "1.0.0-rc.2",
+    "version": "1.0.3",
     "description": "An AngularJS directive for NVD3.js reusable charting library (based on D3.js)",
     "main": [
       "dist/angular-nvd3.js"
@@ -8,13 +8,9 @@
     "license": "MIT",
     "keywords": [
         "d3",
-        "d3-",
         "nvd3",
-        "nvd3-",
         "angular",
-        "angular-",
         "angular-nvd3",
-        "nvd3-angular",
         "directives",
         "visualization",
         "charts",
