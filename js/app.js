@@ -219,5 +219,12 @@ var app = angular.module('mainApp', ['mainApp.controllers','ngRoute', 'json-tree
             id: 'doc_zooming',
             title: 'Zooming',
             url: './docs/zooming.html'
+        },{
+            id: -1,
+            caption: 'More'
+        },{
+            id: 'doc_useCases',
+            title: 'Use Cases',
+            url: './docs/useCases.html'
         }]
     })

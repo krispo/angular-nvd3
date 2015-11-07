@@ -21,6 +21,7 @@
                 <nvd3 data="data" options="options" events="events" api="api" config="{extended: params.mode === 'extended', visible: params.visible, disabled: params.disabled, autorefresh: params.autorefresh }"></nvd3>
             </div>
             <a href='{{params.selectedChart.plunker}}' target="_blank" style="float: right;">Edit in Plunker</a>
+            <a href="https://github.com/krispo/angular-nvd3/blob/gh-pages/js{{ params.selectedChart.path }}.js" target="_blank" style="float: right; margin-right:20px;">Source</a>
         </div><div class="span spanJT">
             <json-tree json="options" edit-level="high" collapsed-level="2" timeout-init="{{params.mode === 'extended'?700:''}}" timeout="{{params.mode === 'extended'?0:''}}"></json-tree>
         </div>

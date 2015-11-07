@@ -1,0 +1,51 @@
+<style>
+    .usecases li {
+        padding-bottom: 10px;
+    }
+</style>
+<ul class="usecases" style="list-style-type: disc;">
+    <li>
+        <h4>Static charts</h4>
+        <pre><code class="html">&lt;nvd3 options="options" data="data"&gt;&lt;/nvd3&gt;</code></pre>
+        <p>Any data changing doesn't affect the chart. It's default directive behaviour [v1.0.2+].</p>
+
+    </li>
+
+    <li>
+        <h4>Dynamic charts (only data update)</h4>
+        <pre><code class="html">&lt;nvd3 options="options" data="data" config="{deepWatchData: true}"&gt;&lt;/nvd3&gt;</code></pre>
+        <p>
+            Directive watches for data changing and automatically updates the chart.
+        Note that in this case the angular <code>$watch</code> procedure is used for tracking data,
+            that may lead to memory leak for large datasets or multiple charts on the page.
+            It's a convenient way for lightweight dynamic charts.
+        </p>
+        <p>
+            An alternative and more reliable solution is using <code>api</code> attribute:
+        </p>
+        <pre><code class="html">&lt;nvd3 options="options" data="data" api="api"&gt;&lt;/nvd3&gt;</code></pre>
+        and then update the chart in javascript when needed
+                <pre><code class="javascript">$scope.data = ... // set new data
+$scope.api.update();</code></pre>
+    </li>
+
+    <li>
+        <h4>Dynamic charts (complete refresh)</h4>
+        <pre><code class="html">&lt;nvd3 options="options" data="data" config="{deepWatchData: true, refreshDataOnly: false"&gt;&lt;/nvd3&gt;</code></pre>
+
+        <p>
+            Directive watches for data changing and automatically refresh the chart.
+            Note that in this case the angular <code>$watch</code> procedure is used for tracking data,
+            that may lead to memory leak for large datasets or multiple charts on the page.
+            It's a convenient way for lightweight dynamic charts.
+        </p>
+        <p>
+            An alternative and more reliable solution is using <code>api</code> attribute:
+        </p>
+
+        <pre><code class="html">&lt;nvd3 options="options" data="data" api="api"&gt;&lt;/nvd3&gt;</code></pre>
+        and then refresh the chart in javascript when needed
+                <pre><code class="javascript">$scope.data = ... // set new data
+$scope.api.refresh();</code></pre>
+    </li>
+</ul>

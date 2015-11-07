@@ -306,6 +306,7 @@ Live Edit  ----------------------------------------
 #sidebar > li > a {
     font-size: large;
     color:#2c3e50;
+    padding: 5px 15px;
 }
 #sidebar > li > a:hover,
 #sidebar > li > a:focus {
