@@ -1,3 +1,7 @@
+.wrap-dashboard {
+    margin: 5px 10px 10px 10px;
+    padding-bottom: 20px;
+}
 
 .dashboard .controls {
     margin-bottom: 20px;
@@ -23,15 +27,18 @@
     height: 100%;
     border: 1px solid #ccc;
     background-color: #fff;
+    padding-top: 35px;
 }
 .dashboard .box-header {
     background-color: #eee;
     padding: 0 42px 0 10px;
-    border-bottom: 1px solid #ccc;
+    border: 1px solid #ccc;
     cursor: move;
-    position: relative;
+    position: absolute;
     width: 100%;
     height: 36px;
+    top: 0;
+    left: 0;
 }
 .dashboard .box-header h3 {
     width: 100%;

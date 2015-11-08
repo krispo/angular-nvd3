@@ -270,7 +270,6 @@ angular.module('mainApp.controllers')
   })
 
   .factory('generator', function (){
-    var b = 36; //header height in box
     return {
       lineChart: {
         options: function(){
@@ -278,9 +277,9 @@ angular.module('mainApp.controllers')
             chart: {
               type: 'lineChart',
               margin : {
-                top: 20 ,
+                top: 20,
                 right: 20,
-                bottom: 40 + b,
+                bottom: 40,
                 left: 55
               },
               x: function(d){ return d.x; },
@@ -309,7 +308,7 @@ angular.module('mainApp.controllers')
               margin : {
                 top: 20,
                 right: 20,
-                bottom: 40 + b,
+                bottom: 40,
                 left: 65
               },
               x: function(d){ return d[0]; },
@@ -346,7 +345,7 @@ angular.module('mainApp.controllers')
               margin : {
                 top: 20,
                 right: 20,
-                bottom: 20 + b,
+                bottom: 20,
                 left: 44
               },
               x: function(d){return d[0];},
@@ -379,7 +378,7 @@ angular.module('mainApp.controllers')
               margin : {
                 top: 10,
                 right: 20,
-                bottom: 35 + b,
+                bottom: 35,
                 left: 55
               },
               x: function(d){return d.label;},
@@ -443,7 +442,7 @@ angular.module('mainApp.controllers')
               margin : {
                 top: 20,
                 right: 20,
-                bottom: 20 + b,
+                bottom: 20,
                 left: 40
               },
               color:['darkblue', 'darkorange', 'green', 'darkred', 'darkviolet'],
