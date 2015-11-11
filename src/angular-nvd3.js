@@ -409,14 +409,16 @@
                     var timeout;
                     return function() {
                         var context = this, args = arguments;
+                        var callNow = immediate && !timeout;
                         var later = function() {
                             timeout = null;
-                            if (!immediate) func.apply(context, args);
+                            if (!callNow) func.apply(context, args);
                         };
-                        var callNow = immediate && !timeout;
+
                         clearTimeout(timeout);
-                        timeout = setTimeout(later, wait);
+                        timeout = null;
                         if (callNow) func.apply(context, args);
+                        else timeout = setTimeout(later, wait);
                     };
                 },
                 deepExtend: function(dst){
