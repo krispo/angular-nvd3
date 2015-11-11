@@ -1,5 +1,5 @@
 /**************************************************************************
-* AngularJS-nvD3, v1.0.4-dev; MIT License; 11/11/2015 17:26
+* AngularJS-nvD3, v1.0.4-dev; MIT License; 12/11/2015 07:39
 * http://krispo.github.io/angular-nvd3
 **************************************************************************/
 (function(){
@@ -420,9 +420,8 @@
                         };
 
                         clearTimeout(timeout);
-                        timeout = null;
+                        timeout = setTimeout(later, wait);
                         if (callNow) func.apply(context, args);
-                        else timeout = setTimeout(later, wait);
                     };
                 },
                 deepExtend: function(dst){

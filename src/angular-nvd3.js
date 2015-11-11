@@ -416,9 +416,8 @@
                         };
 
                         clearTimeout(timeout);
-                        timeout = null;
+                        timeout = setTimeout(later, wait);
                         if (callNow) func.apply(context, args);
-                        else timeout = setTimeout(later, wait);
                     };
                 },
                 deepExtend: function(dst){
