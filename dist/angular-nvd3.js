@@ -1,5 +1,5 @@
 /**************************************************************************
-* AngularJS-nvD3, v1.0.3; MIT License; 06/11/2015 13:30
+* AngularJS-nvD3, v1.0.4-dev; MIT License; 12/11/2015 07:39
 * http://krispo.github.io/angular-nvd3
 **************************************************************************/
 (function(){
@@ -413,11 +413,12 @@
                     var timeout;
                     return function() {
                         var context = this, args = arguments;
+                        var callNow = immediate && !timeout;
                         var later = function() {
                             timeout = null;
-                            if (!immediate) func.apply(context, args);
+                            if (!callNow) func.apply(context, args);
                         };
-                        var callNow = immediate && !timeout;
+
                         clearTimeout(timeout);
                         timeout = setTimeout(later, wait);
                         if (callNow) func.apply(context, args);
