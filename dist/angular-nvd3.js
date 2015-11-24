@@ -1,5 +1,5 @@
 /**************************************************************************
-* AngularJS-nvD3, v1.0.3; MIT License; 06/11/2015 13:30
+* AngularJS-nvD3, v1.0.4-dev; MIT License; 24/11/2015 20:29
 * http://krispo.github.io/angular-nvd3
 **************************************************************************/
 (function(){
@@ -23,11 +23,9 @@
                         extended: false,
                         visible: true,
                         disabled: false,
-                        autorefresh: true,
                         refreshDataOnly: true,
                         deepWatchOptions: true,
                         deepWatchData: false, // to increase performance by default
-                        deepWatchConfig: true,
                         debounce: 10 // default 10ms, time silence to prevent refresh while multiple options changes at a time
                     };
 
@@ -372,13 +370,13 @@
                     /* Event Handling */
                     // Watching on options changing
                     scope.$watch('options', nvd3Utils.debounce(function(newOptions){
-                        if (!scope._config.disabled && scope._config.autorefresh) scope.api.refresh();
+                        if (!scope._config.disabled) scope.api.refresh();
                     }, scope._config.debounce, true), scope._config.deepWatchOptions);
 
                     // Watching on data changing
                     scope.$watch('data', function(newData, oldData){
                         if (newData !== oldData && scope.chart){
-                            if (!scope._config.disabled && scope._config.autorefresh) {
+                            if (!scope._config.disabled) {
                                 scope._config.refreshDataOnly && scope.chart.update ? scope.chart.update() : scope.api.refresh(); // if wanted to refresh data only, use chart.update method, otherwise use full refresh.
                             }
                         }
@@ -390,7 +388,7 @@
                             scope._config = angular.extend(defaultConfig, newConfig);
                             scope.api.refresh();
                         }
-                    }, scope._config.deepWatchConfig);
+                    }, true);
 
                     //subscribe on global events
                     angular.forEach(scope.events, function(eventHandler, event){
