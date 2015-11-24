@@ -32,6 +32,15 @@
 </head>
 <body>
 
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
 <div class="switch-version">
     <span>Version:</span>
     <span>
@@ -84,7 +93,7 @@
         <div class="container" style="margin-top: -30px; margin-bottom: 15px;">
             <div class="row">
                 <div id="copyright" class="col-xs-4">
-                    <p>Copyright &copy;&nbsp;2014 Konstantin Skipor <br>
+                    <p>Copyright &copy;&nbsp;2015 Konstantin Skipor <br>
                        Licensed under the terms of the <a href="https://github.com/krispo/angular-nvd3/blob/master/LICENSE" target="_blank">MIT&nbsp;License</a></p>
                 </div>
                 <div id="icons" class="col-xs-4">
@@ -102,8 +111,10 @@
                     </a>
                 </div>
                 <div id="socialb" class="col-xs-4">
-                    <span><iframe id="gh-star" src="http://ghbtns.com/github-btn.html?user=krispo&repo=angular-nvd3&type=watch&count=true" allowtransparency="true" frameborder="0" scrolling="0" width="85" height="20"></iframe></span>
-                    <span><a href="https://twitter.com/share" class="twitter-share-button" data-url="http://krispo.github.io/angular-nvd3">Tweet</a></span>
+                    <span><iframe src="http://ghbtns.com/github-btn.html?user=krispo&repo=angular-nvd3&type=watch&count=false&v=2" class="github-button" allowtransparency="true" frameborder="0" scrolling="0" width="63" height="20"></iframe></span>
+                    <span><a href="https://twitter.com/share" class="twitter-share-button" data-url="http://krispo.github.io/angular-nvd3"></a></span>
+                    <span class="fb-share-button" data-href="http://krispo.github.io/angular-nvd3" data-layout="button"></span>
+                    <span class="g-plusone" data-size="medium" data-annotation="none"></span>
                 </div>
             </div>
         </div>
@@ -174,5 +185,6 @@
 <script>
     !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
 </script>
+<script src="https://apis.google.com/js/platform.js" async defer></script>
 </body>
 </html>

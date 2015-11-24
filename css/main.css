@@ -450,6 +450,12 @@ Live Edit  ----------------------------------------
     text-align: left;
     padding-top: 15px;
 }
+#socialb .github-button, #socialb .twitter-share-button {
+    vertical-align: bottom;
+}
+#___plusone_0 {
+    vertical-align: bottom!important;
+}
 #links {
     font-size: 11px;
     vertical-align: bottom;
@@ -470,7 +476,7 @@ Live Edit  ----------------------------------------
     #socialb {
         text-align: center;
         padding-top: 15px;
-        margin-left: 19px;
+        /*margin-left: 19px;*/
         width: 100%;
     }
 }
