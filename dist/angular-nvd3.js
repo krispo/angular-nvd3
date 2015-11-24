@@ -1,5 +1,5 @@
 /**************************************************************************
-* AngularJS-nvD3, v1.0.4-dev; MIT License; 24/11/2015 20:29
+* AngularJS-nvD3, v1.0.4-dev; MIT License; 24/11/2015 20:41
 * http://krispo.github.io/angular-nvd3
 **************************************************************************/
 (function(){
@@ -41,7 +41,10 @@
 
                         // Update chart layout (for example if container is resized)
                         update: function() {
-                            if (scope.chart) scope.chart.update();
+                            if (scope.chart)
+                                scope.chart.update();
+                            else
+                                scope.api.refresh();
                         },
 
                         // Update chart with new options
@@ -375,9 +378,9 @@
 
                     // Watching on data changing
                     scope.$watch('data', function(newData, oldData){
-                        if (newData !== oldData && scope.chart){
+                        if (newData !== oldData){
                             if (!scope._config.disabled) {
-                                scope._config.refreshDataOnly && scope.chart.update ? scope.chart.update() : scope.api.refresh(); // if wanted to refresh data only, use chart.update method, otherwise use full refresh.
+                                scope._config.refreshDataOnly ? scope.api.update() : scope.api.refresh(); // if wanted to refresh data only, use chart.update method, otherwise use full refresh.
                             }
                         }
                     }, scope._config.deepWatchData);
