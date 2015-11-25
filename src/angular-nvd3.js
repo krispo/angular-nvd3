@@ -128,7 +128,12 @@
                                 else if ((key === 'tooltipXContent' || key === 'tooltipYContent') && options.chart.type === 'scatterChart');
 
                                 else if (options.chart[key] === undefined || options.chart[key] === null){
-                                    if (scope._config.extended) options.chart[key] = value();
+                                    if (scope._config.extended) {
+                                        if (key==='barColor')
+                                            options.chart[key] = value()();
+                                        else
+                                            options.chart[key] = value();
+                                    }
                                 }
 
                                 else scope.chart[key](options.chart[key]);

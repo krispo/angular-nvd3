@@ -1,5 +1,5 @@
 /**************************************************************************
-* AngularJS-nvD3, v1.0.4-dev; MIT License; 25/11/2015 08:58
+* AngularJS-nvD3, v1.0.4-dev; MIT License; 25/11/2015 16:10
 * http://krispo.github.io/angular-nvd3
 **************************************************************************/
 (function(){
@@ -132,7 +132,12 @@
                                 else if ((key === 'tooltipXContent' || key === 'tooltipYContent') && options.chart.type === 'scatterChart');
 
                                 else if (options.chart[key] === undefined || options.chart[key] === null){
-                                    if (scope._config.extended) options.chart[key] = value();
+                                    if (scope._config.extended) {
+                                        if (key==='barColor')
+                                            options.chart[key] = value()();
+                                        else
+                                            options.chart[key] = value();
+                                    }
                                 }
 
                                 else scope.chart[key](options.chart[key]);
