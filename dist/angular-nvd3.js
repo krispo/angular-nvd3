@@ -1,5 +1,5 @@
 /**************************************************************************
-* AngularJS-nvD3, v1.0.4-dev; MIT License; 24/11/2015 20:41
+* AngularJS-nvD3, v1.0.4-dev; MIT License; 25/11/2015 08:58
 * http://krispo.github.io/angular-nvd3
 **************************************************************************/
 (function(){
@@ -372,18 +372,22 @@
 
                     /* Event Handling */
                     // Watching on options changing
-                    scope.$watch('options', nvd3Utils.debounce(function(newOptions){
-                        if (!scope._config.disabled) scope.api.refresh();
-                    }, scope._config.debounce, true), scope._config.deepWatchOptions);
+                    if (scope._config.deepWatchOptions) {
+                        scope.$watch('options', nvd3Utils.debounce(function(newOptions){
+                            if (!scope._config.disabled) scope.api.refresh();
+                        }, scope._config.debounce, true), true);
+                    }
 
                     // Watching on data changing
-                    scope.$watch('data', function(newData, oldData){
-                        if (newData !== oldData){
-                            if (!scope._config.disabled) {
-                                scope._config.refreshDataOnly ? scope.api.update() : scope.api.refresh(); // if wanted to refresh data only, use chart.update method, otherwise use full refresh.
+                    if (scope._config.deepWatchData) {
+                        scope.$watch('data', function(newData, oldData){
+                            if (newData !== oldData){
+                                if (!scope._config.disabled) {
+                                    scope._config.refreshDataOnly ? scope.api.update() : scope.api.refresh(); // if wanted to refresh data only, use chart.update method, otherwise use full refresh.
+                                }
                             }
-                        }
-                    }, scope._config.deepWatchData);
+                        }, true);
+                    }
 
                     // Watching on config changing
                     scope.$watch('config', function(newConfig, oldConfig){
