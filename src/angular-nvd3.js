@@ -37,10 +37,12 @@
 
                         // Update chart layout (for example if container is resized)
                         update: function() {
-                            if (scope.chart)
-                                scope.chart.update();
-                            else
+                            if (scope.chart && scope.svg) {
+                                scope.svg.datum(scope.data).call(scope.chart);
+                                // scope.chart.update();
+                            } else {
                                 scope.api.refresh();
+                            }
                         },
 
                         // Update chart with new options
