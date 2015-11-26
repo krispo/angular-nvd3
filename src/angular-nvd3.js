@@ -12,18 +12,18 @@
                     options: '=',   //chart options, according to nvd3 core api, [required]
                     api: '=?',      //directive global api, [optional]
                     events: '=?',   //global events that directive would subscribe to, [optional]
-                    config: '=?'    //global directive configuration, [optional]
+                    config: '=?',    //global directive configuration, [optional]
+                    onReady: '&?' //callback function that is called with internal scope when directive is created [optional]
                 },
                 link: function(scope, element, attrs){
                     var defaultConfig = {
                         extended: false,
                         visible: true,
                         disabled: false,
-                        autorefresh: true,
                         refreshDataOnly: true,
                         deepWatchOptions: true,
-                        deepWatchData: false, // to increase performance by default
-                        deepWatchConfig: true,
+                        deepWatchData: true,
+                        deepWatchDataDepth: 2, // 0 - by reference (cheap), 1 - by collection item (the middle), 2 - by value (expensive)
                         debounce: 10 // default 10ms, time silence to prevent refresh while multiple options changes at a time
                     };
 
@@ -37,9 +37,28 @@
                             scope.api.updateWithOptions(scope.options);
                         },
 
+                        // Fully refresh directive with specified timeout
+                        refreshWithTimeout: function(t){
+                            setTimeout(function(){
+                                scope.api.refresh();
+                            }, t);
+                        },
+
                         // Update chart layout (for example if container is resized)
                         update: function() {
-                            if (scope.chart) scope.chart.update();
+                            if (scope.chart && scope.svg) {
+                                scope.svg.datum(scope.data).call(scope.chart);
+                                // scope.chart.update();
+                            } else {
+                                scope.api.refresh();
+                            }
+                        },
+
+                        // Update chart layout with specified timeout
+                        updateWithTimeout: function(t){
+                            setTimeout(function(){
+                                scope.api.update();
+                            }, t);
                         },
 
                         // Update chart with new options
@@ -127,7 +146,12 @@
                                 else if ((key === 'tooltipXContent' || key === 'tooltipYContent') && options.chart.type === 'scatterChart');
 
                                 else if (options.chart[key] === undefined || options.chart[key] === null){
-                                    if (scope._config.extended) options.chart[key] = value();
+                                    if (scope._config.extended) {
+                                        if (key==='barColor')
+                                            options.chart[key] = value()();
+                                        else
+                                            options.chart[key] = value();
+                                    }
                                 }
 
                                 else scope.chart[key](options.chart[key]);
@@ -367,18 +391,27 @@
 
                     /* Event Handling */
                     // Watching on options changing
-                    scope.$watch('options', nvd3Utils.debounce(function(newOptions){
-                        if (!scope._config.disabled && scope._config.autorefresh) scope.api.refresh();
-                    }, scope._config.debounce, true), scope._config.deepWatchOptions);
+                    if (scope._config.deepWatchOptions) {
+                        scope.$watch('options', nvd3Utils.debounce(function(newOptions){
+                            if (!scope._config.disabled) scope.api.refresh();
+                        }, scope._config.debounce, true), true);
+                    }
 
                     // Watching on data changing
-                    scope.$watch('data', function(newData, oldData){
-                        if (newData !== oldData && scope.chart){
-                            if (!scope._config.disabled && scope._config.autorefresh) {
-                                scope._config.refreshDataOnly && scope.chart.update ? scope.chart.update() : scope.api.refresh(); // if wanted to refresh data only, use chart.update method, otherwise use full refresh.
+                    function dataWatchFn(newData, oldData) {
+                        if (newData !== oldData){
+                            if (!scope._config.disabled) {
+                                scope._config.refreshDataOnly ? scope.api.update() : scope.api.refresh(); // if wanted to refresh data only, use update method, otherwise use full refresh.
                             }
                         }
-                    }, scope._config.deepWatchData);
+                    }
+                    if (scope._config.deepWatchData) {
+                        if (scope._config.deepWatchDataDepth === 1) {
+                            scope.$watchCollection('data', dataWatchFn);
+                        } else {
+                            scope.$watch('data', dataWatchFn, scope._config.deepWatchDataDepth === 2);
+                        }
+                    }
 
                     // Watching on config changing
                     scope.$watch('config', function(newConfig, oldConfig){
@@ -386,7 +419,7 @@
                             scope._config = angular.extend(defaultConfig, newConfig);
                             scope.api.refresh();
                         }
-                    }, scope._config.deepWatchConfig);
+                    }, true);
 
                     //subscribe on global events
                     angular.forEach(scope.events, function(eventHandler, event){
@@ -399,6 +432,9 @@
                     element.on('$destroy', function () {
                         scope.api.clearElement();
                     });
+
+                    // On Ready Callback
+                    if (typeof scope.onReady === 'function') scope.onReady(scope);
                 }
             };
         }])
