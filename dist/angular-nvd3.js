@@ -1,5 +1,5 @@
 /**************************************************************************
-* AngularJS-nvD3, v1.0.4-dev; MIT License; 26/11/2015 19:33
+* AngularJS-nvD3, v1.0.4-dev; MIT License; 26/11/2015 20:06
 * http://krispo.github.io/angular-nvd3
 **************************************************************************/
 (function(){
@@ -16,7 +16,8 @@
                     options: '=',   //chart options, according to nvd3 core api, [required]
                     api: '=?',      //directive global api, [optional]
                     events: '=?',   //global events that directive would subscribe to, [optional]
-                    config: '=?'    //global directive configuration, [optional]
+                    config: '=?',    //global directive configuration, [optional]
+                    onReady: '&?' //callback function that is called with internal scope when directive is created [optional]
                 },
                 link: function(scope, element, attrs){
                     var defaultConfig = {
@@ -435,6 +436,9 @@
                     element.on('$destroy', function () {
                         scope.api.clearElement();
                     });
+
+                    // On Ready Callback
+                    if (typeof scope.onReady === 'function') scope.onReady(scope);
                 }
             };
         }])
