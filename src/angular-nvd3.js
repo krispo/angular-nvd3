@@ -36,6 +36,13 @@
                             scope.api.updateWithOptions(scope.options);
                         },
 
+                        // Fully refresh directive with specified timeout
+                        refreshWithTimeout: function(t){
+                            setTimeout(function(){
+                                scope.api.refresh();
+                            }, t);
+                        },
+
                         // Update chart layout (for example if container is resized)
                         update: function() {
                             if (scope.chart && scope.svg) {
@@ -44,6 +51,13 @@
                             } else {
                                 scope.api.refresh();
                             }
+                        },
+
+                        // Update chart layout with specified timeout
+                        updateWithTimeout: function(t){
+                            setTimeout(function(){
+                                scope.api.update();
+                            }, t);
                         },
 
                         // Update chart with new options

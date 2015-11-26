@@ -1,5 +1,5 @@
 /**************************************************************************
-* AngularJS-nvD3, v1.0.4-dev; MIT License; 26/11/2015 19:04
+* AngularJS-nvD3, v1.0.4-dev; MIT License; 26/11/2015 19:13
 * http://krispo.github.io/angular-nvd3
 **************************************************************************/
 (function(){
@@ -40,6 +40,13 @@
                             scope.api.updateWithOptions(scope.options);
                         },
 
+                        // Fully refresh directive with specified timeout
+                        refreshWithTimeout: function(t){
+                            setTimeout(function(){
+                                scope.api.refresh();
+                            }, t);
+                        },
+
                         // Update chart layout (for example if container is resized)
                         update: function() {
                             if (scope.chart && scope.svg) {
@@ -48,6 +55,13 @@
                             } else {
                                 scope.api.refresh();
                             }
+                        },
+
+                        // Update chart layout with specified timeout
+                        updateWithTimeout: function(t){
+                            setTimeout(function(){
+                                scope.api.update();
+                            }, t);
                         },
 
                         // Update chart with new options
