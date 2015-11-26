@@ -1,5 +1,5 @@
 /**************************************************************************
-* AngularJS-nvD3, v1.0.4-dev; MIT License; 26/11/2015 20:06
+* AngularJS-nvD3, v1.0.4-dev; MIT License; 26/11/2015 21:14
 * http://krispo.github.io/angular-nvd3
 **************************************************************************/
 (function(){
@@ -438,7 +438,7 @@
                     });
 
                     // On Ready Callback
-                    if (typeof scope.onReady === 'function') scope.onReady(scope);
+                    if (typeof scope.onReady === 'function') scope.onReady({scope: scope});
                 }
             };
         }])
