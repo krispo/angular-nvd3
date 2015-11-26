@@ -21,7 +21,8 @@
                         disabled: false,
                         refreshDataOnly: true,
                         deepWatchOptions: true,
-                        deepWatchData: false, // to increase performance by default
+                        deepWatchData: true,
+                        deepWatchDataDepth: 2, // 0 - by reference (cheap), 1 - by collection item (the middle), 2 - by value (expensive)
                         debounce: 10 // default 10ms, time silence to prevent refresh while multiple options changes at a time
                     };
 
@@ -382,14 +383,19 @@
                     }
 
                     // Watching on data changing
-                    if (scope._config.deepWatchData) {
-                        scope.$watch('data', function(newData, oldData){
-                            if (newData !== oldData){
-                                if (!scope._config.disabled) {
-                                    scope._config.refreshDataOnly ? scope.api.update() : scope.api.refresh(); // if wanted to refresh data only, use chart.update method, otherwise use full refresh.
-                                }
+                    function dataWatchFn(newData, oldData) {
+                        if (newData !== oldData){
+                            if (!scope._config.disabled) {
+                                scope._config.refreshDataOnly ? scope.api.update() : scope.api.refresh(); // if wanted to refresh data only, use update method, otherwise use full refresh.
                             }
-                        }, true);
+                        }
+                    }
+                    if (scope._config.deepWatchData) {
+                        if (scope._config.deepWatchDataDepth === 1) {
+                            scope.$watchCollection('data', dataWatchFn);
+                        } else {
+                            scope.$watch('data', dataWatchFn, scope._config.deepWatchDataDepth === 2);
+                        }
                     }
 
                     // Watching on config changing
