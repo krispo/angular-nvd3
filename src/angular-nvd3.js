@@ -434,7 +434,7 @@
                     });
 
                     // On Ready Callback
-                    if (typeof scope.onReady === 'function') scope.onReady(scope);
+                    if (scope.onReady && typeof scope.onReady() === 'function') scope.onReady()(scope);
                 }
             };
         }])
