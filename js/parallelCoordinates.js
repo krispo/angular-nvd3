@@ -9,8 +9,8 @@ angular.module('mainApp.controllers')
                 height: 450,
                 margin: {
                     top: 30,
-                    right: 40,
-                    bottom: 50,
+                    right: 0,
+                    bottom: 10,
                     left: 0
                 },
                 dimensions: [
