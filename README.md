@@ -124,6 +124,13 @@ Then build using [grunt](http://gruntjs.com/) (*node.js must be installed*):
 
 ## Release Notes
 
+### [1.0.4 (current, nvd3 v1.8.1)](https://github.com/krispo/angular-nvd3/releases/tag/v1.0.4)
+* `deepWatchData = true` by default
+* deleted `autorefresh`, `deepWatchConfig` configs
+* added `deepWatchDataDepth = 2` config to specify watch depth level for data: 0 - by reference (cheap), 1 - by collection item (the middle), 2 - by value (expensive)
+* added `onReady` attribute
+* fixed bugs
+
 ### 1.0.3
 * Fixed width and height issues for IE: [#16](https://github.com/krispo/angular-nvd3/issues/16), [#158](https://github.com/krispo/angular-nvd3/issues/158), [#200](https://github.com/krispo/angular-nvd3/issues/200), [#226](https://github.com/krispo/angular-nvd3/issues/226).
 * Fixed tooltip issue [#172](https://github.com/krispo/angular-nvd3/issues/172)
