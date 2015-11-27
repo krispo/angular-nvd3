@@ -3,7 +3,8 @@ The most common way to define directive in html code is as follows:
       data="data"
       config="config"
       events="events"
-      api="api"&gt;&lt;/nvd3&gt;</code></pre>
+      api="api"
+      on-ready="callback"&gt;&lt;/nvd3&gt;</code></pre>
 <code>options</code> and <code>data</code> are required attributes and used as above, the others are optional.
 
 <h3>config <span style="font-size: small;">[optional]</span></h3>
@@ -12,11 +13,10 @@ Setting up the global directive config in your controller like:
     visible: true, // default: true
     extended: false, // default: false
     disabled: false, // default: false
-    autorefresh: true, // default: true
     refreshDataOnly: true, // default: true
     deepWatchOptions: true, // default: true
-    deepWatchData: false, // default: false
-    deepWatchConfig: true, // default: true
+    deepWatchData: true, // default: true
+    deepWatchDataDepth: 2, // default: 2
     debounce: 10 // default: 10
 };</code></pre>
 
@@ -39,12 +39,8 @@ Setting up the global directive config in your controller like:
         <td class="desc"><b>false</b>: boolean.<br> Disable the chart to prevent unexpected changing.</td>
     </tr>
     <tr>
-        <td class="api">autorefresh</td>
-        <td class="desc"><b>true</b>: boolean.<br> Automatically refresh directive after <code>options</code> or <code>data</code> have changed.</td>
-    </tr>
-    <tr>
         <td class="api">refreshDataOnly</td>
-        <td class="desc"><b>true</b>: boolean. (since v1.0.3+ it's <b>true</b> by default)
+        <td class="desc"><b>true</b>: boolean. [since v1.0.3+ it's <b>true</b> by default]
             <br> Refresh chart with data only, and without refreshing the full directive. It is especially useful for real-time updated charts.</td>
     </tr>
     <tr>
@@ -53,12 +49,25 @@ Setting up the global directive config in your controller like:
     </tr>
     <tr>
         <td class="api">deepWatchData</td>
-        <td class="desc"><b>false</b>: boolean. (since v1.0.2+ it's <b>false</b> by default)
-            <br> If <i>true</i>, directive watches for updating complex data objects. Inequality of the <i>watchExpression</i> is determined according to the angular.equals function. To save the value of the object for later comparison, the angular.copy function is used. This therefore means that watching complex objects will have adverse memory and performance implications.</td>
+        <td class="desc"><b>true</b>: boolean. [since v1.0.4+ <b>true</b> by default; previous v1.0.2, v1.0.3 is <b>false</b> by default]
+            <br> If <i>true</i>, directive uses scope <code>$watch</code> for tracking the data object.
+            If <i>false</i>, scope <code>$watch</code> is not used.
+            Change detection strategy is specified via <code>deepWatchDataDepth</code> config.
+        </td>
     </tr>
     <tr>
-        <td class="api">deepWatchConfig</td>
-        <td class="desc"><b>true</b>: boolean.<br> If <i>true</i>, directive watches for updating complex configs.</td>
+        <td class="api">deepWatchDataDepth</td>
+        <td class="desc"><b>2</b>: number. [since v1.0.4+]
+            <br> It's used if <code>deepWatchData = true</code>.
+            <br> Specify a change detection strategy (scope <code>$watch</code> depth) for data:
+            <ul>
+                <li><code>0</code> - By Reference (the least powerful, but the most efficient)</li>
+                <li><code>1</code> - By Collection Items</li>
+                <li><code>2</code> - By Value (the most powerful, but also the most expensive; default value)</li>
+            </ul>
+            <img src="img/concepts-scope-watch-strategies.png" alt="">
+
+        </td>
     </tr>
     <tr>
         <td class="api">debounce</td>
@@ -100,7 +109,15 @@ Using this attribute you can access a global directive api (this is not a chart 
     </tr>
     <tr>
         <td class="api">update()</td>
-        <td class="desc">Update chart layout (for example if container is resized). [v.0.1.0+]</td>
+        <td class="desc">Update chart layout (for example if container is resized). [v0.1.0+]</td>
+    </tr>
+    <tr>
+        <td class="api">refreshWithTimeout(t)</td>
+        <td class="desc">Completely refresh directive after specified timeout <code>t</code>. [v1.0.4+]</td>
+    </tr>
+    <tr>
+        <td class="api">updateWithTimeout(t)</td>
+        <td class="desc">Update chart layout after specified timeout <code>t</code>. [v1.0.4+]</td>
     </tr>
     <tr>
         <td class="api">updateWithOptions(options)</td>
@@ -121,3 +138,14 @@ Using this attribute you can access a global directive api (this is not a chart 
 </table>
 You can, for example, refresh your directive from controller like:
 <pre><code class="javascript">$scope.api.refresh();</code></pre>
+
+<h3>on-ready <span style="font-size: small;">[optional]</span></h3>
+Allow you to get internal scope under directive initialization:
+<pre><code class="javascript">$scope.callback = function(scope){
+    // this code will be applied once directive has been created
+    // scope - is the directive internal scope
+    var api = scope.api;
+    var chart = scope.chart;
+    var svg = scope.svg;
+    // ... do smth
+};</code></pre>
