@@ -421,6 +421,11 @@
                         }
                     }, true);
 
+                    // Refresh chart first time if deepWatchOptions and deepWatchData are false
+                    if (!scope._config.deepWatchOptions && !scope._config.deepWatchData) {
+                        scope.api.refresh();
+                    }
+
                     //subscribe on global events
                     angular.forEach(scope.events, function(eventHandler, event){
                         scope.$on(event, function(e, args){
