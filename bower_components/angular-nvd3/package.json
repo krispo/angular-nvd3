@@ -1,14 +1,14 @@
 {
     "title": "AngularJS-nvD3",
     "name": "angular-nvd3",
-    "version": "1.0.3",
+    "version": "1.0.4",
     "description": "An AngularJS directive for NVD3.js reusable charting library",
     "homepage": "http://krispo.github.io/angular-nvd3",
     "repository": {
         "type": "git",
         "url": "https://github.com/krispo/angular-nvd3.git"
     },
-    "main": "dist/angular-nvd3.js",
+    "main": "index.js",
     "keywords": [
         "angular",
         "nvd3",
