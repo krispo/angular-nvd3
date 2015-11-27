@@ -1,5 +1,5 @@
 /**************************************************************************
-* AngularJS-nvD3, v1.0.4-dev; MIT License; 26/11/2015 22:42
+* AngularJS-nvD3, v1.0.4-dev; MIT License; 27/11/2015 07:27
 * http://krispo.github.io/angular-nvd3
 **************************************************************************/
 (function(){
@@ -424,6 +424,11 @@
                             scope.api.refresh();
                         }
                     }, true);
+
+                    // Refresh chart first time if deepWatchOptions and deepWatchData are false
+                    if (!scope._config.deepWatchOptions && !scope._config.deepWatchData) {
+                        scope.api.refresh();
+                    }
 
                     //subscribe on global events
                     angular.forEach(scope.events, function(eventHandler, event){
