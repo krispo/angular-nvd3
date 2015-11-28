@@ -15,6 +15,7 @@ angular.module('mainApp.controllers')
                     left: 40
                 },
                 duration: 500,
+                useInteractiveGuideline: true,
                 xAxis: {
                     axisLabel: 'X Axis',
                     tickFormat: function(d){
