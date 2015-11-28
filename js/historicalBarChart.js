@@ -36,6 +36,11 @@ angular.module('mainApp.controllers')
                         return d3.format(',.1f')(d);
                     }
                 },
+                tooltip: {
+                    keyFormatter: function(d) {
+                        return d3.time.format('%x')(new Date(d));
+                    }
+                },
                 zoom: {
                     enabled: true,
                     scaleExtent: [1, 10],
