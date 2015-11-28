@@ -43,7 +43,6 @@ var app = angular.module('mainApp', ['mainApp.controllers','ngRoute', 'json-tree
             mode: 'basic', //basic, extended
             visible: true,
             disabled: false,
-            autorefresh: true,
             charts: CHARTS,
             constants: CONSTANTS,
             url: window.location.hostname.indexOf(CONSTANTS.productionHostname) > -1 ? '/angular-nvd3' : ''
