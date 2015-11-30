@@ -1,5 +1,5 @@
 /**************************************************************************
-* AngularJS-nvD3, v1.0.4; MIT License; 27/11/2015 09:35
+* AngularJS-nvD3, v1.0.5-dev; MIT License; 30/11/2015 20:34
 * http://krispo.github.io/angular-nvd3
 **************************************************************************/
 (function(){
@@ -258,7 +258,10 @@
                         },
 
                         // Get full directive scope
-                        getScope: function(){ return scope; }
+                        getScope: function(){ return scope; },
+
+                        // Get directive element
+                        getElement: function(){ return element; }
                     };
 
                     // Configure the chart model with the passed options
@@ -443,7 +446,7 @@
                     });
 
                     // On Ready Callback
-                    if (scope.onReady && typeof scope.onReady() === 'function') scope.onReady()(scope);
+                    if (scope.onReady && typeof scope.onReady() === 'function') scope.onReady()(scope, element);
                 }
             };
         }])
