@@ -13,7 +13,11 @@ Try it [online](http://krispo.github.io/angular-nvd3/).
 
 ### Install
 
-Install it via bower:
+##### cdnjs
+
+    https://cdnjs.cloudflare.com/ajax/libs/angular-nvd3/1.0.4/angular-nvd3.min.js
+
+##### bower
 
     $ bower install angular-nvd3
     
@@ -33,7 +37,13 @@ Add dependencies to the `<head>` section of your main html:
 <link rel="stylesheet" href="bower_components/nvd3/build/nv.d3.css">
 ```
 
-If you don't use bower, you can manually download and unpack directive the latest version ([zip](https://github.com/krispo/angular-nvd3/archive/v1.0.4.zip), [tar.gz](https://github.com/krispo/angular-nvd3/archive/v1.0.4.tar.gz)).
+##### npm
+
+    $ npm install angular-nvd3
+
+##### download
+
+If you don't use bower or npm, you can manually download and unpack directive with the latest version ([zip](https://github.com/krispo/angular-nvd3/archive/v1.0.4.zip), [tar.gz](https://github.com/krispo/angular-nvd3/archive/v1.0.4.tar.gz)).
 
 ### Basic usage
 
