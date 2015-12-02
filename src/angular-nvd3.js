@@ -27,6 +27,9 @@
                         debounce: 10 // default 10ms, time silence to prevent refresh while multiple options changes at a time
                     };
 
+                    //flag indicates if directive and chart is ready
+                    scope.isReady = false;
+
                     //basic directive configuration
                     scope._config = angular.extend(defaultConfig, scope.config);
 
@@ -35,6 +38,7 @@
                         // Fully refresh directive
                         refresh: function(){
                             scope.api.updateWithOptions(scope.options);
+                            scope.isReady = true;
                         },
 
                         // Fully refresh directive with specified timeout
@@ -441,8 +445,12 @@
                         scope.api.clearElement();
                     });
 
-                    // On Ready Callback
-                    if (scope.onReady && typeof scope.onReady() === 'function') scope.onReady()(scope, element);
+                    // trigger onReady callback if directive is ready
+                    scope.$watch('isReady', function(isReady){
+                        if (isReady) {
+                            if (scope.onReady && typeof scope.onReady() === 'function') scope.onReady()(scope, element);
+                        }
+                    });
                 }
             };
         }])
