@@ -13,7 +13,11 @@ Try it [online](http://krispo.github.io/angular-nvd3/).
 
 ### Install
 
-Install it via bower:
+##### cdnjs
+
+    https://cdnjs.cloudflare.com/ajax/libs/angular-nvd3/1.0.4/angular-nvd3.min.js
+
+##### bower
 
     $ bower install angular-nvd3
     
@@ -33,7 +37,13 @@ Add dependencies to the `<head>` section of your main html:
 <link rel="stylesheet" href="bower_components/nvd3/build/nv.d3.css">
 ```
 
-If you don't use bower, you can manually download and unpack directive the latest version ([zip](https://github.com/krispo/angular-nvd3/archive/v1.0.4.zip), [tar.gz](https://github.com/krispo/angular-nvd3/archive/v1.0.4.tar.gz)).
+##### npm
+
+    $ npm install angular-nvd3
+
+##### download
+
+If you don't use bower or npm, you can manually download and unpack directive with the latest version ([zip](https://github.com/krispo/angular-nvd3/archive/v1.0.5.zip), [tar.gz](https://github.com/krispo/angular-nvd3/archive/v1.0.5.tar.gz)).
 
 ### Basic usage
 
@@ -124,11 +134,17 @@ Then build using [grunt](http://gruntjs.com/) (*node.js must be installed*):
 
 ## Release Notes
 
-### [1.0.4 (current, nvd3 v1.8.1)](https://github.com/krispo/angular-nvd3/releases/tag/v1.0.4)
+### [1.0.5 (current, nvd3 v1.8.1)](https://github.com/krispo/angular-nvd3/releases/tag/v1.0.5)
+* fixed `index.js`
+* fixed `onReady` attribute
+* added `getElement` api method
+
+### 1.0.4
 * `deepWatchData = true` by default
 * deleted `autorefresh`, `deepWatchConfig` configs
 * added `deepWatchDataDepth = 2` config to specify watch depth level for data: 0 - by reference (cheap), 1 - by collection item (the middle), 2 - by value (expensive)
 * added `onReady` attribute
+* added `updateWithTimeout`, `refreshWithTimeout` methods to `api`
 * fixed bugs
 
 ### 1.0.3

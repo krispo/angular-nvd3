@@ -1,5 +1,5 @@
 /**************************************************************************
-* AngularJS-nvD3, v1.0.4; MIT License; 27/11/2015 09:35
+* AngularJS-nvD3, v1.0.5; MIT License; 03/12/2015 08:27
 * http://krispo.github.io/angular-nvd3
 **************************************************************************/
 (function(){
@@ -31,6 +31,9 @@
                         debounce: 10 // default 10ms, time silence to prevent refresh while multiple options changes at a time
                     };
 
+                    //flag indicates if directive and chart is ready
+                    scope.isReady = false;
+
                     //basic directive configuration
                     scope._config = angular.extend(defaultConfig, scope.config);
 
@@ -39,6 +42,7 @@
                         // Fully refresh directive
                         refresh: function(){
                             scope.api.updateWithOptions(scope.options);
+                            scope.isReady = true;
                         },
 
                         // Fully refresh directive with specified timeout
@@ -258,7 +262,10 @@
                         },
 
                         // Get full directive scope
-                        getScope: function(){ return scope; }
+                        getScope: function(){ return scope; },
+
+                        // Get directive element
+                        getElement: function(){ return element; }
                     };
 
                     // Configure the chart model with the passed options
@@ -442,8 +449,12 @@
                         scope.api.clearElement();
                     });
 
-                    // On Ready Callback
-                    if (scope.onReady && typeof scope.onReady() === 'function') scope.onReady()(scope);
+                    // trigger onReady callback if directive is ready
+                    scope.$watch('isReady', function(isReady){
+                        if (isReady) {
+                            if (scope.onReady && typeof scope.onReady() === 'function') scope.onReady()(scope, element);
+                        }
+                    });
                 }
             };
         }])
