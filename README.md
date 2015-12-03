@@ -15,7 +15,7 @@ Try it [online](http://krispo.github.io/angular-nvd3/).
 
 ##### cdnjs
 
-    https://cdnjs.cloudflare.com/ajax/libs/angular-nvd3/1.0.4/angular-nvd3.min.js
+    https://cdnjs.cloudflare.com/ajax/libs/angular-nvd3/1.0.5/angular-nvd3.min.js
 
 ##### bower
 
