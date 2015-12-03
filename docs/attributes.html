@@ -135,15 +135,20 @@ Using this attribute you can access a global directive api (this is not a chart 
         <td class="api">getScope()</td>
         <td class="desc">Get access to the internal directive scope. For example, we can get chart object via <code>$scope.api.getScope().chart</code>. [v0.1.0+]</td>
     </tr>
+    <tr>
+        <td class="api">getElement()</td>
+        <td class="desc">Get directive DOM element. [v1.0.5+]</td>
+    </tr>
 </table>
 You can, for example, refresh your directive from controller like:
 <pre><code class="javascript">$scope.api.refresh();</code></pre>
 
 <h3>on-ready <span style="font-size: small;">[optional]</span></h3>
 Allow you to get internal scope under directive initialization:
-<pre><code class="javascript">$scope.callback = function(scope){
+<pre><code class="javascript">$scope.callback = function(scope, element){
     // this code will be applied once directive has been created
     // scope - is the directive internal scope
+    // element - directive DOM element
     var api = scope.api;
     var chart = scope.chart;
     var svg = scope.svg;
