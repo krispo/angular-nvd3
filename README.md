@@ -43,7 +43,7 @@ Add dependencies to the `<head>` section of your main html:
 
 ##### download
 
-If you don't use bower or npm, you can manually download and unpack directive with the latest version ([zip](https://github.com/krispo/angular-nvd3/archive/v1.0.4.zip), [tar.gz](https://github.com/krispo/angular-nvd3/archive/v1.0.4.tar.gz)).
+If you don't use bower or npm, you can manually download and unpack directive with the latest version ([zip](https://github.com/krispo/angular-nvd3/archive/v1.0.5.zip), [tar.gz](https://github.com/krispo/angular-nvd3/archive/v1.0.5.tar.gz)).
 
 ### Basic usage
 
@@ -134,9 +134,12 @@ Then build using [grunt](http://gruntjs.com/) (*node.js must be installed*):
 
 ## Release Notes
 
-### 1.0.5-dev (development)
+### [1.0.5 (current, nvd3 v1.8.1)](https://github.com/krispo/angular-nvd3/releases/tag/v1.0.5)
+* fixed `index.js`
+* fixed `onReady` attribute
+* added `getElement` api method
 
-### [1.0.4 (current, nvd3 v1.8.1)](https://github.com/krispo/angular-nvd3/releases/tag/v1.0.4)
+### 1.0.4
 * `deepWatchData = true` by default
 * deleted `autorefresh`, `deepWatchConfig` configs
 * added `deepWatchDataDepth = 2` config to specify watch depth level for data: 0 - by reference (cheap), 1 - by collection item (the middle), 2 - by value (expensive)
