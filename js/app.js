@@ -176,7 +176,8 @@ var app = angular.module('mainApp', ['mainApp.controllers','ngRoute', 'json-tree
             { name: "Pie Chart with custom legend position and size", url: "http://embed.plnkr.co/TJqjjkHaD2S0VjsGmN3c/preview"},
             { name: "Updating with Large Data", url: "http://plnkr.co/edit/PqepCg"},
             { name: "Ionic Framework demo", url: "http://plnkr.co/edit/e3HZQN?p=preview"},
-            { name: "Gridster dashboard demo", url: "http://plnkr.co/edit/jEQMch?p=preview"}
+            { name: "Gridster dashboard demo", url: "http://plnkr.co/edit/jEQMch?p=preview"},
+            { name: "Highlight points in Line Chart", url: "http://plnkr.co/edit/WfcVzs?p=preview"}
         ]
     })
 
