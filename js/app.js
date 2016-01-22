@@ -178,7 +178,8 @@ var app = angular.module('mainApp', ['mainApp.controllers','ngRoute', 'json-tree
             { name: "Ionic Framework demo", url: "http://plnkr.co/edit/e3HZQN?p=preview"},
             { name: "Gridster dashboard demo", url: "http://plnkr.co/edit/jEQMch?p=preview"},
             { name: "Highlight points in Line Chart", url: "http://plnkr.co/edit/WfcVzs?p=preview"},
-            { name: "Gradient colors on Pie Chart", url: "http://plnkr.co/edit/8ALkDb?p=preview"}
+            { name: "Gradient colors on Pie Chart", url: "http://plnkr.co/edit/8ALkDb?p=preview"},
+            { name: "Custom Tooltip", url: "http://plnkr.co/edit/gUf5Yx?p=preview"}
         ]
     })
 
