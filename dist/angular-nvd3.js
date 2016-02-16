@@ -1,5 +1,5 @@
 /**************************************************************************
-* AngularJS-nvD3, v1.0.6-dev; MIT License; 16/02/2016 17:56
+* AngularJS-nvD3, v1.0.6-dev; MIT License; 16/02/2016 17:58
 * http://krispo.github.io/angular-nvd3
 **************************************************************************/
 (function(){
@@ -125,6 +125,8 @@
                                         'multibar',
                                         'pie',
                                         'scatter',
+                                        'scatters1',
+                                        'scatters2',
                                         'sparkline',
                                         'stack1',
                                         'stack2',
