@@ -1,6 +1,6 @@
 {
     "name": "angular-nvd3",
-    "version": "1.0.5",
+    "version": "1.0.6-dev",
     "description": "An AngularJS directive for NVD3.js reusable charting library (based on D3.js)",
     "main": [
       "dist/angular-nvd3.js"

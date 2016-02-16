@@ -134,7 +134,9 @@ Then build using [grunt](http://gruntjs.com/) (*node.js must be installed*):
 
 ## Release Notes
 
-### [1.0.5 (current, nvd3 v1.8.1)](https://github.com/krispo/angular-nvd3/releases/tag/v1.0.5)
+### 1.0.6-dev (current)
+
+### [1.0.5 (nvd3 v1.8.1)](https://github.com/krispo/angular-nvd3/releases/tag/v1.0.5)
 * fixed `index.js`
 * fixed `onReady` attribute
 * added `getElement` api method
