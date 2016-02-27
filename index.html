@@ -10,15 +10,15 @@
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
     <!-- Yarrow -->
-    <link href="//rawgit.com/krispo/yarrow/master/build/yarrow.css" rel="stylesheet" type="text/css"/>
-    <script src="//d3js.org/d3-selection.v0.6.min.js"></script>
-    <script src="//d3js.org/d3-selection-multi.v0.2.min.js"></script>
-    <script src="//rawgit.com/krispo/svg-path-utils/master/build/svg-path-utils.min.js"></script>
-    <script src="//rawgit.com/krispo/yarrow/master/build/yarrow.js"></script>
-    <style>
-        .yarrow .arrow { stroke: rgba(255, 90, 0, 1); stroke-width: 6px;}
-        .yarrow .arrow.text {fill: white; stroke: none; font-size:15px;}
-    </style>
+    <!--<link href="//rawgit.com/krispo/yarrow/master/build/yarrow.css" rel="stylesheet" type="text/css"/>-->
+    <!--<script src="//d3js.org/d3-selection.v0.6.min.js"></script>-->
+    <!--<script src="//d3js.org/d3-selection-multi.v0.2.min.js"></script>-->
+    <!--<script src="//rawgit.com/krispo/svg-path-utils/master/build/svg-path-utils.min.js"></script>-->
+    <!--<script src="//rawgit.com/krispo/yarrow/master/build/yarrow.js"></script>-->
+    <!--<style>-->
+        <!--.yarrow .arrow { stroke: rgba(255, 90, 0, 1); stroke-width: 6px;}-->
+        <!--.yarrow .arrow.text {fill: white; stroke: none; font-size:15px;}-->
+    <!--</style>-->
     <!-- Others -->
     <link rel="stylesheet" href="bower_components/bootswatch/bootstrap.css" media="screen">
     <link rel="stylesheet" href="bower_components/bootswatch/bootswatch.min.css">
@@ -200,31 +200,31 @@
 
 <!-- Yarrow -->
 <script>
-    document.addEventListener('DOMContentLoaded', function main() {
-        var yar = new yarrow.Yarrow();
-        var x = window.innerWidth - 350
-            , y = 300
-            , dx = 150
-            , dy = -180
-            ;
-        var ar1 = yar.arrow({
-            x: x,
-            y: y,
-            dx: dx,
-            dy: dy,
-            text: 'News',
-            textReverseDirection: function(_, u){
-                return _.dx < 0;
-            },
-            textStartOffset: function(_, u){
-                return _.textReverseDirection ? 130 : 10
-            },
-            duration: 500
-        });
-        setTimeout(function(){
-            ar1.render().dispose(2000, 3000);
-        }, 1000);
-    });
+//    document.addEventListener('DOMContentLoaded', function main() {
+//        var yar = new yarrow.Yarrow();
+//        var x = window.innerWidth - 350
+//            , y = 300
+//            , dx = 150
+//            , dy = -180
+//            ;
+//        var ar1 = yar.arrow({
+//            x: x,
+//            y: y,
+//            dx: dx,
+//            dy: dy,
+//            text: 'News',
+//            textReverseDirection: function(_, u){
+//                return _.dx < 0;
+//            },
+//            textStartOffset: function(_, u){
+//                return _.textReverseDirection ? 130 : 10
+//            },
+//            duration: 500
+//        });
+//        setTimeout(function(){
+//            ar1.render().dispose(2000, 3000);
+//        }, 1000);
+//    });
 </script>
 </body>
 </html>
