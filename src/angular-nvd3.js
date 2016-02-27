@@ -517,6 +517,7 @@
                         , d3zoom
                         , zoomed
                         , unzoomed
+                        , zoomend
                         ;
 
                     // ensure nice axis
@@ -559,12 +560,20 @@
                         scope.chart.update();
                     };
 
+                    // zoomend event handler
+                    zoomend = function () {
+                        if (zoom.zoomend !== undefined) {
+                            zoom.zoomend();
+                        }
+                    };
+
                     // create d3 zoom handler
                     d3zoom = d3.behavior.zoom()
                         .x(xScale)
                         .y(yScale)
                         .scaleExtent(scaleExtent)
-                        .on('zoom', zoomed);
+                        .on('zoom', zoomed)
+                        .on('zoomend', zoomend);
 
                     scope.svg.call(d3zoom);
 
