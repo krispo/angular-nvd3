@@ -39,6 +39,13 @@ module.exports = function(config) {
         // CLI: --browsers Chrome,Firefox
         browsers: ['Chrome'],
 
+        customLaunchers: {
+            chrome_travis_ci: {
+                base: 'Chrome',
+                flags: ['--no-sandbox']
+            }
+        },
+
         // Preprocessor matches files before serving them to the browser.
         preprocessors: {
             '**/*.coffee': 'coffee',
@@ -113,4 +120,9 @@ module.exports = function(config) {
         // This is helpful when using proxies, as sometimes you might want to proxy a url that is already taken by Karma.
         urlRoot: '/' //default '/'
     });
+
+    if (process.env.TRAVIS) {
+        config.browsers = ['chrome_travis_ci'];
+        config.singleRun = true;
+    }
 };

@@ -1,13 +1,12 @@
 language: node_js
-sudo: required
-dist: precise
+sudo: false
 node_js:
-  - "0.10"
+- '4.2'
 
 branch:
   only:
     - master
 
 script:
-  - node_modules/.bin/karma start test/karma.conf.js --auto-watch --single-run --reporters dots,coverage --browsers PhantomJS
+  - node_modules/.bin/karma start test/karma.conf.js --auto-watch --single-run --reporters dots,coverage
 
