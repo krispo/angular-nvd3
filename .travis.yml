@@ -10,3 +10,8 @@ branch:
 script:
   - node_modules/.bin/karma start test/karma.conf.js --auto-watch --single-run --reporters dots,coverage
 
+before_install:
+  - export CHROME_BIN=chromium-browser
+  - export DISPLAY=:99.0
+  - sh -e /etc/init.d/xvfb start
+
