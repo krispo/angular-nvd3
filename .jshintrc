@@ -24,6 +24,7 @@
         "window": false,
         "clearTimeout": false,
         "setTimeout": false,
-        "document": false
+        "document": false,
+        "process": false
     }
 }
