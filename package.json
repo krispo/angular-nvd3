@@ -39,9 +39,9 @@
     "grunt-contrib-uglify": "^0.4.0",
     "grunt-contrib-watch": "^0.6.1",
     "jasmine-core": "^2.4.1",
-    "karma": "~0.10",
+    "karma": "^0.13.22",
     "karma-chrome-launcher": "^0.2.3",
-    "karma-coverage": "^0.2.1",
+    "karma-coverage": "^0.5.5",
     "karma-jasmine": "^0.3.8"
   },
   "scripts": {
