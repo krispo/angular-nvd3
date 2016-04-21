@@ -24,7 +24,8 @@
                         deepWatchOptions: true,
                         deepWatchData: true,
                         deepWatchDataDepth: 2, // 0 - by reference (cheap), 1 - by collection item (the middle), 2 - by value (expensive)
-                        debounce: 10 // default 10ms, time silence to prevent refresh while multiple options changes at a time
+                        debounce: 10, // default 10ms, time silence to prevent refresh while multiple options changes at a time
+                        debounceImmediate: true // immediate flag for debounce function
                     };
 
                     //flag indicates if directive and chart is ready
@@ -403,7 +404,7 @@
                     if (scope._config.deepWatchOptions) {
                         scope.$watch('options', nvd3Utils.debounce(function(newOptions){
                             if (!scope._config.disabled) scope.api.refresh();
-                        }, scope._config.debounce, true), true);
+                        }, scope._config.debounce, scope._config.debounceImmediate), true);
                     }
 
                     // Watching on data changing

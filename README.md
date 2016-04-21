@@ -134,6 +134,9 @@ Then build using [grunt](http://gruntjs.com/) (*node.js must be installed*):
 
 ## Release Notes
 
+### 1.0.7-dev
+* added `debounceImmediate` flag
+
 ### [1.0.6](https://github.com/krispo/angular-nvd3/releases/tag/v1.0.6)
 * merged with nvd3 1.8.2
 * fixed travis
