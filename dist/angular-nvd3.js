@@ -157,6 +157,7 @@
                                 else if ((key === 'xTickFormat' || key === 'yTickFormat') && options.chart.type === 'lineWithFocusChart');
                                 else if ((key === 'tooltips') && options.chart.type === 'boxPlotChart');
                                 else if ((key === 'tooltipXContent' || key === 'tooltipYContent') && options.chart.type === 'scatterChart');
+                                else if ((key === 'x' || key === 'y') && options.chart.type === 'forceDirectedGraph');
 
                                 else if (options.chart[key] === undefined || options.chart[key] === null){
                                     if (scope._config.extended) {
