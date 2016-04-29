@@ -152,6 +152,8 @@
                                 }
 
                                 //TODO: need to fix bug in nvd3
+                                else if ((key === 'focusHeight') && options.chart.type === 'lineChart');
+                                else if ((key === 'focusHeight') && options.chart.type === 'lineWithFocusChart');
                                 else if ((key === 'xTickFormat' || key === 'yTickFormat') && options.chart.type === 'lineWithFocusChart');
                                 else if ((key === 'tooltips') && options.chart.type === 'boxPlotChart');
                                 else if ((key === 'tooltipXContent' || key === 'tooltipYContent') && options.chart.type === 'scatterChart');
@@ -302,7 +304,8 @@
                                         'rangeBands',
                                         'scatter',
                                         'open',
-                                        'close'
+                                        'close',
+                                        'node'
                                     ].indexOf(key) === -1) {
                                     if (options[key] === undefined || options[key] === null){
                                         if (scope._config.extended) options[key] = value();
