@@ -157,6 +157,7 @@ var app = angular.module('mainApp', ['mainApp.controllers','ngRoute', 'json-tree
         sunburstChart: { path: '/sunburstChart', title: 'Sunburst Chart', plunker: 'http://plnkr.co/edit/emCcNv?p=preview' },
         ohlcBarChart: { path: '/ohlcBarChart', title: 'OHLC Chart', plunker: 'http://plnkr.co/edit/nevaIQ?p=preview' },
         boxPlotChart: { path: '/boxPlotChart', title: 'Box Plot Chart', plunker: 'http://plnkr.co/edit/7VHjgy?p=preview' },
+        forceDirectedGraph: { path: '/forceDirectedGraph', title: 'Force Directed Graph', plunker: '' }
     })
 
     .constant('CONSTANTS', {
