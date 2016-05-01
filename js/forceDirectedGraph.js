@@ -1,20 +1,20 @@
 'use strict';
 
-angular.module('mainApp.controllers', [])
+angular.module('mainApp.controllers')
 
     .controller('forceDirectedGraphCtrl', function($scope){
         var color = d3.scale.category20()
         $scope.options = {
             chart: {
                 type: 'forceDirectedGraph',
-                height: (function(){ return nv.utils.windowSize().height - 90})(),
-                // width: (function(){ return nv.utils.windowSize().width - 90})(),
+                height: 450,
+                 width: (function(){ return nv.utils.windowSize().width - 450 })(),
                 margin:{top: 20, right: 20, bottom: 20, left: 20},
                 color: function(d){
                     return color(d.group)
                 },
                 nodeExtras: function(node) {
-                    node
+                    node && node
                       .append("text")
                       .attr("dx", 8)
                       .attr("dy", ".35em")
