@@ -15,7 +15,7 @@ Try it [online](http://krispo.github.io/angular-nvd3/).
 
 ##### cdnjs
 
-    https://cdnjs.cloudflare.com/ajax/libs/angular-nvd3/1.0.6/angular-nvd3.min.js
+    https://cdnjs.cloudflare.com/ajax/libs/angular-nvd3/1.0.7/angular-nvd3.min.js
 
 ##### bower
 
@@ -43,7 +43,7 @@ Add dependencies to the `<head>` section of your main html:
 
 ##### download
 
-If you don't use bower or npm, you can manually download and unpack directive with the latest version ([zip](https://github.com/krispo/angular-nvd3/archive/v1.0.6.zip), [tar.gz](https://github.com/krispo/angular-nvd3/archive/v1.0.6.tar.gz)).
+If you don't use bower or npm, you can manually download and unpack directive with the latest version ([zip](https://github.com/krispo/angular-nvd3/archive/v1.0.7.zip), [tar.gz](https://github.com/krispo/angular-nvd3/archive/v1.0.7.tar.gz)).
 
 ### Basic usage
 
@@ -134,11 +134,11 @@ Then build using [grunt](http://gruntjs.com/) (*node.js must be installed*):
 
 ## Release Notes
 
-### 1.0.7-dev
+### [1.0.7](https://github.com/krispo/angular-nvd3/releases/tag/v1.0.7)
 * added `debounceImmediate` flag
 * added compatibility with nvd3 1.8.3
 
-### [1.0.6](https://github.com/krispo/angular-nvd3/releases/tag/v1.0.6)
+### 1.0.6
 * merged with nvd3 1.8.2
 * fixed travis
 * fixed npm package dependencies
