@@ -1,5 +1,5 @@
 /**************************************************************************
-* AngularJS-nvD3, v1.0.7; MIT
+* AngularJS-nvD3, v1.0.8-dev; MIT
 * http://krispo.github.io/angular-nvd3
 **************************************************************************/
 (function(){
@@ -552,7 +552,7 @@
                             if (!horizontalOff) xDomain(useFixedDomain ? fixDomain(xScale.domain(), x_boundary) : xScale.domain());
                             if (!verticalOff) yDomain(useFixedDomain ? fixDomain(yScale.domain(), y_boundary) : yScale.domain());
                         }
-                        scope.chart.update();
+                        if (scope.chart) scope.chart.update();
                     };
 
                     // unzoomed event handler
@@ -566,7 +566,7 @@
                             if (!verticalOff) yDomain(y_boundary);
                         }
                         d3zoom.scale(scale).translate(translate);
-                        scope.chart.update();
+                        if (scope.chart) scope.chart.update();
                     };
 
                     // zoomend event handler
@@ -584,11 +584,13 @@
                         .on('zoom', zoomed)
                         .on('zoomend', zoomend);
 
-                    scope.svg.call(d3zoom);
+                    if (scope.svg) {
+                        scope.svg.call(d3zoom);
 
-                    d3zoom.scale(scale).translate(translate).event(scope.svg);
+                        d3zoom.scale(scale).translate(translate).event(scope.svg);
 
-                    if (unzoomEventType !== 'none') scope.svg.on(unzoomEventType, unzoomed);
+                        if (unzoomEventType !== 'none') scope.svg.on(unzoomEventType, unzoomed);
+                    }
                 }
             };
         });
