@@ -237,6 +237,9 @@
                                 }
 
                                 scope.svg.datum(data).call(scope.chart);
+
+                                // update zooming if exists
+                                if (scope.chart && scope.chart.zoomRender) scope.chart.zoomRender();
                             }
                         },
 
@@ -591,6 +594,12 @@
 
                         if (unzoomEventType !== 'none') scope.svg.on(unzoomEventType, unzoomed);
                     }
+
+                    if (scope.chart)
+                        scope.chart.zoomRender = function(){
+                            scope.svg.call(d3zoom);
+                            if (unzoomEventType !== 'none') scope.svg.on(unzoomEventType, unzoomed);
+                        };
                 }
             };
         });
