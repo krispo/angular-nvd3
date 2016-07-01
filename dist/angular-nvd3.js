@@ -597,6 +597,10 @@
 
                     if (scope.chart)
                         scope.chart.zoomRender = function(){
+                            // reset zoom scale and translate
+                            d3zoom.scale(scale).translate(translate);
+
+                            // update scale
                             xScale = scope.chart.xAxis.scale();
                             yScale = scope.chart.yAxis.scale();
                             xDomain = scope.chart.xDomain || xScale.domain;
@@ -604,6 +608,7 @@
                             x_boundary = xScale.domain().slice();
                             y_boundary = yScale.domain().slice();
 
+                            // update zoom scale
                             d3zoom.x(xScale).y(yScale);
 
                             scope.svg.call(d3zoom);
