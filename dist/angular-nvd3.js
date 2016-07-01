@@ -597,7 +597,17 @@
 
                     if (scope.chart)
                         scope.chart.zoomRender = function(){
+                            xScale = scope.chart.xAxis.scale();
+                            yScale = scope.chart.yAxis.scale();
+                            xDomain = scope.chart.xDomain || xScale.domain;
+                            yDomain = scope.chart.yDomain || yScale.domain;
+                            x_boundary = xScale.domain().slice();
+                            y_boundary = yScale.domain().slice();
+
+                            d3zoom.x(xScale).y(yScale);
+
                             scope.svg.call(d3zoom);
+
                             if (unzoomEventType !== 'none') scope.svg.on(unzoomEventType, unzoomed);
                         };
                 }
