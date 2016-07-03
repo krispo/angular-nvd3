@@ -42,7 +42,7 @@
                     scope.api = {
                         // Fully refresh directive
                         refresh: function(){
-                            scope.api.updateWithOptions(scope.options);
+                            scope.api.updateWithOptions();
                             scope.isReady = true;
                         },
 
@@ -72,6 +72,13 @@
 
                         // Update chart with new options
                         updateWithOptions: function(options){
+                            // set options
+                            if (!arguments.length) {
+                                options = scope.options;
+                            } else {
+                                scope.options = options;
+                            }
+
                             // Clearing
                             scope.api.clearElement();
 
@@ -175,7 +182,7 @@
                             if (options.chart.type === 'sunburstChart') {
                                 scope.api.updateWithData(angular.copy(scope.data));
                             } else {
-                                scope.api.updateWithData(scope.data);
+                                scope.api.updateWithData();
                             }
 
                             // Configure wrappers
@@ -217,6 +224,13 @@
 
                         // Update chart with new data
                         updateWithData: function (data){
+                            // set data
+                            if (!arguments.length) {
+                                data = scope.data;
+                            } else {
+                                scope.data = data;
+                            }
+
                             if (data) {
                                 // remove whole svg element with old data
                                 d3.select(element[0]).select('svg').remove();
