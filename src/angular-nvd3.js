@@ -240,7 +240,7 @@
                                 var h, w;
 
                                 // Select the current element to add <svg> element and to render the chart in
-                                scope.svg = d3.select(element[0]).append('svg');
+                                scope.svg = d3.select(element[0]).insert('svg', '.caption');
                                 if (h = scope.options.chart.height) {
                                     if (!isNaN(+h)) h += 'px'; //check if height is number
                                     scope.svg.attr('height', h).style({height: h});
