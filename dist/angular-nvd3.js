@@ -77,6 +77,9 @@
                                 options = scope.options;
                             } else {
                                 scope.options = options;
+
+                                // return if options $watch is enabled
+                                if (scope._config.deepWatchOptions && !scope._config.disabled) return;
                             }
 
                             // Clearing
@@ -229,6 +232,9 @@
                                 data = scope.data;
                             } else {
                                 scope.data = data;
+
+                                // return if data $watch is enabled
+                                if (scope._config.deepWatchData && !scope._config.disabled) return;
                             }
 
                             if (data) {
