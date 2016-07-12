@@ -137,6 +137,7 @@ Then build using [grunt](http://gruntjs.com/) (*node.js must be installed*):
 ### [1.0.8](https://github.com/krispo/angular-nvd3/releases/tag/v1.0.8)
 * fixed zoom feature for delayed data loading
 * fixed caption positioning
+* fixed `updateWithOptions` and `updateWithData` api functions
 
 ### 1.0.7
 * added `debounceImmediate` flag
