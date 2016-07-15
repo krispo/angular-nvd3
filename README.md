@@ -134,6 +134,9 @@ Then build using [grunt](http://gruntjs.com/) (*node.js must be installed*):
 
 ## Release Notes
 
+### 1.0.9-dev (master)
+* add `focus` options
+
 ### [1.0.8](https://github.com/krispo/angular-nvd3/releases/tag/v1.0.8)
 * fixed zoom feature for delayed data loading
 * fixed caption positioning
