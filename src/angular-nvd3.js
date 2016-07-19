@@ -124,6 +124,7 @@
                                         'discretebar',
                                         'distX',
                                         'distY',
+                                        'focus',
                                         'interactiveLayer',
                                         'legend',
                                         'lines',
