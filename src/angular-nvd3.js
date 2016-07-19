@@ -178,11 +178,7 @@
                             });
 
                             // Update with data
-                            if (options.chart.type === 'sunburstChart') {
-                                scope.api.updateWithData(angular.copy(scope.data));
-                            } else {
-                                scope.api.updateWithData();
-                            }
+                            scope.api.updateWithData();
 
                             // Configure wrappers
                             if (options['title'] || scope._config.extended) configureWrapper('title');
@@ -225,7 +221,11 @@
                         updateWithData: function (data){
                             // set data
                             if (!arguments.length) {
-                                data = scope.data;
+                                if (scope.options.chart.type === 'sunburstChart') {
+                                    data = angular.copy(scope.data);
+                                } else {
+                                    data = scope.data;
+                                }
                             } else {
                                 scope.data = data;
 
