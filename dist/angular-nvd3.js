@@ -56,8 +56,11 @@
                         // Update chart layout (for example if container is resized)
                         update: function() {
                             if (scope.chart && scope.svg) {
-                                scope.svg.datum(scope.data).call(scope.chart);
-                                // scope.chart.update();
+                                if (scope.options.chart.type === 'sunburstChart') {
+                                    scope.svg.datum(angular.copy(scope.data)).call(scope.chart);
+                                } else {
+                                    scope.svg.datum(scope.data).call(scope.chart);
+                                }
                             } else {
                                 scope.api.refresh();
                             }
