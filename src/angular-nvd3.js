@@ -2,6 +2,13 @@
 
     'use strict';
 
+    // Node.js or CommonJS
+    if (typeof(exports) !== 'undefined') {
+        /* jshint -W020 */
+        nv = require('nvd3');
+        /* jshint +W020 */
+    }
+
     angular.module('nvd3', [])
 
         .directive('nvd3', ['nvd3Utils', function(nvd3Utils){
