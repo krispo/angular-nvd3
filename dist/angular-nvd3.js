@@ -2,9 +2,17 @@
 * AngularJS-nvD3, v1.0.9-dev; MIT
 * http://krispo.github.io/angular-nvd3
 **************************************************************************/
-(function(){
+(function(window){
 
     'use strict';
+    var nv = window.nv;
+
+    // Node.js or CommonJS
+    if (typeof(exports) !== 'undefined') {
+        /* jshint -W020 */
+        nv = require('nvd3');
+        /* jshint +W020 */
+    }
 
     angular.module('nvd3', [])
 
@@ -642,4 +650,4 @@
                 }
             };
         });
-})();
+})(window);

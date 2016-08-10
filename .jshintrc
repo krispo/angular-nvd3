@@ -18,7 +18,7 @@
     "boss": true,
     "globals": {
         "angular": false,
-        "nv": false,
+        "require": false,
         "d3": false,
         "navigator": false,
         "window": false,
