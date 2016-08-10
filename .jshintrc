@@ -17,6 +17,7 @@
     "unused": "vars",
     "boss": true,
     "globals": {
+        "require": false,
         "angular": false,
         "nv": false,
         "d3": false,
