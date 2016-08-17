@@ -15,7 +15,7 @@ Try it [online](http://krispo.github.io/angular-nvd3/).
 
 ##### cdnjs
 
-    https://cdnjs.cloudflare.com/ajax/libs/angular-nvd3/1.0.8/angular-nvd3.min.js
+    https://cdnjs.cloudflare.com/ajax/libs/angular-nvd3/1.0.9/angular-nvd3.min.js
 
 ##### bower
 
@@ -134,12 +134,12 @@ Then build using [grunt](http://gruntjs.com/) (*node.js must be installed*):
 
 ## Release Notes
 
-### 1.0.9-dev (master)
+### [1.0.9](https://github.com/krispo/angular-nvd3/releases/tag/v1.0.9)
 * add `focus` options
 * fix data update for sunburst chart 
 * Node.js/CommonJS support
 
-### [1.0.8](https://github.com/krispo/angular-nvd3/releases/tag/v1.0.8)
+### 1.0.8
 * fixed zoom feature for delayed data loading
 * fixed caption positioning
 * fixed `updateWithOptions` and `updateWithData` api functions
