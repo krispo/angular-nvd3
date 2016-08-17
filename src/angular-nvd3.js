@@ -1,6 +1,14 @@
-(function(){
+(function(window){
 
     'use strict';
+    var nv = window.nv;
+
+    // Node.js or CommonJS
+    if (typeof(exports) !== 'undefined') {
+        /* jshint -W020 */
+        nv = require('nvd3');
+        /* jshint +W020 */
+    }
 
     angular.module('nvd3', [])
 
@@ -638,4 +646,4 @@
                 }
             };
         });
-})();
+})(window);
