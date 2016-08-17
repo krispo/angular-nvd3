@@ -137,6 +137,7 @@ Then build using [grunt](http://gruntjs.com/) (*node.js must be installed*):
 ### 1.0.9-dev (master)
 * add `focus` options
 * fix data update for sunburst chart 
+* Node.js/CommonJS support
 
 ### [1.0.8](https://github.com/krispo/angular-nvd3/releases/tag/v1.0.8)
 * fixed zoom feature for delayed data loading
