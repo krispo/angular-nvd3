@@ -161,7 +161,7 @@ var app = angular.module('mainApp', ['mainApp.controllers','ngRoute', 'json-tree
     })
 
     .constant('CONSTANTS', {
-        version: '1.0.8',
+        version: '1.0.9',
         productionHostname: 'krispo.github.io',
         otherCharts: [
             { name: "Real-time chart updating", url: "http://plnkr.co/edit/yKFROu?p=preview" },
