@@ -101,15 +101,14 @@
                             // Initialize chart with specific type
                             scope.chart = nv.models[options.chart.type]();
 
-                            // Generate random chart ID
-                            scope.chart.id = Math.random().toString(36).substr(2, 15);
+                            // Use supplied chart ID or generate a random one
+                            scope.chart.tempId = options.chart.id || Math.random().toString(36).substr(2, 15);
 
                             angular.forEach(scope.chart, function(value, key){
                                 if (key[0] === '_');
                                 else if ([
                                         'clearHighlights',
                                         'highlightPoint',
-                                        'id',
                                         'options',
                                         'resizeHandler',
                                         'state',
@@ -286,7 +285,7 @@
                             // To be compatible with old nvd3 (v1.7.1)
                             if (nv.graphs && scope.chart) {
                                 for (var i = nv.graphs.length - 1; i >= 0; i--) {
-                                    if (nv.graphs[i] && (nv.graphs[i].id === scope.chart.id)) {
+                                    if (nv.graphs[i] && (nv.graphs[i].id === scope.chart.tempId)) {
                                         nv.graphs.splice(i, 1);
                                     }
                                 }
