@@ -21,7 +21,8 @@
                     api: '=?',      //directive global api, [optional]
                     events: '=?',   //global events that directive would subscribe to, [optional]
                     config: '=?',    //global directive configuration, [optional]
-                    onReady: '&?' //callback function that is called with internal scope when directive is created [optional]
+                    onReady: '&?', //callback function that is called with internal scope when directive is created [optional]
+                    onUpdate: '&?' //callback function that is called after SVG data is update or when SVG is recreated [optional]
                 },
                 link: function(scope, element, attrs){
                     var defaultConfig = {
@@ -65,6 +66,7 @@
                                 } else {
                                     scope.svg.datum(scope.data).call(scope.chart);
                                 }
+                                if (scope.onUpdate && typeof scope.onUpdate() === 'function') scope.onUpdate()(scope, element);
                             } else {
                                 scope.api.refresh();
                             }
@@ -268,6 +270,7 @@
 
                                 // update zooming if exists
                                 if (scope.chart && scope.chart.zoomRender) scope.chart.zoomRender();
+                                if (scope.onUpdate && typeof scope.onUpdate() === 'function') scope.onUpdate()(scope, element);
                             }
                         },
 
