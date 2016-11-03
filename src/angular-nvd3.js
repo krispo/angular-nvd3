@@ -211,7 +211,7 @@
 
                                 // Update the chart when window resizes
                                 scope.chart.resizeHandler = nv.utils.windowResize(function() {
-                                    scope.chart && scope.chart.update && scope.chart.update();
+                                    scope.chart && scope.chart.update && scope.api.update(); // call the api update
                                 });
 
                                 /// Zoom feature
