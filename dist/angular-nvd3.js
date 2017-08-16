@@ -287,6 +287,10 @@
                                 d3.select('#' + scope.chart.tooltip.id()).remove();
                             }
 
+                            if (scope.chart && scope.chart.interactiveLayer && scope.chart.interactiveLayer.tooltip && scope.chart.interactiveLayer.tooltip.id) {
+                               d3.select('#' + scope.chart.interactiveLayer.tooltip.id()).remove();
+                            }
+
                             // To be compatible with old nvd3 (v1.7.1)
                             if (nv.graphs && scope.chart) {
                                 for (var i = nv.graphs.length - 1; i >= 0; i--) {
