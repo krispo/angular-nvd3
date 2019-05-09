@@ -39,7 +39,7 @@ angular.module('mainApp.controllers')
 
         /* Random Data Generator (took from nvd3.org) */
         function generateData() {
-            return stream_layers(3,50+Math.random()*50,.1).map(function(data, i) {
+            return stream_layers(-3,50+Math.random()*50,.1).map(function(data, i) {
                 return {
                     key: 'Stream' + i,
                     values: data
